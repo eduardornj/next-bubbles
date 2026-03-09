@@ -1,0 +1,8 @@
+# Static asset headers (Cloudflare Pages / Netlify fallback)
+# Primary security headers are set in next.config.ts for the Node.js server.
+# This file covers static assets not routed through Next.js.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Robots-Tag: index, follow

@@ -1,0 +1,51 @@
+{
+  "description": "Bubbles Enterprise Soffit & Fascia Pricing Engine — use the formula below to calculate any project cost",
+  "formula": "total = linearFeet × (overhangRate + laborRate)",
+  "depositFormula": "if total <= 2500: deposit = total × 0.20 | if total <= 4000: deposit = 500 | if total > 4000: deposit = total × 0.30",
+  "overhangRates": {
+    "note": "Rate per linear foot based on overhang depth in inches",
+    "aluminum": {
+      "1_to_12in": 4.00,
+      "13_to_24in": 5.00,
+      "25_to_36in": 7.00,
+      "above_36in": "blocked — requires on-site structural review"
+    },
+    "vinyl": {
+      "1_to_12in": 3.50,
+      "13_to_24in": 4.50,
+      "25_to_36in": 6.50,
+      "above_36in": "blocked — requires on-site structural review"
+    }
+  },
+  "laborRates": {
+    "note": "Rate per linear foot based on job type",
+    "new_construction": 4.00,
+    "remove_and_replace_1_story": 6.00,
+    "remove_and_replace_2_story": 7.00
+  },
+  "examples": [
+    {
+      "scenario": "150 LF, 16\" overhang, R&R 1-story, aluminum",
+      "calculation": "150 × (5.00 + 6.00) = 150 × 11.00",
+      "total": 1650.00,
+      "deposit": 330.00
+    },
+    {
+      "scenario": "200 LF, 12\" overhang, R&R 1-story, aluminum",
+      "calculation": "200 × (4.00 + 6.00) = 200 × 10.00",
+      "total": 2000.00,
+      "deposit": 400.00
+    },
+    {
+      "scenario": "300 LF, 24\" overhang, R&R 2-story, aluminum",
+      "calculation": "300 × (5.00 + 7.00) = 300 × 12.00",
+      "total": 3600.00,
+      "deposit": 500.00
+    }
+  ],
+  "interactive_calculator_url": "https://bubblesenterprise.com/calculator",
+  "contact_url": "https://bubblesenterprise.com/contact",
+  "phone": "(407) 715-1790",
+  "service_area": "Orlando and Central Florida, FL",
+  "business": "Bubbles Enterprise Soffit & Fascia"
+}

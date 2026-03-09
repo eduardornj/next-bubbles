@@ -1,0 +1,41 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { CheckCircle2, ArrowRight, Clock } from "lucide-react";
+
+export const metadata: Metadata = {
+    title: "Repair Request Received | Bubbles Enterprise Orlando",
+    description:
+        "Your repair photo and request have been received. Our team will analyze the damage and contact you shortly.",
+    robots: { index: false, follow: false },
+};
+
+export default function RepairThankYouPage() {
+    return (
+        <div className="flex flex-col min-h-screen items-center justify-center bg-gray-50 px-4">
+            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-12 max-w-lg w-full text-center">
+                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Clock className="w-10 h-10 text-bubble-primary" />
+                </div>
+                <h1 className="text-3xl font-extrabold text-gray-900 mb-4">Repair Request Received!</h1>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                    Your photo and repair request have been received. A member of our team
+                    will review the damage and contact you within <strong>24 hours</strong>
+                    to discuss repair options and pricing.
+                </p>
+                <p className="text-sm text-gray-500 mb-8 bg-blue-50 border border-blue-100 rounded-xl p-4">
+                    💡 For urgent repairs or active leaks, call us directly at{" "}
+                    <a href="tel:4077151790" className="text-bubble-primary font-bold">
+                        (407) 715-1790
+                    </a>
+                    .
+                </p>
+                <Link
+                    href="/"
+                    className="inline-flex items-center justify-center gap-2 bg-bubble-primary text-white font-bold px-10 py-4 rounded-full hover:bg-bubble-dark transition shadow-lg"
+                >
+                    Back to Home <ArrowRight className="w-4 h-4" />
+                </Link>
+            </div>
+        </div>
+    );
+}

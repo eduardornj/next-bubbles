@@ -1,26 +1,220 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* View Transitions API — MPA cross-document fade (Chrome 126+, Safari 18.2+, ~76% users)
+   Progressive enhancement: browsers sem suporte veem navegação normal instantânea. */
+@view-transition {
+  navigation: auto;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-bubble-primary: #2563EB;
+  --color-bubble-secondary: #3B82F6;
+  --color-bubble-dark: #1E40AF;
+  --color-bubble-navy: #1E3A8A;
+  --color-bubble-light: #DBEAFE;
+
+  --color-accent: #EF4444;
+  /* Vermelho para destaque de alertas/CTAs se necessário */
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #0f172a;
+  }
+
+  .dark {
+    --background: #0f172a;
+    --foreground: #f8fafc;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-bubble-primary to-bubble-secondary;
+  }
+
+  .bg-gradient-blue {
+    @apply bg-gradient-to-br from-bubble-navy via-bubble-primary to-bubble-secondary;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   1. SCROLL-DRIVEN ANIMATIONS (Chrome 115+ · @supports guard)
+   Parallax-style scroll progress bar at top of every page.
+   Requires zero JavaScript.
+   ═══════════════════════════════════════════════════════════ */
+@supports (animation-timeline: scroll()) {
+
+  /* Reading/scroll progress bar */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #06b6d4, #2563eb);
+    transform-origin: left center;
+    transform: scaleX(0);
+    z-index: 9999;
+    animation: scroll-progress linear;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes scroll-progress {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Sections with [data-scroll-reveal] fade in as they enter viewport */
+  [data-scroll-reveal] {
+    opacity: 0;
+    translate: 0 2rem;
+    animation: scroll-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  @keyframes scroll-reveal {
+    from {
+      opacity: 0;
+      translate: 0 2.5rem;
+    }
+
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   2. VIEW TRANSITIONS API (Chrome 111+ · Safari 18+)
+   Smooth cinematic page transitions. Opt-in per element.
+   ═══════════════════════════════════════════════════════════ */
+@supports (view-transition-name: root) {
+
+  /* Default cross-fade for the entire page */
+  ::view-transition-old(root) {
+    animation: 280ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: 320ms cubic-bezier(0, 0, 0.2, 1) both vt-fade-in;
+  }
+
+  @keyframes vt-fade-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes vt-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Named transition for the header logo — stays in place */
+  .vt-logo {
+    view-transition-name: site-logo;
+  }
+
+  ::view-transition-old(site-logo),
+  ::view-transition-new(site-logo) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3. POPOVER API — Native dropdown styles
+   The browser manages top-layer placement automatically.
+   We only control the inner panel animation.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Animate in using @starting-style (Chrome 117+) */
+@supports (selector(:popover-open)) {
+  [popover] .popover-panel {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+    transition:
+      opacity 180ms ease,
+      transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  [popover]:popover-open .popover-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    [popover]:popover-open .popover-panel {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   4. REDUCED MOTION — WCAG 2.1 AA accessibility
+   Disables decorative animations for users who prefer reduced motion.
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  #scroll-progress {
+    display: none;
+  }
+
+  [data-scroll-reveal] {
+    opacity: 1;
+    translate: 0 0;
+  }
 }

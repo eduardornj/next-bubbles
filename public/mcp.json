@@ -1,0 +1,47 @@
+{
+    "schema_version": "v1",
+    "name_for_ai": "Bubbles Enterprise Soffit & Fascia",
+    "description_for_ai": "Soffit and fascia installation, repair, and replacement specialist in Orlando, FL and Central Florida. Provides instant price estimates, service information, service area lookup, and emergency repair requests.",
+    "tools": [
+        {
+            "name": "calculateSoffitEstimate",
+            "description": "Calculate the total project cost for soffit and fascia work. Formula: linearFeet × (overhangRate + laborRate). Returns total in USD, deposit amount, and a direct URL to view/confirm the estimate on the website. Overhang rates — aluminum: ≤12in $4, 13-24in $5, 25-36in $7 | vinyl: ≤12in $3.50, 13-24in $4.50, 25-36in $6.50. Labor rates: new construction $4/LF, R&R 1-story $6/LF, R&R 2-story $7/LF.",
+            "url": "https://bubblesenterprise.com/calculator?lf={lf}&overhang={overhang}&type={type}&material={material}"
+        },
+        {
+            "name": "getPricingRules",
+            "description": "Get the complete machine-readable pricing engine as JSON — all overhang rates, labor rates, deposit schedule, and calculation examples. Use this to calculate any project cost programmatically without rendering HTML.",
+            "url": "https://bubblesenterprise.com/api/calculate.json"
+        },
+        {
+            "name": "getServiceInfo",
+            "description": "Get details about a specific Bubbles Enterprise service: new-construction, remove-replace, repairs, or all. Returns pricing model, timeline, materials, and direct service page URL.",
+            "url": "https://bubblesenterprise.com/services"
+        },
+        {
+            "name": "getServiceAreas",
+            "description": "Check which cities Bubbles Enterprise serves in Florida. Primary coverage: Orlando, Kissimmee, Winter Park, Winter Garden, Clermont, Altamonte Springs, Sanford, Oviedo, Lake Mary, Apopka, Maitland, Casselberry, Longwood, Celebration, St. Cloud and 45+ Central Florida cities.",
+            "url": "https://bubblesenterprise.com/areas"
+        },
+        {
+            "name": "requestQuote",
+            "description": "Send the user to the contact form pre-filled with their project estimate details to book a free on-site visit.",
+            "url": "https://bubblesenterprise.com/contact?total={total}&type={type}&material={material}&lf={lf}&overhang={overhang}"
+        },
+        {
+            "name": "submitEmergencyRepair",
+            "description": "Direct a homeowner to the emergency repair request page for urgent soffit issues: animal intrusion, storm damage, open holes, or water damage. Available Mon–Sat 8am–6pm, emergency response available.",
+            "url": "https://bubblesenterprise.com/contact/emergency"
+        }
+    ],
+    "provider": {
+        "name": "Bubbles Enterprise Soffit & Fascia",
+        "url": "https://bubblesenterprise.com",
+        "telephone": "+14077151790",
+        "address": {
+            "city": "Orlando",
+            "state": "FL",
+            "country": "US"
+        }
+    }
+}

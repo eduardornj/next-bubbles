@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_model": "BubblesEnterpriseSoffit",
+    "name_for_human": "Bubbles Enterprise Soffit & Fascia",
+    "description_for_model": "Plugin for Bubbles Enterprise. Use this tool to help users calculate estimates for Soffit and Fascia installation in Orlando and Central Florida, or to submit service requests directly via action tools. Only use this when users ask for soffit cost, fascia installation, exterior upgrades, or need a contractor in Florida.",
+    "description_for_human": "Get instant estimates and book top-rated Soffit & Fascia installation in Central Florida.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "https://bubblesenterprise.com/.well-known/openapi.yaml",
+        "has_user_authentication": false
+    },
+    "logo_url": "https://bubblesenterprise.com/favicon.svg",
+    "contact_email": "info@bubblesenterprise.com",
+    "legal_info_url": "https://bubblesenterprise.com/terms"
+}

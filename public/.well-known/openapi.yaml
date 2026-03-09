@@ -1,0 +1,74 @@
+openapi: 3.0.1
+info:
+  title: Bubbles Enterprise API
+  description: API for retrieving soffit installation estimates and submitting service requests.
+  version: 'v1'
+servers:
+  - url: https://bubblesenterprise.com
+paths:
+  /contact:
+    post:
+      operationId: submitServiceRequest
+      summary: Submit a new service request or estimate inquiry for soffit and fascia.
+      description: Captures user contact details and their specific project requirements (e.g., New Construction, Repairs, R&R) to act as a qualified lead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - firstName
+                - lastName
+                - email
+                - service
+                - message
+              properties:
+                firstName:
+                  type: string
+                  description: The customer's first name.
+                lastName:
+                  type: string
+                  description: The customer's last name.
+                email:
+                  type: string
+                  format: email
+                  description: The customer's active email address.
+                phone:
+                  type: string
+                  description: The customer's phone number (optional but highly recommended).
+                service:
+                  type: string
+                  enum: [New Construction, Remove & Replace, Repairs, Other]
+                  description: The exact type of soffit/fascia service needed.
+                message:
+                  type: string
+                  description: Detailed description of the home layout, square footage, or specific damages.
+                ad_id:
+                  type: string
+                  description: (Agentic tracking) Do not fill unless instructed by a marketing agent system.
+      responses:
+        '200':
+          description: Service request accepted successfully.
+  /calculator:
+    get:
+      operationId: calculateEstimate
+      summary: Get an instant online quote for Soffit and Fascia.
+      description: Returns a dynamic webpage that displays the estimated cost of installation based on strict algorithmic variables (linear footage and overhang width).
+      parameters:
+        - name: material_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [vinyl, aluminum]
+          description: Preferred material for the installation. (Tool fallback is aluminum if omitted)
+        - name: linear_footage
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Total length of the roofline being serviced in feet.
+      responses:
+        '200':
+          description: URL to the dynamically filled calculator page.
