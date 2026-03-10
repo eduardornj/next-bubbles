@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, AlertTriangle, DollarSign, Shield, Phone, TrendingUp, Home, Bug, Droplets } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertTriangle, DollarSign, Shield, Phone, TrendingUp, Home, Bug, Droplets, Banknote, ShoppingCart, Wrench } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { RelatedServices } from "@/components/ui/RelatedServices";
 
@@ -107,173 +107,233 @@ function buildSchema(locale: string) {
 }
 
 const content = {
+    // ═══════════════════════════════════════════════════════════════════
+    // EN — AMERICAN HOMEOWNER
+    // Angle: Smart money, research-backed ROI, proof-driven, practical
+    // Tone: Direct, confident, no fluff. Numbers talk.
+    // ═══════════════════════════════════════════════════════════════════
     en: {
         breadcrumb: "Blog",
         category: "Home Investment",
         readTime: "7 min read · March 10, 2026",
-        authorLine: <>By <span className="font-semibold text-gray-700">Eddy</span> · Soffit &amp; Fascia Specialist · <time dateTime="2026-03-10">March 10, 2026</time></>,
-        h1a: "Use Your Tax Refund to",
-        h1b: "Protect Your Home",
-        intro: "Most people spend their refund on things that lose value the moment they buy them. Here's why soffit and fascia is the one home improvement that actually pays you back.",
-        // The Problem
-        problemTitle: "What Happens When You Ignore Damaged Soffit",
-        problemIntro: "That small gap or sagging panel under your roofline isn't just ugly — it's an open invitation to thousands of dollars in damage. Every week you wait, the problem gets worse:",
+        authorLine: <>By <span className="font-semibold text-gray-700">Eddy</span> · Licensed Soffit &amp; Fascia Contractor · <time dateTime="2026-03-10">March 10, 2026</time></>,
+        h1a: "Your Tax Refund Is Here.",
+        h1b: "Make It Count.",
+        intro: "The average refund in 2026 is $2,800. That's real money. Most of it goes to things that won't matter by June. This article breaks down one home improvement that costs less than the average refund, prevents five-figure damage, and actually pays you back.",
+        taxTitle: "Where Most Refunds Go (and Why It Doesn't Matter by Summer)",
+        taxIntro: "According to the IRS, the majority of refunds are spent within 3 weeks. Here's where:",
+        taxBad: [
+            { icon: ShoppingCart, label: "Electronics and furniture", result: "50% depreciation by December" },
+            { icon: ShoppingCart, label: "Travel", result: "Memorable — but $0 return on investment" },
+            { icon: ShoppingCart, label: "General spending", result: "Hard to even remember where it went" },
+        ],
+        taxTransition: "There's nothing wrong with treating yourself. But if you own a home in Central Florida, there's one thing worth checking before you spend that refund — your soffit.",
+        taxGood: "Soffit and fascia repair is one of the few home improvements where the math actually works: it costs less than the average refund, it prevents damage that runs 5 to 10 times higher, and it's something every home inspector checks.",
+        whySoffitTitle: "What Soffit and Fascia Actually Do",
+        whySoffitIntro: "Quick breakdown for anyone who's never thought about this (most homeowners haven't):",
+        whySoffitPoints: [
+            "Soffit = the panels under your roof overhang. They seal and ventilate your attic.",
+            "Fascia = the vertical board at the roofline edge. It holds your gutters and protects the roof edge.",
+            "Together, they keep water out, keep pests out, and keep your AC from fighting a losing battle against Florida heat.",
+        ],
+        whySoffitKicker: "Most homeowners don't think about soffit until something goes wrong. Here's what \"wrong\" looks like in Central Florida.",
+        problemTitle: "The Cost of Ignoring It",
+        problemIntro: "Every home inspector we've spoken to agrees: soffit damage is the most common surprise in Florida home inspections. Here's why:",
         problems: [
-            { icon: Bug, title: "Pest Invasion", desc: "Rats, squirrels, birds, and wasps enter through soffit gaps and nest in your attic. They chew wiring (fire hazard), destroy insulation, and leave droppings that create health risks." },
-            { icon: Droplets, title: "Water Damage & Mold", desc: "Rain enters through damaged soffit, soaking attic insulation and roof decking. Within weeks, mold grows. Within months, wood rot spreads. A $800 repair becomes a $10,000 problem." },
-            { icon: AlertTriangle, title: "Structural Deterioration", desc: "Fascia boards weaken when exposed to moisture. The gutter system loses support. Eventually, the entire roofline edge needs rebuilding — not just the soffit." },
-            { icon: TrendingUp, title: "Higher Energy Bills", desc: "Damaged soffit disrupts attic ventilation. Your AC works harder to cool the house, and you pay 10–20% more on electricity every month without knowing why." },
+            { icon: Bug, title: "Pest Entry", desc: "One gap is all it takes. Rats, squirrels, wasps — once they're in your attic, they damage wiring, insulation, and drywall. Average pest remediation: $1,200–$3,500." },
+            { icon: Droplets, title: "Water Intrusion", desc: "Rain enters through damaged panels and soaks your attic insulation. Mold follows within weeks. Average mold remediation in Orlando: $3,000–$8,000." },
+            { icon: AlertTriangle, title: "Structural Rot", desc: "Once fascia boards absorb moisture, they weaken. Gutters sag, the roof edge softens. Full roofline repair: $5,000–$15,000." },
+            { icon: TrendingUp, title: "Energy Waste", desc: "Damaged soffit vents mean your attic traps heat. Your AC runs harder. Florida homeowners report 10–20% higher bills with poor attic ventilation." },
         ],
-        // The Numbers
-        numbersTitle: "The Math: Fix Now vs. Fix Later",
-        numbersIntro: "Here's what delayed soffit repair actually costs in Central Florida:",
+        numbersTitle: "The Numbers: Fix Now vs. Fix Later",
+        numbersIntro: "Real cost data from Central Florida soffit projects:",
         numbersRows: [
-            { scenario: "Repair soffit now", cost: "$800 – $2,500", timeline: "1–2 days", note: "Problem solved. Home protected." },
-            { scenario: "Wait 6 months", cost: "$2,000 – $5,000", timeline: "3–5 days", note: "Water damage starts. Insulation replacement needed." },
-            { scenario: "Wait 1+ year", cost: "$5,000 – $15,000", timeline: "1–2 weeks", note: "Mold remediation + structural repair + soffit replacement." },
+            { scenario: "Repair now (avg. refund covers it)", cost: "$800 – $2,500", timeline: "1–2 days", note: "Problem resolved. Home protected." },
+            { scenario: "Wait 6 months", cost: "$2,000 – $5,000", timeline: "3–5 days", note: "Water damage likely. Insulation replacement needed." },
+            { scenario: "Wait 12+ months", cost: "$5,000 – $15,000", timeline: "1–2 weeks", note: "Mold remediation + structural + soffit replacement." },
         ],
-        numbersVerdict: "The average Orlando tax refund is $2,800. That covers most soffit repairs entirely — and saves you $5,000–$12,000 in future damage.",
-        // ROI Section
-        roiTitle: "5 Ways New Soffit Pays You Back",
+        numbersVerdict: "A $2,800 refund covers most soffit repairs entirely. That same repair prevents $5,000–$12,000 in cascading damage. Run the numbers yourself — it's hard to find a better return.",
+        roiTitle: "What You Actually Get for the Money",
         roiItems: [
-            { title: "Pass Home Inspection", desc: "Buyers and inspectors specifically check soffit for damage, pest entry, and water stains. Clean soffit = clean report = faster sale." },
-            { title: "Boost Curb Appeal Instantly", desc: "New aluminum soffit and fascia transform the look of your roofline. It's the most visible exterior upgrade after paint — and it lasts 20–30 years." },
-            { title: "Lower Insurance Risk", desc: "Some insurance companies flag homes with visible exterior damage. Clean soffit and fascia reduce the chance of a premium increase or non-renewal." },
-            { title: "Stop Energy Waste", desc: "Properly vented soffit panels regulate attic temperature, reducing AC strain and lowering your monthly electric bill by 10–20%." },
-            { title: "Hurricane Preparation", desc: "Hurricane season starts June 1. Secure soffit is the #1 defense against wind-driven rain entering your roof system. Don't wait until May." },
+            { title: "Clean Home Inspection", desc: "Inspectors check soffit on every report. Damage means flags, renegotiation, or lost buyers. New soffit means a clean exterior report." },
+            { title: "Curb Appeal That Lasts", desc: "New aluminum soffit is the most visible exterior upgrade after paint. It lasts 20–30 years and transforms the roofline instantly." },
+            { title: "Insurance Protection", desc: "Some Florida insurers flag visible exterior damage during renewal. Clean soffit reduces the chance of a premium increase or non-renewal letter." },
+            { title: "Lower Monthly Bills", desc: "Proper soffit ventilation reduces attic heat buildup. That means less AC strain and 10–20% off your monthly electric bill." },
+            { title: "Hurricane Season Prep", desc: "June 1 is coming. Damaged soffit panels are the #1 entry point for wind-driven rain during storms. Fix it while you have time — not during the May rush." },
         ],
-        // Timing
-        timingTitle: "Why Right Now Is the Perfect Time",
+        timingTitle: "Why March–April Is the Window",
         timingReasons: [
-            "Tax refunds hit accounts in March–April — you have the cash now",
-            "Hurricane season starts June 1 — get ahead of the rush",
-            "Spring weather is ideal for exterior work (no daily rain yet)",
-            "Contractors have more availability now than in May–June",
-            "Every week you wait, damage compounds (especially in Florida humidity)",
+            "Refunds are hitting accounts now — the money is available",
+            "Hurricane season starts June 1 — demand spikes in May",
+            "Spring weather means no daily rain delays",
+            "Contractor schedules are 30–40% more open than in May–June",
+            "Florida humidity compounds damage fast — every week matters",
         ],
-        // FAQ
-        faqTitle: "Common Questions",
+        faqTitle: "Questions We Get Asked",
         faqs: [
-            { q: "Is soffit and fascia repair a good investment?", a: "Yes. It's one of the highest-ROI home improvements you can make. A $800–$2,500 repair prevents $5,000–$15,000 in water, pest, and structural damage. It also improves curb appeal and helps your home pass inspection when it's time to sell." },
-            { q: "Does new soffit increase home value?", a: "New soffit and fascia improve curb appeal and help pass home inspections. Buyers and inspectors specifically check for soffit damage, pest entry, and water staining. Homes with clean, well-maintained exterior trim sell faster and command higher offers." },
-            { q: "How much does soffit repair cost in Orlando?", a: "Most soffit repairs in Orlando cost $800–$2,500 depending on the extent of damage and material (aluminum or vinyl). A full remove-and-replace on a single-story home runs $2,000–$5,000. Many homeowners cover the entire cost with their tax refund." },
-            { q: "Should I fix my soffit before hurricane season?", a: "Absolutely. Damaged or missing soffit panels are the most common entry point for wind-driven rain during hurricanes. Fixing soffit before June is the single most cost-effective storm preparation for your roof system." },
+            { q: "Is soffit repair worth my tax refund?", a: "Look at the numbers: $800–$2,500 now vs. $5,000–$15,000 later. It also boosts curb appeal and clears inspection reports. Few home improvements return 5–10x the cost." },
+            { q: "How do I know if my soffit needs work?", a: "Walk your roofline and look up. Sagging panels, visible gaps, staining, peeling paint, or animal activity are all signs. We do free on-site inspections if you want a professional assessment." },
+            { q: "What does soffit repair cost in Orlando?", a: "Most repairs: $800–$2,500. Full remove-and-replace on a single-story: $2,000–$5,000. Material choice (aluminum vs. vinyl) affects the final number. Our cost calculator gives you a ballpark in 2 minutes." },
+            { q: "Should I wait until May to schedule?", a: "No. May is when everyone calls. Schedules fill up, prices go up, and weather gets less predictable. March–April gives you the best availability and pricing." },
         ],
-        // CTA
-        ctaTitle: "Your Tax Refund Can Protect Your Home",
-        ctaBody: "Free estimate, no pressure. We'll inspect your soffit, show you exactly what needs attention, and give you a clear price — usually in under 30 minutes.",
+        ctaTitle: "See Where Your Refund Goes the Furthest",
+        ctaBody: "Free on-site inspection. Written estimate before any work starts. No pressure — just the numbers so you can decide.",
         ctaBtn: "Get Your Free Estimate",
         ctaPhone: "Call (407) 715-1790",
         ctaWhatsapp: "WhatsApp Us",
-        ctaNote: "Most projects completed in 1–2 days. Financing available starting at $19/month.",
+        ctaNote: "Most projects: 1–2 days. Financing from $19/month. Licensed & insured.",
     },
+    // ═══════════════════════════════════════════════════════════════════
+    // ES — HISPANICO/LATINO
+    // Angle: Proteger lo que usted construyo. La casa donde la familia se reune.
+    // Tone: Formal (usted), caloroso, respeitoso. Sem pressao. Confianca.
+    // ═══════════════════════════════════════════════════════════════════
     es: {
         breadcrumb: "Blog",
         category: "Inversion en Su Hogar",
         readTime: "7 min de lectura · 10 de marzo de 2026",
         authorLine: <>Por <span className="font-semibold text-gray-700">Eddy</span> · Especialista en Soffit y Fascia · <time dateTime="2026-03-10">10 de marzo de 2026</time></>,
-        h1a: "Use Su Reembolso de Impuestos",
-        h1b: "para Proteger Su Casa",
-        intro: "La mayoria de las personas gastan su reembolso en cosas que pierden valor en el momento que las compran. Le mostramos por que soffit y fascia es la unica mejora para el hogar que realmente le devuelve su dinero.",
-        problemTitle: "Lo Que Pasa Cuando Ignora un Soffit Danado",
-        problemIntro: "Ese pequeno hueco o panel colgante bajo su techo no es solo feo: es una invitacion abierta a miles de dolares en danos. Cada semana que espera, el problema se agrava:",
+        h1a: "Su Reembolso de Impuestos Llego.",
+        h1b: "Que Hace Con El?",
+        intro: "Usted trabajo duro todo el ano. Ese dinero que llega del IRS no es un regalo — es algo que se gano. La pregunta es: lo gasta en algo que se olvida en un mes, o lo invierte en algo que protege su casa y su familia por los proximos 20 anos?",
+        taxTitle: "La Verdad Sobre el Reembolso",
+        taxIntro: "El reembolso promedio este ano es de aproximadamente $2,800. Es una cantidad importante. Pero seamos honestos, la mayoria de las veces ese dinero se va rapido:",
+        taxBad: [
+            { icon: ShoppingCart, label: "Algo para la casa que no era urgente", result: "Bonito, pero no protege nada" },
+            { icon: ShoppingCart, label: "Un viaje o una salida grande", result: "Se disfruta unos dias y ya" },
+            { icon: ShoppingCart, label: "Ropa, electronica, gastos del dia a dia", result: "Para abril ya no sabe donde quedo" },
+        ],
+        taxTransition: "No hay nada malo en disfrutar su dinero. Usted se lo gano. Pero antes de gastarlo, hay algo que vale la pena revisar: el estado del soffit de su casa.",
+        taxGood: "El soffit y la fascia son la primera linea de defensa de su techo. Cuando estan en buen estado, usted ni lo nota. Cuando fallan, los problemas llegan rapido y cuestan mucho mas de lo que costo repararlos a tiempo.",
+        whySoffitTitle: "Que Es Soffit y Fascia, y Por Que Importa",
+        whySoffitIntro: "Muchas personas no conocen estas partes de su casa hasta que algo sale mal. Aqui le explico en palabras claras:",
+        whySoffitPoints: [
+            "El soffit es el panel que cubre la parte inferior del alero del techo. Sella y ventila su atico.",
+            "La fascia es la tabla vertical donde se montan las canaletas. Protege el borde del techo.",
+            "Juntos, mantienen el agua afuera, los animales afuera, y el aire acondicionado funcionando como debe.",
+        ],
+        whySoffitKicker: "En Florida, un soffit danado no es un problema estetico. Es una puerta abierta para lluvia, plagas y humedad que destruyen por dentro sin aviso.",
+        problemTitle: "Cuando el Soffit Falla, Todo Lo Demas Sufre",
+        problemIntro: "Estas son las situaciones que vemos todas las semanas en casas de Orlando y Kissimmee:",
         problems: [
-            { icon: Bug, title: "Invasion de Plagas", desc: "Ratas, ardillas, aves y avispas entran por los huecos del soffit y anidan en su atico. Roen el cableado electrico (riesgo de incendio), destruyen el aislamiento y dejan excrementos que crean riesgos para la salud." },
-            { icon: Droplets, title: "Danos por Agua y Moho", desc: "La lluvia entra por el soffit danado, empapando el aislamiento del atico y la cubierta del techo. En semanas crece moho. En meses, la pudricion de la madera se extiende. Una reparacion de $800 se convierte en un problema de $10,000." },
-            { icon: AlertTriangle, title: "Deterioro Estructural", desc: "Las tablas de fascia se debilitan con la humedad. El sistema de canaletas pierde soporte. Con el tiempo, todo el borde del techo necesita reconstruccion, no solo el soffit." },
-            { icon: TrendingUp, title: "Facturas de Energia Mas Altas", desc: "El soffit danado interrumpe la ventilacion del atico. Su aire acondicionado trabaja mas para enfriar la casa, y usted paga 10 a 20% mas en electricidad cada mes sin saber por que." },
+            { icon: Bug, title: "Animales en el Atico", desc: "Ratas, ardillas y avispas entran por cualquier hueco en el soffit. Una vez adentro, danan el cableado electrico, destruyen el aislamiento y crean un problema de salud para su familia." },
+            { icon: Droplets, title: "Humedad y Moho", desc: "La lluvia de Florida encuentra cada abertura. El agua empapa el aislamiento, y en pocas semanas aparece el moho. Lo que era un reparo de $800 se convierte en una remediacion de $5,000 o mas." },
+            { icon: AlertTriangle, title: "Dano Estructural", desc: "Cuando la fascia absorbe humedad, se debilita. Las canaletas pierden soporte, el borde del techo cede. Reconstruir toda esa area cuesta entre $5,000 y $15,000." },
+            { icon: TrendingUp, title: "Cuenta de Luz Mas Alta", desc: "Sin ventilacion adecuada en el soffit, el atico acumula calor. El aire acondicionado trabaja de mas y usted paga 10 a 20% extra en electricidad cada mes." },
         ],
-        numbersTitle: "Los Numeros: Reparar Ahora vs. Reparar Despues",
-        numbersIntro: "Lo que realmente cuesta retrasar la reparacion del soffit en Florida Central:",
+        numbersTitle: "Los Numeros Reales: Reparar Ahora o Pagar Despues",
+        numbersIntro: "Estos son los costos que vemos en proyectos reales aqui en Florida Central:",
         numbersRows: [
-            { scenario: "Reparar soffit ahora", cost: "$800 – $2,500", timeline: "1–2 dias", note: "Problema resuelto. Casa protegida." },
-            { scenario: "Esperar 6 meses", cost: "$2,000 – $5,000", timeline: "3–5 dias", note: "Comienza el dano por agua. Se necesita reemplazar el aislamiento." },
-            { scenario: "Esperar 1+ ano", cost: "$5,000 – $15,000", timeline: "1–2 semanas", note: "Remediacion de moho + reparacion estructural + reemplazo del soffit." },
+            { scenario: "Reparar ahora (su reembolso lo cubre)", cost: "$800 – $2,500", timeline: "1–2 dias", note: "Problema resuelto. Casa protegida." },
+            { scenario: "Esperar 6 meses", cost: "$2,000 – $5,000", timeline: "3–5 dias", note: "El agua ya entro. Hay que cambiar aislamiento." },
+            { scenario: "Esperar mas de 1 ano", cost: "$5,000 – $15,000", timeline: "1–2 semanas", note: "Moho, dano estructural y reemplazo completo." },
         ],
-        numbersVerdict: "El reembolso promedio de impuestos en Orlando es $2,800. Eso cubre la mayoria de las reparaciones de soffit por completo, y le ahorra $5,000 a $12,000 en danos futuros.",
-        roiTitle: "5 Formas en que un Soffit Nuevo Le Devuelve Su Dinero",
+        numbersVerdict: "Con $2,800 usted resuelve la mayoria de los problemas de soffit de su casa. Si espera, ese mismo problema puede costarle $5,000 a $12,000. Es su decision, pero los numeros son claros.",
+        roiTitle: "Que Gana Usted Con Esta Inversion",
         roiItems: [
-            { title: "Pasar la Inspeccion del Hogar", desc: "Los compradores e inspectores verifican el soffit buscando danos, entrada de plagas y manchas de agua. Soffit limpio = informe limpio = venta mas rapida." },
-            { title: "Mejorar la Apariencia al Instante", desc: "Un soffit y fascia nuevos de aluminio transforman el aspecto de su linea del techo. Es la mejora exterior mas visible despues de la pintura, y dura 20 a 30 anos." },
-            { title: "Reducir Riesgo de Seguro", desc: "Algunas companias de seguros senalan las casas con danos exteriores visibles. Un soffit y fascia limpios reducen la posibilidad de un aumento de prima o no renovacion." },
-            { title: "Detener el Desperdicio de Energia", desc: "Los paneles de soffit ventilados regulan la temperatura del atico, reduciendo el esfuerzo del aire acondicionado y bajando su factura de electricidad mensual un 10 a 20%." },
-            { title: "Preparacion para Huracanes", desc: "La temporada de huracanes comienza el 1 de junio. Un soffit seguro es la defensa numero 1 contra la lluvia impulsada por el viento que entra en su sistema de techo. No espere hasta mayo." },
+            { title: "Casa Lista para Inspeccion", desc: "Si alguna vez piensa vender, los inspectores revisan el soffit. Dano significa negociacion de precio o perder al comprador. Soffit limpio significa informe limpio." },
+            { title: "Su Casa Se Ve Diferente", desc: "Un soffit y fascia nuevos de aluminio cambian la apariencia completa de su techo. Es lo primero que se nota desde la calle. Dura 20 a 30 anos." },
+            { title: "Menos Problemas con el Seguro", desc: "Algunas aseguradoras en Florida senalan casas con danos exteriores visibles. Soffit en buen estado reduce ese riesgo." },
+            { title: "Menos en la Cuenta de Luz", desc: "La ventilacion correcta del soffit regula la temperatura del atico. Su aire acondicionado descansa, y usted paga menos cada mes." },
+            { title: "Proteccion para los Huracanes", desc: "La temporada comienza el 1 de junio. El soffit es el punto mas vulnerable del techo cuando hay viento fuerte con lluvia. Mejor resolverlo ahora que en mayo cuando todos llaman al mismo tiempo." },
         ],
-        timingTitle: "Por Que Ahora Es el Momento Perfecto",
+        timingTitle: "Por Que Este Es el Momento Indicado",
         timingReasons: [
-            "Los reembolsos de impuestos llegan a las cuentas en marzo y abril: tiene el efectivo ahora",
-            "La temporada de huracanes comienza el 1 de junio: adelantese",
-            "El clima de primavera es ideal para trabajo exterior (aun no llueve a diario)",
-            "Los contratistas tienen mas disponibilidad ahora que en mayo o junio",
-            "Cada semana que espera, el dano se acumula (especialmente con la humedad de Florida)",
+            "Su reembolso esta disponible ahora — es dinero que ya tiene",
+            "La temporada de huracanes empieza en junio — mejor adelantarse",
+            "El clima de primavera es ideal — sin lluvias diarias todavia",
+            "Los equipos de trabajo tienen mas espacio en su agenda ahora",
+            "La humedad de Florida no espera — cada semana el dano avanza",
         ],
-        faqTitle: "Preguntas Frecuentes",
+        faqTitle: "Preguntas Que Nos Hacen Seguido",
         faqs: [
-            { q: "Es buena inversion reparar soffit y fascia?", a: "Si. Es una de las mejoras del hogar con mayor retorno de inversion. Una reparacion de $800 a $2,500 previene $5,000 a $15,000 en danos por agua, plagas y problemas estructurales. Tambien mejora la apariencia y ayuda a pasar la inspeccion cuando sea hora de vender." },
-            { q: "Un soffit nuevo aumenta el valor de la casa?", a: "Un soffit y fascia nuevos mejoran la apariencia y ayudan a pasar inspecciones. Los compradores e inspectores buscan especificamente danos en el soffit, entrada de plagas y manchas de agua. Las casas con acabados exteriores limpios se venden mas rapido y a mejor precio." },
-            { q: "Cuanto cuesta reparar el soffit en Orlando?", a: "La mayoria de las reparaciones de soffit en Orlando cuestan entre $800 y $2,500 dependiendo del alcance del dano y el material. Un reemplazo completo en una casa de un piso cuesta entre $2,000 y $5,000. Muchos propietarios cubren todo el costo con su reembolso de impuestos." },
-            { q: "Debo reparar el soffit antes de la temporada de huracanes?", a: "Definitivamente. Los paneles de soffit danados o faltantes son el punto de entrada mas comun para la lluvia impulsada por el viento durante los huracanes. Reparar el soffit antes de junio es la preparacion mas economica para proteger su sistema de techo." },
+            { q: "Es buena idea usar mi reembolso para reparar soffit?", a: "Es una de las mejores formas de proteger su casa. Un reparo de $800 a $2,500 le evita gastos de $5,000 a $15,000 mas adelante. Ademas mejora como se ve la casa y ayuda en inspecciones si alguna vez decide vender." },
+            { q: "Como se si mi soffit necesita reparo?", a: "Camine alrededor de su casa y mire hacia arriba. Paneles caidos, huecos, manchas, pintura que se pela o animales entrando son senales claras. Le ofrecemos inspeccion gratuita en su propiedad si quiere una evaluacion profesional." },
+            { q: "Cuanto cuesta el reparo de soffit en Orlando?", a: "La mayoria de los reparos cuestan entre $800 y $2,500. Un reemplazo completo en una casa de un piso va de $2,000 a $5,000. El material que elija (aluminio o vinilo) afecta el precio final. Nuestra calculadora le da un estimado en 2 minutos." },
+            { q: "Puedo esperar hasta mayo o junio?", a: "Puede, pero no le conviene. En mayo todos llaman, los tiempos de espera aumentan y los precios suben. Ahora hay mas disponibilidad y mejores condiciones para el trabajo." },
         ],
-        ctaTitle: "Su Reembolso de Impuestos Puede Proteger Su Casa",
-        ctaBody: "Estimado gratuito, sin presiones. Inspeccionamos su soffit, le mostramos exactamente que necesita atencion y le damos un precio claro, generalmente en menos de 30 minutos.",
-        ctaBtn: "Obtener Su Estimado Gratuito",
-        ctaPhone: "Llamar (407) 715-1790",
-        ctaWhatsapp: "Escribenos por WhatsApp",
-        ctaNote: "La mayoria de los proyectos se completan en 1 a 2 dias. Financiamiento disponible desde $19 al mes.",
+        ctaTitle: "Proteja Su Hogar Con Su Reembolso",
+        ctaBody: "Inspeccion gratuita en su propiedad. Presupuesto escrito antes de cualquier trabajo. Sin compromiso — usted decide con toda la informacion.",
+        ctaBtn: "Solicite Su Presupuesto Gratuito",
+        ctaPhone: "Llame al (407) 715-1790",
+        ctaWhatsapp: "Escribanos por WhatsApp",
+        ctaNote: "Proyectos de 1 a 2 dias. Financiamiento desde $19 al mes. Licenciados y asegurados.",
     },
+    // ═══════════════════════════════════════════════════════════════════
+    // PT — BRASILEIRO IMIGRANTE
+    // Angle: A restituicao caiu, o vizinho ja resolveu, churrasco vem ai.
+    // Tone: Direto, leve, sem frescura. Como conversa entre conhecidos.
+    // ═══════════════════════════════════════════════════════════════════
     pt: {
         breadcrumb: "Blog",
         category: "Investimento no Lar",
         readTime: "7 min de leitura · 10 de marco de 2026",
         authorLine: <>Por <span className="font-semibold text-gray-700">Eddy</span> · Especialista em Soffit e Fascia · <time dateTime="2026-03-10">10 de marco de 2026</time></>,
-        h1a: "Use Sua Restituicao de Imposto",
-        h1b: "para Proteger Sua Casa",
-        intro: "A maioria das pessoas gasta a restituicao em coisas que perdem valor no momento em que compram. Mostramos por que soffit e fascia e a unica melhoria residencial que realmente retorna o seu dinheiro.",
-        problemTitle: "O Que Acontece Quando Voce Ignora um Soffit Danificado",
-        problemIntro: "Aquele pequeno vao ou painel solto embaixo do telhado nao e so feio: e um convite aberto para milhares de dolares em danos. Cada semana que voce espera, o problema se agrava:",
+        h1a: "Caiu a Restituicao na Conta.",
+        h1b: "Vai Fazer o Que Com Ela?",
+        intro: "Todo mundo tem opiniao sobre o que fazer com a restituicao. TV nova, viagem, pagar umas contas. Tudo valido. Mas se voce tem casa aqui na Florida e nunca olhou pro soffit, talvez esse seja o melhor uso que voce vai dar pra esse dinheiro.",
+        taxTitle: "O Que Todo Mundo Faz Com a Restituicao (e O Que Acontece Depois)",
+        taxIntro: "A restituicao media em 2026 e de uns $2.800. Parece muito ate voce ver como some rapido:",
+        taxBad: [
+            { icon: ShoppingCart, label: "TV nova, videogame, eletronica", result: "Em dezembro ja vale metade" },
+            { icon: ShoppingCart, label: "Viagem de fim de semana", result: "Bom demais, mas durou 3 dias" },
+            { icon: ShoppingCart, label: "Compras, roupas, restaurante", result: "Em abril voce ja nem lembra onde foi" },
+        ],
+        taxTransition: "Nada disso e errado. Voce trabalhou o ano inteiro, merece. Mas antes de gastar, faz uma coisa: sai da sua casa, olha pra cima e ve como esta o soffit.",
+        taxGood: "Se tiver painel solto, vao aberto, mancha ou bicho entrando, voce tem um problema que custa $800 pra resolver agora e $10.000 se deixar pra depois. E a restituicao cobre.",
+        whySoffitTitle: "Soffit e Fascia: O Que E Isso e Por Que Voce Deveria Se Importar",
+        whySoffitIntro: "Se voce nunca ouviu falar em soffit, normal. A maioria so descobre quando da problema. Em resumo:",
+        whySoffitPoints: [
+            "Soffit e o painel embaixo do beiral do telhado. Ele fecha o sotao e ventila pra nao virar um forno.",
+            "Fascia e a tabua na borda do telhado onde as calhas ficam penduradas.",
+            "Os dois juntos impedem que chuva, bicho e umidade entrem na estrutura da sua casa.",
+        ],
+        whySoffitKicker: "Na Florida, soffit danificado nao e questao de estetica. E questao de tempo ate dar problema serio.",
+        problemTitle: "O Que Acontece Quando Voce Deixa Pra Depois",
+        problemIntro: "Nos vemos isso toda semana em casas de Orlando, Kissimmee, Winter Park. Sempre a mesma historia:",
         problems: [
-            { icon: Bug, title: "Invasao de Pragas", desc: "Ratos, esquilos, passaros e vespas entram pelos vaos do soffit e fazem ninhos no sotao. Roem a fiacaa eletrica (risco de incendio), destroem o isolamento e deixam fezes que criam riscos a saude." },
-            { icon: Droplets, title: "Danos por Agua e Mofo", desc: "A chuva entra pelo soffit danificado, encharcando o isolamento do sotao e a estrutura do telhado. Em semanas, o mofo aparece. Em meses, o apodrecimento da madeira se espalha. Um reparo de $800 vira um problema de $10.000." },
-            { icon: AlertTriangle, title: "Deterioracao Estrutural", desc: "As tabuas de fascia enfraquecem quando expostas a umidade. O sistema de calhas perde suporte. Com o tempo, toda a borda do telhado precisa ser reconstruida, nao apenas o soffit." },
-            { icon: TrendingUp, title: "Contas de Energia Mais Altas", desc: "O soffit danificado atrapalha a ventilacao do sotao. O ar-condicionado trabalha mais para resfriar a casa, e voce paga 10 a 20% a mais na conta de luz todo mes sem saber por que." },
+            { icon: Bug, title: "Bicho Entra", desc: "Rato, esquilo, morcego, vespa. Entrou por um vao no soffit, fez ninho no sotao, roeu a fiacao. Resultado: risco de incendio e conta de pest control de $1.200 a $3.500." },
+            { icon: Droplets, title: "Agua Entra", desc: "Chuva de Florida acha qualquer brecha. Entra, encharca o isolamento, e em poucas semanas o mofo aparece. Um reparo de $800 vira uma remediacao de mofo de $5.000." },
+            { icon: AlertTriangle, title: "Estrutura Apodrece", desc: "A fascia absorve umidade, as calhas perdem apoio, a borda do telhado cede. Reconstruir tudo isso: $5.000 a $15.000." },
+            { icon: TrendingUp, title: "Conta de Luz Sobe", desc: "Sem ventilacao no soffit, o sotao vira uma sauna. O ar-condicionado trabalha mais e voce paga 10 a 20% a mais na conta de luz todo mes sem saber por que." },
         ],
-        numbersTitle: "As Contas: Reparar Agora vs. Reparar Depois",
-        numbersIntro: "O que realmente custa adiar o reparo do soffit na Florida Central:",
+        numbersTitle: "Faz a Conta: Resolver Agora ou Pagar Caro Depois",
+        numbersIntro: "Esses sao os custos reais que nos vemos aqui na Florida Central:",
         numbersRows: [
-            { scenario: "Reparar soffit agora", cost: "$800 – $2.500", timeline: "1–2 dias", note: "Problema resolvido. Casa protegida." },
-            { scenario: "Esperar 6 meses", cost: "$2.000 – $5.000", timeline: "3–5 dias", note: "Dano por agua comeca. Substituicao do isolamento necessaria." },
-            { scenario: "Esperar 1+ ano", cost: "$5.000 – $15.000", timeline: "1–2 semanas", note: "Remediacao de mofo + reparo estrutural + substituicao do soffit." },
+            { scenario: "Resolver agora (restituicao cobre)", cost: "$800 – $2.500", timeline: "1–2 dias", note: "Resolvido. Casa protegida." },
+            { scenario: "Deixar pra daqui 6 meses", cost: "$2.000 – $5.000", timeline: "3–5 dias", note: "Agua ja entrou. Isolamento precisa trocar." },
+            { scenario: "Deixar pra daqui 1 ano", cost: "$5.000 – $15.000", timeline: "1–2 semanas", note: "Mofo + reparo estrutural + troca total." },
         ],
-        numbersVerdict: "A restituicao media de imposto em Orlando e $2.800. Isso cobre a maioria dos reparos de soffit por completo, e evita $5.000 a $12.000 em danos futuros.",
-        roiTitle: "5 Formas Como um Soffit Novo Retorna Seu Dinheiro",
+        numbersVerdict: "Com $2.800 voce resolve a maioria dos problemas de soffit da sua casa. Se esperar, o mesmo problema pode custar $5.000 a $12.000. A conta e simples.",
+        roiTitle: "O Que Voce Ganha Fazendo Isso Agora",
         roiItems: [
-            { title: "Passar na Inspecao do Imovel", desc: "Compradores e inspetores verificam o soffit buscando danos, entrada de pragas e manchas de agua. Soffit limpo = relatorio limpo = venda mais rapida." },
-            { title: "Melhorar a Aparencia na Hora", desc: "Um soffit e fascia novos de aluminio transformam a aparencia da linha do telhado. E a melhoria exterior mais visivel depois da pintura, e dura 20 a 30 anos." },
-            { title: "Reduzir Risco no Seguro", desc: "Algumas seguradoras sinalizam casas com danos exteriores visiveis. Um soffit e fascia limpos reduzem a chance de aumento de premio ou nao renovacao." },
-            { title: "Parar o Desperdicio de Energia", desc: "Os paineis de soffit ventilados regulam a temperatura do sotao, reduzindo o esforco do ar-condicionado e diminuindo sua conta de luz mensal em 10 a 20%." },
-            { title: "Preparacao para Furacoes", desc: "A temporada de furacoes comeca em 1 de junho. Um soffit seguro e a defesa numero 1 contra a chuva impulsionada pelo vento que entra no sistema do telhado. Nao espere ate maio." },
+            { title: "Casa Pronta pra Vender", desc: "Se um dia for vender, o inspetor vai olhar o soffit. Se tiver problema, o comprador usa isso pra negociar o preco pra baixo. Soffit novo resolve isso antes de acontecer." },
+            { title: "A Casa Fica Outra", desc: "Soffit e fascia novos de aluminio mudam a cara da casa vista da rua. E a melhoria externa mais visivel depois da pintura. E dura 20 a 30 anos." },
+            { title: "Menos Dor de Cabeca com Seguro", desc: "Algumas seguradoras da Florida marcam casas com dano externo visivel. Soffit limpo reduz a chance de aumento de premio ou carta de nao-renovacao." },
+            { title: "Conta de Luz Mais Baixa", desc: "Soffit ventilado direito regula o calor do sotao. O ar-condicionado descansa e voce paga menos todo mes. Simples assim." },
+            { title: "Preparado pro Hurricane", desc: "Temporada comeca 1 de junho. Soffit danificado e o ponto numero 1 por onde a chuva com vento entra no telhado. Melhor resolver agora do que em maio quando todo mundo liga ao mesmo tempo." },
         ],
-        timingTitle: "Por Que Agora E o Momento Perfeito",
+        timingTitle: "Por Que Resolver em Marco e Abril",
         timingReasons: [
-            "As restituicoes de imposto chegam nas contas em marco e abril: voce tem o dinheiro agora",
-            "A temporada de furacoes comeca em 1 de junho: se antecipe",
-            "O clima da primavera e ideal para trabalho externo (ainda nao chove todo dia)",
-            "Os empreiteiros tem mais disponibilidade agora do que em maio e junho",
-            "Cada semana que voce espera, o dano se acumula (especialmente com a umidade da Florida)",
+            "A restituicao esta na conta agora. O dinheiro ja esta ali",
+            "Temporada de furacoes comeca em junho. Em maio todo mundo corre",
+            "O tempo da primavera e perfeito. Sem aquela chuva diaria de verao",
+            "Nos temos mais agenda aberta agora do que em maio e junho",
+            "A umidade da Florida nao espera. Cada semana o dano piora",
         ],
-        faqTitle: "Perguntas Frequentes",
+        faqTitle: "Perguntas Que Nos Recebemos",
         faqs: [
-            { q: "Reparar soffit e fascia e um bom investimento?", a: "Sim. E uma das melhorias residenciais com maior retorno sobre o investimento. Um reparo de $800 a $2.500 previne $5.000 a $15.000 em danos por agua, pragas e problemas estruturais. Tambem melhora a aparencia e ajuda a passar na inspecao quando for hora de vender." },
-            { q: "Um soffit novo aumenta o valor da casa?", a: "Um soffit e fascia novos melhoram a aparencia e ajudam a passar em inspecoes. Compradores e inspetores buscam especificamente danos no soffit, entrada de pragas e manchas de agua. Casas com acabamentos externos limpos vendem mais rapido e por melhor preco." },
-            { q: "Quanto custa reparar o soffit em Orlando?", a: "A maioria dos reparos de soffit em Orlando custa entre $800 e $2.500, dependendo da extensao do dano e do material. Uma substituicao completa em uma casa terrea custa entre $2.000 e $5.000. Muitos proprietarios cobrem todo o custo com a restituicao de imposto." },
-            { q: "Devo reparar o soffit antes da temporada de furacoes?", a: "Com certeza. Paineis de soffit danificados ou faltantes sao o ponto de entrada mais comum para chuva impulsionada pelo vento durante furacoes. Reparar o soffit antes de junho e a preparacao mais economica para proteger o sistema do telhado." },
+            { q: "Vale a pena gastar a restituicao com soffit?", a: "Faz a conta: $800 a $2.500 agora vs. $5.000 a $15.000 depois. Alem disso, a casa fica mais bonita e passa tranquilo na inspecao se voce for vender. Dificil achar outro uso pra $2.800 que economiza cinco a dez vezes mais." },
+            { q: "Como sei se o soffit da minha casa precisa de reparo?", a: "Sai de casa e olha pra cima. Painel solto, vao aberto, mancha de agua, pintura descascando ou barulho de bicho no teto sao sinais claros. Se quiser certeza, nos fazemos vistoria gratis na sua casa." },
+            { q: "Quanto custa reparar soffit em Orlando?", a: "A maioria dos reparos custa entre $800 e $2.500. Troca completa numa casa terrea: $2.000 a $5.000. Depende do material (aluminio ou vinil). Nossa calculadora online da um valor aproximado em 2 minutos." },
+            { q: "Posso esperar pra resolver em maio?", a: "Pode, mas nao compensa. Em maio todo mundo liga, a agenda lota, os precos sobem e o tempo fica mais instavel. Agora tem mais vaga e melhores condicoes pra fazer o servico." },
         ],
-        ctaTitle: "Sua Restituicao de Imposto Pode Proteger Sua Casa",
-        ctaBody: "Orcamento gratuito, sem pressao. Inspecionamos seu soffit, mostramos exatamente o que precisa de atencao e damos um preco claro, geralmente em menos de 30 minutos.",
-        ctaBtn: "Obter Seu Orcamento Gratuito",
-        ctaPhone: "Ligar (407) 715-1790",
-        ctaWhatsapp: "Fale Conosco pelo WhatsApp",
-        ctaNote: "A maioria dos projetos e concluida em 1 a 2 dias. Financiamento disponivel a partir de $19 por mes.",
+        ctaTitle: "Resolve Logo Enquanto a Restituicao Ta Na Conta",
+        ctaBody: "Vistoria gratis na sua casa. Orcamento na hora, sem compromisso. Voce decide com tudo na mao.",
+        ctaBtn: "Fala Com a Gente",
+        ctaPhone: "Liga (407) 715-1790",
+        ctaWhatsapp: "Manda WhatsApp",
+        ctaNote: "A maioria dos projetos fica pronto em 1 a 2 dias. Financiamento a partir de $19 por mes.",
     },
 };
 
@@ -317,6 +377,59 @@ export default async function TaxRefundSoffitPage({
                             </h1>
                             <p className="text-sm text-gray-400 mt-2 mb-4">{c.authorLine}</p>
                             <p className="text-xl text-green-100 max-w-3xl leading-relaxed">{c.intro}</p>
+                        </AnimatedSection>
+                    </div>
+                </section>
+
+                {/* ── TAX CONTEXT ──────────────────────────────────────── */}
+                <section className="py-16 bg-white">
+                    <div className="container mx-auto px-4 max-w-4xl">
+                        <AnimatedSection>
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">{c.taxTitle}</h2>
+                            <p className="text-gray-600 text-lg leading-relaxed mb-8">{c.taxIntro}</p>
+                        </AnimatedSection>
+                        <div className="space-y-3 mb-8">
+                            {c.taxBad.map((item, i) => (
+                                <AnimatedSection key={i} delay={i * 60} from="bottom">
+                                    <div className="flex items-center gap-4 bg-red-50 border border-red-100 rounded-xl p-4">
+                                        <item.icon className="w-5 h-5 text-red-400 shrink-0" />
+                                        <div className="flex-1">
+                                            <span className="font-semibold text-gray-800">{item.label}</span>
+                                            <span className="text-gray-500 text-sm ml-2">— {item.result}</span>
+                                        </div>
+                                    </div>
+                                </AnimatedSection>
+                            ))}
+                        </div>
+                        <AnimatedSection delay={200}>
+                            <p className="text-gray-700 text-lg font-medium leading-relaxed mb-6">{c.taxTransition}</p>
+                            <div className="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-6">
+                                <div className="flex items-start gap-4">
+                                    <Wrench className="w-6 h-6 text-emerald-600 shrink-0 mt-1" />
+                                    <p className="text-gray-800 font-semibold text-lg leading-relaxed">{c.taxGood}</p>
+                                </div>
+                            </div>
+                        </AnimatedSection>
+                    </div>
+                </section>
+
+                {/* ── WHY SOFFIT ──────────────────────────────────────── */}
+                <section className="py-16 bg-slate-50 border-y border-gray-100">
+                    <div className="container mx-auto px-4 max-w-4xl">
+                        <AnimatedSection>
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">{c.whySoffitTitle}</h2>
+                            <p className="text-gray-600 text-lg leading-relaxed mb-6">{c.whySoffitIntro}</p>
+                        </AnimatedSection>
+                        <AnimatedSection delay={80}>
+                            <div className="space-y-3 mb-6">
+                                {c.whySoffitPoints.map((point, i) => (
+                                    <div key={i} className="flex items-start gap-3 bg-white rounded-xl border border-gray-200 p-4">
+                                        <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                                        <p className="text-gray-700 font-medium">{point}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-gray-800 font-bold text-lg">{c.whySoffitKicker}</p>
                         </AnimatedSection>
                     </div>
                 </section>

@@ -44,6 +44,16 @@ const postsByLocale: Record<string, {
 }[]> = {
     en: [
         {
+            slug: "tax-refund-soffit-investment",
+            title: "You Got Your Tax Refund. Now What? The Smartest Home Investment You'll Make This Year",
+            excerpt: "The average refund is $2,800. Most people blow it on things that lose value overnight. Here's why smart Orlando homeowners are investing theirs in soffit and fascia instead.",
+            category: "Home Investment",
+            readTime: "7 min read",
+            date: "2026-03-10",
+            dateDisplay: "March 10, 2026",
+            featured: true,
+        },
+        {
             slug: "how-to-tell-if-soffit-is-damaged",
             title: "How to Tell if Your Soffit is Damaged (7 Warning Signs)",
             excerpt: "Learn to identify the early signs of soffit damage before a small problem becomes a $3,000 replacement. Includes a step-by-step visual inspection guide.",
@@ -51,7 +61,7 @@ const postsByLocale: Record<string, {
             readTime: "6 min read",
             date: "2026-01-15",
             dateDisplay: "January 15, 2026",
-            featured: true,
+            featured: false,
         },
         {
             slug: "aluminum-vs-vinyl-soffit",
@@ -126,6 +136,16 @@ const postsByLocale: Record<string, {
     ],
     es: [
         {
+            slug: "tax-refund-soffit-investment",
+            title: "Recibio Su Reembolso de Impuestos. Y Ahora Que? La Inversion Mas Inteligente para Su Hogar",
+            excerpt: "El reembolso promedio es $2,800. La mayoria lo gasta en cosas que pierden valor de la noche a la manana. Los propietarios inteligentes de Orlando lo invierten en soffit y fascia.",
+            category: "Inversión en Su Hogar",
+            readTime: "7 min de lectura",
+            date: "2026-03-10",
+            dateDisplay: "10 de marzo de 2026",
+            featured: true,
+        },
+        {
             slug: "how-to-tell-if-soffit-is-damaged",
             title: "Cómo Saber si el Soffit Está Dañado (7 Señales de Alerta)",
             excerpt: "Aprenda a identificar los primeros signos de daño en el soffit antes de que un problema pequeño se convierta en un reemplazo de $3,000. Incluye guía de inspección visual paso a paso.",
@@ -133,7 +153,7 @@ const postsByLocale: Record<string, {
             readTime: "6 min de lectura",
             date: "2026-01-15",
             dateDisplay: "15 de enero de 2026",
-            featured: true,
+            featured: false,
         },
         {
             slug: "aluminum-vs-vinyl-soffit",
@@ -208,6 +228,16 @@ const postsByLocale: Record<string, {
     ],
     pt: [
         {
+            slug: "tax-refund-soffit-investment",
+            title: "Recebeu Sua Restituicao de Imposto. E Agora? O Investimento Mais Inteligente para Seu Lar",
+            excerpt: "A restituicao media e $2.800. A maioria gasta em coisas que perdem valor da noite para o dia. Proprietarios inteligentes de Orlando investem em soffit e fascia.",
+            category: "Investimento no Lar",
+            readTime: "7 min de leitura",
+            date: "2026-03-10",
+            dateDisplay: "10 de marco de 2026",
+            featured: true,
+        },
+        {
             slug: "how-to-tell-if-soffit-is-damaged",
             title: "Como Saber se o Soffit Está Danificado (7 Sinais de Alerta)",
             excerpt: "Aprenda a identificar os primeiros sinais de dano no soffit antes que um problema pequeno vire uma troca de $3.000. Inclui guia de inspeção visual passo a passo.",
@@ -215,7 +245,7 @@ const postsByLocale: Record<string, {
             readTime: "6 min de leitura",
             date: "2026-01-15",
             dateDisplay: "15 de janeiro de 2026",
-            featured: true,
+            featured: false,
         },
         {
             slug: "aluminum-vs-vinyl-soffit",
@@ -297,6 +327,7 @@ const categoryColors: Record<string, string> = {
     "Education": "bg-green-100 text-green-700",
     "Design & Materials": "bg-pink-100 text-pink-700",
     "Installation & Materials": "bg-cyan-100 text-cyan-700",
+    "Home Investment": "bg-emerald-100 text-emerald-700",
     // ES
     "Inspección y Reparación": "bg-blue-100 text-blue-700",
     "Materiales": "bg-purple-100 text-purple-700",
@@ -304,6 +335,7 @@ const categoryColors: Record<string, string> = {
     "Educación": "bg-green-100 text-green-700",
     "Diseño y Materiales": "bg-pink-100 text-pink-700",
     "Instalación y Materiales": "bg-cyan-100 text-cyan-700",
+    "Inversión en Su Hogar": "bg-emerald-100 text-emerald-700",
     // PT
     "Inspeção e Reparo": "bg-blue-100 text-blue-700",
     "Materiais": "bg-purple-100 text-purple-700",
@@ -311,6 +343,7 @@ const categoryColors: Record<string, string> = {
     "Educação": "bg-green-100 text-green-700",
     "Design e Materiais": "bg-pink-100 text-pink-700",
     "Instalação e Materiais": "bg-cyan-100 text-cyan-700",
+    "Investimento no Lar": "bg-emerald-100 text-emerald-700",
 };
 
 const schema = {
