@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
 
     try {
         const { password } = await req.json();
-        if (!password || typeof password !== "string") {
+        if (!password || typeof password !== "string" || password.length > 200) {
             return NextResponse.json({ ok: false }, { status: 400 });
         }
 

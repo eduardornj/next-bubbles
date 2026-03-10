@@ -28,7 +28,7 @@ export function LanguageSwitcherClient({ locale, variant = "footer" }: Props) {
   const pathname = usePathname();
 
   const handleSwitch = (targetLocale: Locale) => {
-    document.cookie = `NEXT_LOCALE=${targetLocale};path=/;max-age=31536000;SameSite=Lax`;
+    document.cookie = `NEXT_LOCALE=${targetLocale};path=/;max-age=31536000;SameSite=Lax;Secure`;
     const target = getTargetPath(pathname, targetLocale);
     window.location.href = target;
   };

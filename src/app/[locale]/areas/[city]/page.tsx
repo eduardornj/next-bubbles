@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CheckCircle2, ArrowRight, MapPin, Phone } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { getTranslations } from "next-intl/server";
-import { cities, getCityData } from "@/app/areas/[city]/data";
+import { cities, getCityData } from "@/app/[locale]/areas/[city]/data";
 
 type Props = {
     params: Promise<{ locale: string; city: string }>;

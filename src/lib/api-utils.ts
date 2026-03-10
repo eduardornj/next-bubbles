@@ -25,10 +25,9 @@ export function isRateLimited(ip: string): boolean {
 }
 
 export function getClientIp(req: NextRequest): string {
-    // On DirectAdmin/CloudLinux with Passenger, the proxy sets x-real-ip reliably.
-    // x-forwarded-for can be spoofed by clients, so prefer x-real-ip first.
-    return req.headers.get('x-real-ip')
-        ?? req.headers.get('x-forwarded-for')?.split(',').pop()?.trim()
+    // On Vercel, x-forwarded-for last entry is the real client IP (Vercel appends it).
+    // x-real-ip is NOT set by Vercel and can be spoofed by attackers.
+    return req.headers.get('x-forwarded-for')?.split(',').pop()?.trim()
         ?? 'unknown';
 }
 
