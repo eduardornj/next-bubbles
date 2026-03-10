@@ -40,6 +40,7 @@ const blogPosts: { slug: string; date: string }[] = [
     { slug: 'soffit-fascia-color-trends-2026',    date: '2026-03-01' },
     { slug: 'termites-in-soffit-orlando',         date: '2026-03-01' },
     { slug: 'hurricane-proof-soffit-florida',     date: '2026-03-01' },
+    { slug: 'tax-refund-soffit-investment',       date: '2026-03-10' },
 ];
 
 /** Build hreflang alternates for a given path */
