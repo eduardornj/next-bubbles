@@ -288,21 +288,21 @@ src/app/[locale]/gallery/
 ## Checklist Completo
 
 ### Performance / DX
-- [ ] 1. Component Splitting (Contact, Emergency, Gallery, Calculator)
-- [ ] 2. Server Actions (3 API routes)
-- [ ] 3. React 19 Features (useFormStatus, useActionState)
-- [ ] 4. Font display swap
-- [ ] 5. Poppins weights audit
-- [ ] 7. Lightbox intercepting routes (gallery)
-- [ ] 13. PNGs duplicados cleanup
+- [x] 1. Component Splitting (Contact, Emergency, Gallery, Calculator) ✅ (Round 5)
+- [ ] 2. Server Actions (3 API routes) — depende do splitting feito
+- [ ] 3. React 19 Features (useFormStatus, useActionState) — depende de Server Actions
+- [x] 4. Font display swap ✅ (Round 5)
+- [x] 5. Poppins weights audit ✅ — todos os 4 weights sao usados em headings
+- [ ] 7. Lightbox intercepting routes (gallery) — opcional, UX premium
+- [x] 13. PNGs duplicados cleanup ✅ — nenhum PNG encontrado, ja limpo
 
 ### SEO
-- [ ] 6. Robots noindex em thank-you pages
-- [ ] 8. Emergency layout canonical
-- [ ] 9. Homepage schema completar
-- [ ] 10. BreadcrumbList em paginas [locale]
-- [ ] 11. Sitemap com alternates/hreflang
-- [ ] 12. Blog schemas locale-aware
+- [x] 6. Robots noindex em thank-you pages ✅ — ja existia antes da auditoria
+- [x] 8. Emergency layout canonical ✅ (Round 4)
+- [ ] 9. Homepage schema completar — S3 do audit original
+- [x] 10. BreadcrumbList em paginas [locale] ✅ (Round 4)
+- [x] 11. Sitemap com alternates/hreflang ✅ (Round 4)
+- [x] 12. Blog schemas locale-aware ✅ (Round 4)
 
 ### Code Quality
-- [ ] 14. Itens menores (F3-F6, F9-F10)
+- [x] 14. Itens menores ✅ (Round 5) — F3 as any, F6 reduced-motion, F9 LanguageSwitcher, F10 dead code
