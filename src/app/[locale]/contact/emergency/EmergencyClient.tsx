@@ -261,6 +261,7 @@ export default function EmergencyClient() {
                                             <p className="text-sm text-red-300 font-medium">{t("photosUpload")}</p>
                                             <p className="text-xs text-red-500 mt-1">{t("photoFormats")}</p>
                                             <input
+                                                id="emg-photos"
                                                 ref={fileRef}
                                                 type="file"
                                                 accept="image/*"
