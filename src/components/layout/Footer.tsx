@@ -115,7 +115,7 @@ export function Footer({ locale = "en" }: FooterProps) {
   };
 
   return (
-    <footer className="bg-bubble-navy text-white/90 border-t border-white/10 min-h-[480px] lg:min-h-[380px]">
+    <footer className="bg-bubble-navy text-white/90 border-t border-white/10">
       <div className="mx-auto max-w-7xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-8">
 

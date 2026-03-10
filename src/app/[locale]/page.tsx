@@ -131,7 +131,7 @@ export default async function HomePage({
       <div className="flex flex-col min-h-screen">
 
         {/* ══════════ HERO ══════════ */}
-        <section className="relative overflow-hidden bg-bubble-navy pt-24 lg:pt-32 pb-16 lg:pb-24 min-h-[85vh] flex items-center">
+        <section style={{ minHeight: '85vh' }} className="relative overflow-hidden bg-bubble-navy pt-24 lg:pt-32 pb-16 lg:pb-24 min-h-[85vh] flex items-center">
           {/* Premium grid + glow */}
           <div className="absolute inset-0 opacity-[0.3] pointer-events-none">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">

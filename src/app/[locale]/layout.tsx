@@ -185,13 +185,13 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className="antialiased min-h-screen flex flex-col">
+      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }} className="antialiased min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           {/* CSS Scroll-Driven Animation progress bar */}
           <div id="scroll-progress" aria-hidden="true" />
           <WebMCPProvider />
           <Header locale={locale as "en" | "es" | "pt"} />
-          <main id="main-content" className="flex-grow pt-[68px] md:pt-[108px]">
+          <main id="main-content" style={{ paddingTop: '68px' }} className="flex-grow pt-[68px] md:pt-[108px]">
             {children}
           </main>
           <Footer locale={locale as "en" | "es" | "pt"} />
