@@ -19,13 +19,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const city = getCityData(slug);
     if (!city) return {};
     const t = await getTranslations({ locale, namespace: "cityPage" });
+    const title = t("metaTitle", { city: city.name });
+    const description = t("heroSubtitle", { city: city.name, county: city.county });
+    const basePath = `/areas/${city.slug}`;
+    const canonical = locale === "en"
+        ? `https://bubblesenterprise.com${basePath}`
+        : `https://bubblesenterprise.com/${locale}${basePath}`;
     return {
-        title: `Soffit & Fascia Repair in ${city.name}, FL | Bubbles Enterprise`,
-        description: t("heroSubtitle", { city: city.name, county: city.county }),
-        openGraph: {
-            title: `Soffit & Fascia Repair ${city.name}, FL | Bubbles Enterprise`,
-            description: t("heroSubtitle", { city: city.name, county: city.county }),
-            url: `https://bubblesenterprise.com/areas/${city.slug}`,
+        title,
+        description,
+        openGraph: { title, description, url: canonical },
+        alternates: {
+            canonical,
+            languages: {
+                en: `https://bubblesenterprise.com${basePath}`,
+                es: `https://bubblesenterprise.com/es${basePath}`,
+                pt: `https://bubblesenterprise.com/pt${basePath}`,
+                "x-default": `https://bubblesenterprise.com${basePath}`,
+            },
         },
     };
 }

@@ -237,24 +237,26 @@ export default function GalleryPage() {
                                             <span className="absolute top-4 left-4 z-10 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                                                 {t("beforeLabel")}
                                             </span>
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <Image
                                                 src={`/images/works/${item.before}`}
                                                 alt={`Before - ${t(item.titleKey as any)}`}
+                                                width={800}
+                                                height={600}
+                                                sizes="(max-width: 768px) 100vw, 50vw"
                                                 className="w-full h-full object-cover"
-                                                loading="lazy"
                                             />
                                         </div>
                                         <div className="relative">
                                             <span className="absolute top-4 left-4 z-10 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                                                 {t("afterLabel")}
                                             </span>
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <Image
                                                 src={`/images/works/${item.after}`}
                                                 alt={`After - ${t(item.titleKey as any)}`}
+                                                width={800}
+                                                height={600}
+                                                sizes="(max-width: 768px) 100vw, 50vw"
                                                 className="w-full h-full object-cover"
-                                                loading="lazy"
                                             />
                                         </div>
                                     </div>
@@ -351,11 +353,12 @@ export default function GalleryPage() {
                                 tabIndex={!isAdmin ? 0 : undefined}
                                 onKeyDown={!isAdmin ? (e) => e.key === "Enter" && openLightbox(idx) : undefined}
                             >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <Image
                                     src={`/images/works/${work.file}`}
                                     alt={work.alt}
-                                    loading="lazy"
+                                    width={800}
+                                    height={600}
+                                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                                     className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
                                 />
 

@@ -212,7 +212,8 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ ok: true });
     } catch (err) {
-        console.error('[contact]', err);
+        const e = err instanceof Error ? err : new Error(String(err));
+        console.error('[contact] SMTP_HOST:', process.env.SMTP_HOST, 'SMTP_USER:', process.env.SMTP_USER, 'Error:', e.message);
         return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
     }
 }

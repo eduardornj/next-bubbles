@@ -150,6 +150,12 @@ export default async function LocaleLayout({
                 { "@type": "City", name: "Longwood", addressRegion: "FL" },
                 { "@type": "City", name: "Celebration", addressRegion: "FL" },
                 { "@type": "City", name: "St. Cloud", addressRegion: "FL" },
+                { "@type": "City", name: "Dr. Phillips", addressRegion: "FL" },
+                { "@type": "City", name: "Windermere", addressRegion: "FL" },
+                { "@type": "City", name: "Daytona Beach", addressRegion: "FL" },
+                { "@type": "City", name: "Palm Bay", addressRegion: "FL" },
+                { "@type": "City", name: "Port St. Lucie", addressRegion: "FL" },
+                { "@type": "City", name: "Lake Nona", addressRegion: "FL" },
               ],
               openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",

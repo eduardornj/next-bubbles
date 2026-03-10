@@ -179,7 +179,8 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ ok: true });
     } catch (err) {
-        console.error('[emergency-repair]', err);
+        const e = err instanceof Error ? err : new Error(String(err));
+        console.error('[emergency-repair] SMTP_HOST:', process.env.SMTP_HOST, 'Error:', e.message);
         return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
     }
 }
