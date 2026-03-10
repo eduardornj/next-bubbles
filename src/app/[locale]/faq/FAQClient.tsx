@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Phone, MessageCircle } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
@@ -61,11 +60,6 @@ export default function FAQClient() {
         },
     ];
 
-    const [openKeys, setOpenKeys] = useState<Record<string, boolean>>({ "0-0": true });
-
-    const toggle = (key: string) =>
-        setOpenKeys(prev => ({ ...prev, [key]: !prev[key] }));
-
     const totalQuestions = categories.reduce((acc, c) => acc + c.faqs.length, 0);
 
     return (
@@ -105,34 +99,23 @@ export default function FAQClient() {
                             </div>
 
                             <div className="space-y-3">
-                                {cat.faqs.map((faq, fi) => {
-                                    const key = `${ci}-${fi}`;
-                                    const isOpen = !!openKeys[key];
-                                    return (
-                                        <div
-                                            key={fi}
-                                            className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
-                                        >
-                                            <button
-                                                onClick={() => toggle(key)}
-                                                className="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-gray-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-bubble-primary"
-                                                aria-expanded={isOpen}
-                                            >
-                                                <span className="font-bold text-gray-900 text-base sm:text-lg pr-8">{faq.q}</span>
-                                                <ChevronDown
-                                                    className={`w-5 h-5 text-bubble-primary shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                                                />
-                                            </button>
-                                            <div
-                                                className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}
-                                            >
-                                                <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
-                                                    {faq.a}
-                                                </div>
-                                            </div>
+                                {cat.faqs.map((faq, fi) => (
+                                    <details
+                                        key={fi}
+                                        className="group bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+                                        {...(ci === 0 && fi === 0 ? { open: true } : {})}
+                                    >
+                                        <summary className="w-full cursor-pointer list-none px-6 py-5 flex justify-between items-center hover:bg-gray-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-bubble-primary [&::-webkit-details-marker]:hidden">
+                                            <span className="font-bold text-gray-900 text-base sm:text-lg pr-8">{faq.q}</span>
+                                            <ChevronDown
+                                                className="w-5 h-5 text-bubble-primary shrink-0 transition-transform duration-300 group-open:rotate-180"
+                                            />
+                                        </summary>
+                                        <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                                            {faq.a}
                                         </div>
-                                    );
-                                })}
+                                    </details>
+                                ))}
                             </div>
                         </AnimatedSection>
                     ))}
