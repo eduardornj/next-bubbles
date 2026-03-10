@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/soffit-lifespan-by-material` : `https://bubblesenterprise.com/${locale}/blog/soffit-lifespan-by-material`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/soffit-lifespan-by-material#article",
             headline: "How Long Does Soffit Last? Lifespan by Material (With Florida Data)",
             description: "Exact soffit lifespan by material for Florida homes. Aluminum, vinyl, and wood lifespan data with local climate factors.",
-            url: "https://bubblesenterprise.com/blog/soffit-lifespan-by-material",
+            url: blogUrl,
             datePublished: "2026-02-01",
             dateModified: "2026-02-01",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Materials",
             keywords: "soffit lifespan, how long does soffit last, soffit lifespan Florida, aluminum soffit lifespan, vinyl soffit lifespan",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/soffit-lifespan-by-material#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -92,6 +96,7 @@ const schema = {
         },
     ],
 };
+}
 
 const content = {
     en: {
@@ -294,7 +299,7 @@ export default async function SoffitLifespanPage({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}

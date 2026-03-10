@@ -94,13 +94,29 @@ const reviewSchema = {
     ],
 };
 
-export default function TestimonialsPage() {
+export default async function TestimonialsPage({
+    params,
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": locale === "en" ? "https://bubblesenterprise.com" : `https://bubblesenterprise.com/${locale}` },
+            { "@type": "ListItem", "position": 2, "name": "Testimonials", "item": locale === "en" ? "https://bubblesenterprise.com/testimonials" : `https://bubblesenterprise.com/${locale}/testimonials` },
+        ],
+    };
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
             />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <TestimonialsClient />
         </>
     );

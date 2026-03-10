@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/animals-in-damaged-soffit-orlando` : `https://bubblesenterprise.com/${locale}/blog/animals-in-damaged-soffit-orlando`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/animals-in-damaged-soffit-orlando#article",
             headline: "What Animals Get Into Damaged Soffits in Orlando? (And How to Stop Them)",
             description: "Raccoons, squirrels, rats, bats, and wasps are common soffit intruders in Central Florida. Identification guide and permanent repair solutions.",
-            url: "https://bubblesenterprise.com/blog/animals-in-damaged-soffit-orlando",
+            url: blogUrl,
             datePublished: "2026-02-10",
             dateModified: "2026-02-10",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Pests & Damage",
             keywords: "animals in soffit Orlando, squirrel in soffit, raccoon attic entry, rats soffit, soffit pest damage Central Florida",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/animals-in-damaged-soffit-orlando#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -92,6 +96,7 @@ const schema = {
         },
     ],
 };
+}
 
 const content = {
     en: {
@@ -365,7 +370,7 @@ export default async function AnimalsInSoffitOrlandoPage({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}

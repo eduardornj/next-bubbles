@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/soffit-vs-fascia-difference` : `https://bubblesenterprise.com/${locale}/blog/soffit-vs-fascia-difference`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/soffit-vs-fascia-difference#article",
             headline: "Soffit vs Fascia: What's the Difference? (Plain English Explanation)",
             description: "Plain English explanation of soffit vs fascia — what each part does and why both matter for Florida homes.",
-            url: "https://bubblesenterprise.com/blog/soffit-vs-fascia-difference",
+            url: blogUrl,
             datePublished: "2026-02-18",
             dateModified: "2026-02-18",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Education",
             keywords: "soffit vs fascia, what is soffit, what is fascia, soffit fascia difference, soffit definition",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/soffit-vs-fascia-difference#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -104,6 +108,7 @@ const schema = {
         },
     ],
 };
+}
 
 const content = {
     en: {
@@ -321,7 +326,7 @@ export default async function SoffitVsFasciaPage({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}

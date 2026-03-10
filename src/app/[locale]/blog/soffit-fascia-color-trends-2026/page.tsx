@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/soffit-fascia-color-trends-2026` : `https://bubblesenterprise.com/${locale}/blog/soffit-fascia-color-trends-2026`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/soffit-fascia-color-trends-2026#article",
             headline: "Soffit & Fascia Color Trends 2026: What's In, What's Out",
             description: "Greige is replacing gray. Dark fascia accents are everywhere. The 2026 exterior color trends for soffit and fascia in Florida homes.",
-            url: "https://bubblesenterprise.com/blog/soffit-fascia-color-trends-2026",
+            url: blogUrl,
             datePublished: "2026-03-01",
             dateModified: "2026-03-01",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Design & Materials",
             keywords: "soffit color trends 2026, fascia color ideas, greige soffit, best soffit colors Florida, exterior color trends 2026",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/soffit-fascia-color-trends-2026#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -92,6 +96,7 @@ const schema = {
         },
     ],
 };
+}
 
 const content = {
     en: {
@@ -349,7 +354,7 @@ export default async function SoffitColorTrends2026Page({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}

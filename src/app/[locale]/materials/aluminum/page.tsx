@@ -9,13 +9,24 @@ import { getTranslations } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "materialsAluminum" });
+    const basePath = "/materials/aluminum";
+    const canonical = locale === "en" ? `https://bubblesenterprise.com${basePath}` : `https://bubblesenterprise.com/${locale}${basePath}`;
     return {
         title: t("metaTitle"),
         description: t("metaDesc"),
         openGraph: {
             title: t("metaOgTitle"),
             description: t("metaOgDesc"),
-            url: "https://bubblesenterprise.com/materials/aluminum",
+            url: canonical,
+        },
+        alternates: {
+            canonical,
+            languages: {
+                en: `https://bubblesenterprise.com${basePath}`,
+                es: `https://bubblesenterprise.com/es${basePath}`,
+                pt: `https://bubblesenterprise.com/pt${basePath}`,
+                "x-default": `https://bubblesenterprise.com${basePath}`,
+            },
         },
     };
 }
@@ -56,6 +67,7 @@ export default async function AluminumSoffitPage({ params }: { params: Promise<{
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "materialsAluminum" });
     const lp = (path: string) => locale === "en" ? path : `/${locale}${path}`;
+const breadcrumbSchema = {        "@context": "https://schema.org",        "@type": "BreadcrumbList",        "itemListElement": [            { "@type": "ListItem", "position": 1, "name": "Home", "item": locale === "en" ? "https://bubblesenterprise.com" : `https://bubblesenterprise.com/${locale}` },            { "@type": "ListItem", "position": 2, "name": "Materials", "item": locale === "en" ? "https://bubblesenterprise.com/materials" : `https://bubblesenterprise.com/${locale}/materials` },            { "@type": "ListItem", "position": 3, "name": "Aluminum Soffit", "item": locale === "en" ? "https://bubblesenterprise.com/materials/aluminum" : `https://bubblesenterprise.com/${locale}/materials/aluminum` },        ],    };
 
     const benefits = [
         { icon: Shield, title: t("ben1Title"), body: t("ben1Body") },
@@ -67,6 +79,7 @@ export default async function AluminumSoffitPage({ params }: { params: Promise<{
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ─────────────────────────────────────────────── */}

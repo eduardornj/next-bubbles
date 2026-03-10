@@ -1,23 +1,31 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-    title: "Emergency Soffit Repair — Same-Day Service | Bubbles Enterprise",
-    description: "Emergency soffit repair in Orlando and Central Florida. Same-day response for animal intrusion, storm damage, and open holes. Call (407) 715-1790 now.",
-    openGraph: {
-        title: "Emergency Soffit Repair — Same-Day | Bubbles Enterprise",
-        description: "Open holes, animal intrusion, storm damage — we respond the same day. Serving all of Central Florida. Call (407) 715-1790.",
-        url: "https://bubblesenterprise.com/contact/emergency",
-    },
-    alternates: {
-        canonical: "https://bubblesenterprise.com/contact/emergency",
-        languages: {
-            en: "https://bubblesenterprise.com/contact/emergency",
-            es: "https://bubblesenterprise.com/es/contact/emergency",
-            pt: "https://bubblesenterprise.com/pt/contact/emergency",
-            "x-default": "https://bubblesenterprise.com/contact/emergency",
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "emergency" });
+    const basePath = "/contact/emergency";
+    const canonical = locale === "en" ? `https://bubblesenterprise.com${basePath}` : `https://bubblesenterprise.com/${locale}${basePath}`;
+
+    return {
+        title: t("metaTitle"),
+        description: t("metaDesc"),
+        openGraph: {
+            title: t("metaOgTitle"),
+            description: t("metaOgDesc"),
+            url: canonical,
         },
-    },
-};
+        alternates: {
+            canonical,
+            languages: {
+                en: `https://bubblesenterprise.com${basePath}`,
+                es: `https://bubblesenterprise.com/es${basePath}`,
+                pt: `https://bubblesenterprise.com/pt${basePath}`,
+                "x-default": `https://bubblesenterprise.com${basePath}`,
+            },
+        },
+    };
+}
 
 const schema = {
     "@context": "https://schema.org",

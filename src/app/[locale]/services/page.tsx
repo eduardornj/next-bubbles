@@ -103,6 +103,7 @@ export default async function ServicesPage({
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "services" });
     const lp = (path: string) => locale === "en" ? path : `/${locale}${path}`;
+const breadcrumbSchema = {        "@context": "https://schema.org",        "@type": "BreadcrumbList",        "itemListElement": [            { "@type": "ListItem", "position": 1, "name": "Home", "item": locale === "en" ? "https://bubblesenterprise.com" : `https://bubblesenterprise.com/${locale}` },            { "@type": "ListItem", "position": 2, "name": "Services", "item": locale === "en" ? "https://bubblesenterprise.com/services" : `https://bubblesenterprise.com/${locale}/services` },        ],    };
 
     const services = [
         {
@@ -202,6 +203,7 @@ export default async function ServicesPage({
                     <AnimatedSection>
                         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-xs font-bold mb-6 uppercase tracking-widest">
                             <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" aria-hidden />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
                             {t("heroBadge")}
                         </div>
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight leading-tight">

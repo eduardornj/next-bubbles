@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/aluminum-vs-vinyl-soffit` : `https://bubblesenterprise.com/${locale}/blog/aluminum-vs-vinyl-soffit`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/aluminum-vs-vinyl-soffit#article",
             headline: "Aluminum vs Vinyl Soffit: The Complete 2026 Comparison for Florida Homes",
             description: "Side-by-side comparison of aluminum and vinyl soffit for Florida's climate — cost, lifespan, hurricane resistance, and which material to choose.",
-            url: "https://bubblesenterprise.com/blog/aluminum-vs-vinyl-soffit",
+            url: blogUrl,
             datePublished: "2026-01-22",
             dateModified: "2026-01-22",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Materials",
             keywords: "aluminum soffit, vinyl soffit, aluminum vs vinyl, soffit materials Florida, best soffit material Orlando",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/aluminum-vs-vinyl-soffit#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -92,6 +96,7 @@ const schema = {
         },
     ],
 };
+}
 
 const content = {
     en: {
@@ -312,7 +317,7 @@ export default async function AluminumVsVinylPage({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}

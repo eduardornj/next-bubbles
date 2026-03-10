@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/how-to-tell-if-soffit-is-damaged` : `https://bubblesenterprise.com/${locale}/blog/how-to-tell-if-soffit-is-damaged`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/how-to-tell-if-soffit-is-damaged#article",
             headline: "How to Tell if Your Soffit is Damaged (7 Warning Signs)",
             description: "7 warning signs of damaged soffit with a step-by-step inspection guide for Central Florida homeowners.",
-            url: "https://bubblesenterprise.com/blog/how-to-tell-if-soffit-is-damaged",
+            url: blogUrl,
             datePublished: "2026-01-15",
             dateModified: "2026-01-15",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Inspection & Repair",
             keywords: "soffit damage, damaged soffit signs, soffit inspection, Orlando soffit repair",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/how-to-tell-if-soffit-is-damaged#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -92,6 +96,7 @@ const schema = {
         },
     ],
 };
+}
 
 const content = {
     en: {
@@ -364,7 +369,7 @@ export default async function HowToTellIfSoffitIsDamagedPage({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}

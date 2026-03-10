@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/termites-in-soffit-orlando` : `https://bubblesenterprise.com/${locale}/blog/termites-in-soffit-orlando`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/termites-in-soffit-orlando#article",
             headline: "Termites in Soffit Orlando: Warning Signs, Damage, and What to Do",
             description: "Drywood termites target soffit and fascia in Central Florida homes. How to identify an active infestation and the correct repair sequence.",
-            url: "https://bubblesenterprise.com/blog/termites-in-soffit-orlando",
+            url: blogUrl,
             datePublished: "2026-03-01",
             dateModified: "2026-03-01",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Pests & Damage",
             keywords: "termites in soffit Orlando, drywood termites soffit, soffit termite damage Florida, termite frass soffit, soffit repair after termites Orlando",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/termites-in-soffit-orlando#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -92,6 +96,7 @@ const schema = {
         },
     ],
 };
+}
 
 const content = {
     en: {
@@ -287,7 +292,7 @@ export default async function TermitesInSoffitOrlandoPage({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}

@@ -81,6 +81,7 @@ export default async function RepairsPage({
 }) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "repairs" });
+const breadcrumbSchema = {        "@context": "https://schema.org",        "@type": "BreadcrumbList",        "itemListElement": [            { "@type": "ListItem", "position": 1, "name": "Home", "item": locale === "en" ? "https://bubblesenterprise.com" : `https://bubblesenterprise.com/${locale}` },            { "@type": "ListItem", "position": 2, "name": "Repairs", "item": locale === "en" ? "https://bubblesenterprise.com/repairs" : `https://bubblesenterprise.com/${locale}/repairs` },        ],    };
     const lp = (path: string) => locale === "en" ? path : `/${locale}${path}`;
 
     const damageTypes = [
@@ -111,6 +112,7 @@ export default async function RepairsPage({
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ─────────────────────────────────────────────── */}

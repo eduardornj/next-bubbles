@@ -44,7 +44,9 @@ export async function generateMetadata({
     };
 }
 
-const schema = {
+function buildSchema(locale: string) {
+    const blogUrl = locale === "en" ? `https://bubblesenterprise.com/blog/hurricane-proof-soffit-florida` : `https://bubblesenterprise.com/${locale}/blog/hurricane-proof-soffit-florida`;
+    return {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -52,17 +54,19 @@ const schema = {
             "@id": "https://bubblesenterprise.com/blog/hurricane-proof-soffit-florida#article",
             headline: "Hurricane-Proof Soffit Florida: What Actually Works (2026)",
             description: "Post-Hurricane Michael analysis: which soffit materials fail, how installation determines performance, and what Florida homeowners need for real wind protection.",
-            url: "https://bubblesenterprise.com/blog/hurricane-proof-soffit-florida",
+            url: blogUrl,
             datePublished: "2026-03-01",
             dateModified: "2026-03-01",
             author: { "@type": "Person", "name": "Bubbles Enterprise Team", "jobTitle": "Licensed Soffit & Fascia Contractors", "url": "https://bubblesenterprise.com/about", "worksFor": { "@id": "https://bubblesenterprise.com/#business" } },
             publisher: { "@id": "https://bubblesenterprise.com/#business" },
             articleSection: "Installation & Materials",
             keywords: "hurricane proof soffit Florida, hurricane soffit damage, aluminum soffit wind rating, soffit installation hurricane, Florida Building Code soffit, soffit fascia hurricane season",
+            inLanguage: locale,
         },
         {
             "@type": "FAQPage",
             "@id": "https://bubblesenterprise.com/blog/hurricane-proof-soffit-florida#faq",
+            inLanguage: locale,
             mainEntity: [
                 {
                     "@type": "Question",
@@ -92,6 +96,7 @@ const schema = {
         },
     ],
 };
+}
 
 type LocaleContent = {
     breadcrumb: string;
@@ -445,7 +450,7 @@ export default async function HurricaneProofSoffitFloridaPage({
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }} />
             <div className="flex flex-col min-h-screen">
 
                 {/* ── HERO ──────────────────────────────────────────────── */}
