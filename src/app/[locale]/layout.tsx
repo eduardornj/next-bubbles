@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { WebMCPProvider } from "@/components/WebMCPProvider";
 import Script from "next/script";
 import { Phone, MessageCircle } from "lucide-react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../globals.css";
 
 const inter = Inter({
@@ -265,6 +266,7 @@ export default async function LocaleLayout({
         <noscript>
           <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1981946709023806&ev=PageView&noscript=1" alt="" />
         </noscript>
+        <SpeedInsights />
       </body>
     </html>
   );
