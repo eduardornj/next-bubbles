@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/i18n/navigation";
 
 type Locale = "en" | "es" | "pt";
 
@@ -12,11 +12,8 @@ const LOCALE_LABELS: Record<Locale, string> = {
   pt: "PT",
 };
 
-function getTargetPath(pathname: string, targetLocale: Locale): string {
-  const stripped = pathname.replace(/^\/(es|pt)(\/|$)/, "/").replace(/\/\//g, "/");
-  const basePath = stripped || "/";
-  if (targetLocale === "en") return basePath;
-  return `/${targetLocale}${basePath === "/" ? "" : basePath}`;
+function setLocaleCookie(locale: Locale) {
+  document.cookie = `NEXT_LOCALE=${locale};path=/;max-age=31536000;SameSite=Lax;Secure`;
 }
 
 interface Props {
@@ -25,12 +22,12 @@ interface Props {
 }
 
 export function LanguageSwitcherClient({ locale, variant = "footer" }: Props) {
+  const router = useRouter();
   const pathname = usePathname();
 
   const handleSwitch = (targetLocale: Locale) => {
-    document.cookie = `NEXT_LOCALE=${targetLocale};path=/;max-age=31536000;SameSite=Lax;Secure`;
-    const target = getTargetPath(pathname, targetLocale);
-    window.location.href = target;
+    setLocaleCookie(targetLocale);
+    router.replace(pathname, { locale: targetLocale });
   };
 
   if (variant === "mobile") {

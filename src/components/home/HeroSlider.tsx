@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Pause, Play } from "lucide-react";
@@ -13,15 +13,32 @@ const heroImages = [
     "ceiling.webp",
 ];
 
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeReducedMotion(callback: () => void) {
+    const mq = window.matchMedia(REDUCED_MOTION_QUERY);
+    mq.addEventListener("change", callback);
+    return () => mq.removeEventListener("change", callback);
+}
+
+function getReducedMotion() {
+    return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getReducedMotionServer() {
+    return false;
+}
+
 export function HeroSlider() {
+    const reducedMotion = useSyncExternalStore(subscribeReducedMotion, getReducedMotion, getReducedMotionServer);
     const [current, setCurrent] = useState(0);
     const [paused, setPaused] = useState(false);
 
     useEffect(() => {
-        if (paused) return;
+        if (reducedMotion || paused) return;
         const t = setInterval(() => setCurrent(p => (p + 1) % heroImages.length), 4500);
         return () => clearInterval(t);
-    }, [paused]);
+    }, [paused, reducedMotion]);
 
     const nextIdx = (current + 1) % heroImages.length;
     const visibleIndices = [current, nextIdx];
@@ -44,7 +61,7 @@ export function HeroSlider() {
                             priority={idx === 0}
                             fetchPriority={idx === 0 ? "high" : undefined}
                             loading={idx === 0 ? "eager" : "lazy"}
-                            className={`object-cover transition-all duration-1000 ${idx === current ? "opacity-80 scale-100" : "opacity-0 scale-110"}`}
+                            className={`object-cover ${reducedMotion ? "" : "transition-all duration-1000"} ${idx === current ? "opacity-80 scale-100" : "opacity-0 scale-110"}`}
                         />
                     ) : null
                 )}

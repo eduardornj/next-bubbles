@@ -528,10 +528,9 @@ export default async function HomePage({
             </AnimatedSection>
             <AnimatedSection from="scale">
               <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto mb-8">
-                {serviceAreas.map((area, i) => (
+                {serviceAreas.map((area) => (
                   <Link key={area.slug} href={lp(`/areas/${area.slug}`)}
-                    className="px-5 py-2 bg-gray-50 rounded-full text-gray-700 font-medium border border-gray-200 hover:border-bubble-primary hover:text-bubble-primary hover:bg-blue-50 transition-all text-sm"
-                    style={{ animationDelay: `${i * 40}ms` }}>
+                    className="px-5 py-2 bg-gray-50 rounded-full text-gray-700 font-medium border border-gray-200 hover:border-bubble-primary hover:text-bubble-primary hover:bg-blue-50 transition-all text-sm">
                     {area.name}
                   </Link>
                 ))}

@@ -14,14 +14,14 @@ import "../globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "optional",
+  display: "swap",
 });
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
   subsets: ["latin"],
-  display: "optional",
+  display: "swap",
 });
 
 export const viewport: Viewport = {
