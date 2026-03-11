@@ -191,7 +191,7 @@ export default async function LocaleLayout({
           <div id="scroll-progress" aria-hidden="true" />
           <WebMCPProvider />
           <Header locale={locale as "en" | "es" | "pt"} />
-          <main id="main-content" style={{ paddingTop: '68px' }} className="flex-grow pt-[68px] md:pt-[108px]">
+          <main id="main-content" className="flex-grow pt-[68px] md:pt-[108px]">
             {children}
           </main>
           <Footer locale={locale as "en" | "es" | "pt"} />

@@ -395,7 +395,7 @@ export default async function HomePage({
               {galleryImages.map((img, i) => (
                 <AnimatedSection key={i} delay={i * 80} from="scale">
                   <Link href={lp("/gallery")} className="group relative overflow-hidden rounded-2xl aspect-square shadow-sm hover:shadow-2xl transition-all block">
-                    <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                    <Image src={img.src} alt={img.alt} fill sizes="(max-width: 640px) calc(50vw - 16px), (max-width: 1279px) 30vw, 384px" className="object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                       <p className="w-full text-white font-bold text-sm p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         {img.caption}
