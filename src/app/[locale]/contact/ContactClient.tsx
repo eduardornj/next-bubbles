@@ -74,6 +74,9 @@ function ContactForm() {
             const res = await fetch("/api/contact", { method: "POST", body: fd });
             if (!res.ok) throw new Error("server error");
             setStatus("success");
+            if (typeof window !== "undefined" && typeof (window as Window & { gtag?: (...args: unknown[]) => void }).gtag === "function") {
+                (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "generate_lead");
+            }
         } catch {
             setStatus("error");
         }
