@@ -1,39 +1,45 @@
 import Link from "next/link";
+import { Home, Phone, ArrowRight } from "lucide-react";
 
 export default function NotFound() {
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4 text-center">
-      <div className="max-w-md mx-auto">
-        <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-          <span className="text-white font-extrabold text-3xl">404</span>
+    return (
+        <div className="flex flex-col min-h-screen bg-gray-50 items-center justify-center px-4 text-center">
+            <div className="max-w-lg mx-auto">
+                {/* Big 404 */}
+                <div className="text-[120px] font-extrabold leading-none text-transparent bg-clip-text bg-gradient-to-br from-bubble-navy via-bubble-primary to-bubble-secondary mb-2 select-none">
+                    404
+                </div>
+
+                <h1 className="text-2xl font-extrabold text-gray-900 mb-3">
+                    Page Not Found
+                </h1>
+                <p className="text-gray-500 text-lg leading-relaxed mb-10">
+                    The page you&apos;re looking for doesn&apos;t exist or has been moved.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-bubble-primary text-white font-bold rounded-full hover:bg-bubble-dark transition shadow-lg"
+                    >
+                        <Home className="w-4 h-4" /> Back to Home
+                    </Link>
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-bubble-primary text-bubble-primary font-bold rounded-full hover:bg-blue-50 transition"
+                    >
+                        Get a Free Quote <ArrowRight className="w-4 h-4" />
+                    </Link>
+                </div>
+
+                <a
+                    href="tel:4077151790"
+                    className="inline-flex items-center gap-2 text-bubble-primary font-extrabold text-xl hover:underline"
+                >
+                    <Phone className="w-5 h-5" />
+                    (407) 715-1790
+                </a>
+            </div>
         </div>
-        <h1 className="text-2xl font-extrabold text-gray-900 mb-3">
-          Page Not Found
-        </h1>
-        <p className="text-gray-600 mb-8">
-          The page you&apos;re looking for doesn&apos;t exist or has been moved.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-colors"
-          >
-            Go Home
-          </Link>
-          <Link
-            href="/services"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-gray-200 text-gray-700 font-bold text-sm hover:border-blue-600 hover:text-blue-600 transition-colors"
-          >
-            Our Services
-          </Link>
-          <a
-            href="tel:4077151790"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-gray-200 text-gray-700 font-bold text-sm hover:border-blue-600 hover:text-blue-600 transition-colors"
-          >
-            Call (407) 715-1790
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
