@@ -20,15 +20,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Legacy .html pages from old site → new clean URLs (301 permanent)
-      { source: "/gallery.html",        destination: "/gallery",        permanent: true },
-      { source: "/about.html",          destination: "/about",          permanent: true },
-      { source: "/certifications.html", destination: "/certifications", permanent: true },
-      { source: "/services.html",       destination: "/services",       permanent: true },
-      { source: "/contact.html",        destination: "/contact",        permanent: true },
-      { source: "/faq.html",            destination: "/faq",            permanent: true },
-      { source: "/financing.html",      destination: "/financing",      permanent: true },
-      { source: "/repairs.html",        destination: "/repairs",        permanent: true },
+      // Any .html URL from old site → strip extension (301 permanent, catches all)
+      { source: "/:path*.html", destination: "/:path*", permanent: true },
     ];
   },
   async headers() {
