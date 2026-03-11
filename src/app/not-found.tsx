@@ -19,8 +19,11 @@ export default function NotFound() {
                     <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4">
                         This page doesn&apos;t exist.
                     </h1>
-                    <p className="text-gray-500 text-lg leading-relaxed mb-10 max-w-md mx-auto">
+                    <p className="text-gray-500 text-lg leading-relaxed mb-2 max-w-md mx-auto">
                         It may have been moved, renamed, or removed. Don&apos;t worry — everything you need is below.
+                    </p>
+                    <p className="text-bubble-primary font-semibold text-base mb-10">
+                        Bubbles Enterprise — Soffit & Fascia specialists serving Orlando and Central Florida.
                     </p>
 
                     {/* Primary CTAs */}

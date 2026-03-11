@@ -7,6 +7,7 @@ const c = {
         badge: "404 — Page Not Found",
         title: "This page doesn't exist.",
         subtitle: "It may have been moved, renamed, or removed. Don't worry — everything you need is below.",
+        tagline: "Bubbles Enterprise — Soffit & Fascia specialists serving Orlando and Central Florida.",
         home: "Back to Home",
         services: "Our Services",
         quote: "Get a Free Quote",
@@ -18,6 +19,7 @@ const c = {
         badge: "404 — Página No Encontrada",
         title: "Esta página no existe.",
         subtitle: "Puede haber sido movida, renombrada o eliminada. Todo lo que necesita está abajo.",
+        tagline: "Bubbles Enterprise — Especialistas en Soffit y Fascia en Orlando y el Centro de Florida.",
         home: "Ir al Inicio",
         services: "Nuestros Servicios",
         quote: "Cotización Gratis",
@@ -29,6 +31,7 @@ const c = {
         badge: "404 — Página Não Encontrada",
         title: "Esta página não existe.",
         subtitle: "Ela pode ter sido movida, renomeada ou removida. Tudo que você precisa está abaixo.",
+        tagline: "Bubbles Enterprise — Especialistas em Soffit e Fascia em Orlando e na Florida Central.",
         home: "Voltar ao Início",
         services: "Nossos Serviços",
         quote: "Orçamento Grátis",
@@ -61,8 +64,11 @@ export default async function NotFound() {
                     <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4">
                         {t.title}
                     </h1>
-                    <p className="text-gray-500 text-lg leading-relaxed mb-10 max-w-md mx-auto">
+                    <p className="text-gray-500 text-lg leading-relaxed mb-2 max-w-md mx-auto">
                         {t.subtitle}
+                    </p>
+                    <p className="text-bubble-primary font-semibold text-base mb-10">
+                        {t.tagline}
                     </p>
 
                     {/* Primary CTAs */}
