@@ -1,8 +1,8 @@
 # GUIA SEO — O que Eduardo precisa fazer (manual)
 
-> Gerado em 5 de Março de 2026 pela auditoria SEO completa (8 agentes, 85 páginas).
-> Estas são as tarefas que **só você** pode fazer — não são código, são ações externas.
-> Atualizado em 8 de Março de 2026 com status de tudo que já foi feito.
+> 🔐 **CONFIDENCIAL** — Senhas, keys e credenciais. Guardar com segurança.
+> Não fazer commit no git público. Protegido no .gitignore.
+> Atualizado em 14 de Março de 2026.
 
 ---
 
@@ -57,14 +57,18 @@
 
 ---
 
-## 2. ~~Google Business Profile — Criar perfil~~ ⚠️ SUSPENSO
+## 2. ~~Google Business Profile — Criar perfil~~ ⚠️ SUSPENSO — 2a APELAÇÃO SUBMETIDA
 
-**Status: SUSPENSO — "deceptive content" violation. Recuperação em andamento.**
+**Status: SUSPENSO — 2a apelação submetida 2026-03-12 via eduardornj@gmail.com (EN/US). Case ID: [1-8338000040261]. Aguardando resposta até ~2026-03-26.**
 
 **O que foi feito:**
 - [x] Perfil criado no Google Maps: `Bubble Soffit and Fascia`
 - [x] Link: `https://www.google.com/maps/place/Bubble+Soffit+and+Fascia/data=!4m2!3m1!1s0x0:0x85136cefb8389b4b`
 - [x] `sameAs` adicionado no schema do site (layout + homepage)
+- [x] Perfil corrigido: nome, descrição, categoria, áreas de cobertura (2026-03-12)
+- [x] 1a apelação (via contact@ em português) — NEGADA (roteou pra equipe Google Brasil)
+- [x] 2a apelação submetida via eduardornj@gmail.com (EN/US) com 3 docs (Sunbiz, COI, Tax)
+- [x] Email de confirmação recebido em inglês — Case ID: [1-8338000040261]
 
 **O que é:** Seu perfil no Google Maps. Quando alguém pesquisa "soffit repair orlando" no Google, seu perfil aparece no mapa com fotos, reviews e informações.
 
@@ -136,80 +140,61 @@
 
 ---
 
-## 4. Yelp — Criar/Completar perfil
+## 4. Yelp — Criar/Completar perfil ✅ CONCLUÍDO (2026-03-12)
+
+**Status: Perfil completo — nome corrigido, fotos, descrição, horários, tudo preenchido.**
 
 **O que é:** O Yelp é a fonte #1 que Perplexity e ChatGPT usam para recomendar negócios locais. Se alguém perguntar "best soffit repair in Orlando" no ChatGPT, ele puxa do Yelp.
 
 **Por que importa:** Pesquisa mostra que ChatGPT cita negócios com Yelp profile completo 3x mais do que sem.
 
-**Tempo:** 30 minutos (uma vez) + 5 min/mês
-
-**Passo a passo:**
-
-1. Acesse [biz.yelp.com](https://biz.yelp.com)
-2. Clique "Claim your Business" ou "Add your Business"
-3. Procure "Bubbles Enterprise" — se já existe, claim. Se não, crie.
-
-**Informações para preencher (EXATAMENTE como no site):**
-
-| Campo | Valor |
-|-------|-------|
-| Business Name | Bubbles Enterprise Soffit & Fascia |
-| Phone | (407) 715-1790 |
-| Address | Orlando, FL (mesmo do Google) |
-| Category | Soffit & Fascia, Home Improvement, Roofing |
-| Hours | Mon-Sat 8am-6pm |
-| Website | https://bubblesenterprise.com |
-| Service Area | Orlando, Kissimmee, Winter Park, Clermont, Sanford, Oviedo + Central Florida |
+**O que foi feito:**
+- [x] Perfil criado/reivindicado ✅ Reativado em 2026-03-11
+- [x] Nome corrigido de "Bubble Enterprises Soffit" → "Bubbles Enterprise Soffit & Fascia" (2026-03-12)
+- [x] 7 fotos subidas com legendas SEO otimizadas (2026-03-12)
+- [x] Categorias: Roofing, Siding, General Contractors
+- [x] Horário: Mon-Fri 8AM-7PM, Sat 8AM-12PM, Sun Closed
+- [x] Website: bubblesenterprise.com
+- [x] Phone: (407) 715-1790
+- [x] About/Specialties atualizado — gutters REMOVIDO, "aluminum" adicionado
+- [x] History atualizado — nome corrigido, gutters removido
+- [x] NAP conferido (igual ao site e Facebook)
 
 **IMPORTANTE — NAP Consistente:**
-O nome, endereço e telefone devem ser **EXATAMENTE iguais** em todas as plataformas (Google, Yelp, Angi, site). Até a formatação importa:
+O nome, endereço e telefone devem ser **EXATAMENTE iguais** em todas as plataformas (Google, Yelp, site). Até a formatação importa:
 - Telefone: sempre `(407) 715-1790` (não `407-715-1790` ou `4077151790`)
 - Nome: sempre `Bubbles Enterprise Soffit & Fascia` (não "Bubbles Enterprise LLC" ou "Bubbles Soffit")
 
-**Fotos para subir:**
-- 5-10 fotos de projetos reais
-- 1 foto da equipe (se tiver)
-- 1 foto de materiais (aluminum/vinyl panels)
-
-**Reviews:**
-- Peça para clientes satisfeitos deixarem review no Yelp
-- Responda TODA review (positiva ou negativa)
-
-- [ ] Perfil criado/reivindicado
-- [ ] Todas as informações preenchidas
-- [ ] 5+ fotos subidas
-- [ ] NAP conferido (igual ao Google e ao site)
+**Pendente:**
+- [ ] Pedir reviews de clientes no Yelp
+- [ ] Responder toda review que receber
 
 ---
 
-## 5. ~~Angi (antigo HomeAdvisor) — Criar perfil~~ 🔄 EM ANDAMENTO
+## 4b. Facebook Business Page ✅ ATUALIZADO (2026-03-12)
 
-**Status: 80% FEITO — perfil criado, aguardando ativação pública.**
+**Status: Bio, especialidades, promoção e áreas de atendimento atualizados.**
 
 **O que foi feito:**
-- [x] Perfil criado no Angi (ID: `26560128`)
-- [x] Informações básicas preenchidas (About, Contact, Hours, Service details)
-- [x] Description otimizada com copy de vendas
-- [x] Business highlights marcados (Se Habla Español, Family Owned)
-- [x] Insurance marcado
-- [x] Free estimates = Yes, Warranty = Yes, Emergency service = Yes
-- [x] Thunderbird configurado para SMTP (587/STARTTLS)
-- [x] Email enviado pro suporte do Angi pedindo ativação do perfil público
+- [x] Bio atualizada: "Bubbles Enterprise / Soffit & Fascia Specialist / Installation • Repair • Replacement"
+- [x] 7 especialidades adicionadas (Aluminum Soffit/Fascia Install/Repair, Replacement, New Construction, Free Estimates)
+- [x] Promoção adicionada: "Free Estimate - No Obligation"
+- [x] Áreas de atendimento corrigidas: 10 cidades Central FL (Tampa REMOVIDA)
+- [x] Horário atualizado
+- [x] Gutters removido da bio (era motivo de problema no GBP)
 
-**O que falta:**
-- [ ] Resposta do Angi sobre ativação do perfil público
-- [ ] Subir fotos de projetos
-- [ ] Quando perfil público estiver ativo: me mandar o link para adicionar no `sameAs`
+**Pendente:**
+- [ ] Mudar nome da página de "Bubble Soffit" para "Bubbles Enterprise Soffit & Fascia"
+- [ ] Pedir reviews de clientes no Facebook
 
-**Links úteis:**
-- Dashboard: `https://office.angi.com/app/home/26560128`
-- Link de review (para clientes): `https://www.angi.com/write-review/26560128`
+---
 
-**Configuração do email (Thunderbird):**
-- Servidor: `mail.bubblesenterprise.com`
-- Porta: `587` / STARTTLS
-- Usuário: `contact@bubblesenterprise.com`
+## 5. ~~Angi~~ ❌ CANCELADO ✅ REMOVIDO
+
+**Decisão: não vamos mais trabalhar com o Angi.**
+
+- [x] Referências do Angi removidas do código do next-bubbles (já estava limpo)
+- [x] Removido de todas as plataformas (Facebook, Yelp, etc.)
 
 ---
 
@@ -237,7 +222,6 @@ O nome, endereço e telefone devem ser **EXATAMENTE iguais** em todas as platafo
 | Google Maps | ✅ Instalado — `https://www.google.com/maps/place/Bubble+Soffit+and+Fascia/...` |
 | YouTube | Pendente — se criar canal |
 | LinkedIn | Pendente — se criar página |
-| Angi | Perfil criado (ID 26560128) — aguardando link público para adicionar |
 | Nextdoor | ✅ Instalado — `https://nextdoor.com/page/bubble-enterprises-soffit-fascia` |
 
 ---
@@ -266,8 +250,8 @@ O nome, endereço e telefone devem ser **EXATAMENTE iguais** em todas as platafo
 3. Use as MESMAS informações (NAP consistente!)
 4. Peça recomendações de clientes pelo Nextdoor
 
-- [ ] Página criada
-- [ ] Informações completas
+- [x] Página criada
+- [x] Informações completas
 
 ---
 
@@ -294,7 +278,6 @@ O nome, endereço e telefone devem ser **EXATAMENTE iguais** em todas as platafo
 | Yelp | `https://www.yelp.com/writeareview/biz/bubble-enterprises-soffit-orlando` |
 | Facebook | `https://www.facebook.com/bubblesoffit/reviews` |
 | Nextdoor | `https://nextdoor.com/choose_address/?next=%2Fpages%2Fbubble-enterprises-soffit-fascia%2F` |
-| Angi | `https://www.angi.com/companylist/us/fl/orlando/bubbles-enterprise-reviews-10813498.htm` |
 | **Página do site** | **`https://bubblesenterprise.com/review`** (todos os links em uma página) |
 
 **Mensagem para mandar por WhatsApp após completar um serviço:**
@@ -459,14 +442,64 @@ Abra cada um destes e faça as perguntas abaixo:
 
 ---
 
+## 15. GA4 — Credenciais e Configuração
+
+**Measurement ID:** `G-8CB2E6CK1H`
+**Property ID:** `526633989`
+**Google Cloud Project:** `gen-lang-client-0945367207`
+
+**Service Account:**
+- Email: `bubbles-ga4-admin@gen-lang-client-0945367207.iam.gserviceaccount.com`
+- Arquivo JSON: `next-bubbles/seo/gen-lang-client-0945367207-0ce0a4e79e36.json`
+- Status: ✅ Adicionado como Editor no GA4
+
+---
+
+## 16. reCAPTCHA v3 — Bot Protection
+
+**Status: ✅ KEYS GERADAS — pronto para implementar (14 Mar 2026)**
+
+**O que é:** Proteção invisível contra bots nos formulários. Usuários não veem nem clicam em nada — reCAPTCHA v3 analisa automaticamente o comportamento.
+
+**Google Cloud Project:** `Bubble Soffit Recaptcha`
+
+**Site Key (pública — pode colocar no código):**
+```
+6LfcYYosAAAAAFuEjO8kGDIqOjwsXMoKmWgBGyuh
+```
+
+**Secret Key (privada — guardar com segurança):**
+```
+6LfcYYosAAAAABxUgMSN9TrBgEjZba85LIlRGOl0
+```
+
+**Formulários a proteger:**
+- [ ] Contact Form (`src/app/[locale]/contact/ContactClient.tsx`)
+- [ ] Calculator Form (`src/app/[locale]/calculator/CalculatorClient.tsx`)
+- [ ] Emergency Repair Form (`src/app/[locale]/contact/emergency/EmergencyClient.tsx`)
+
+**O que falta:**
+- [ ] Implementar no frontend (adicionar script + token capture)
+- [ ] Validar no backend (verifi car token antes de enviar email)
+- [ ] Deploy em produção
+- [ ] Testar com bots
+
+---
+
 # RESUMO VISUAL
 
 ```
-✅ CONCLUÍDO (9 de 14):
+✅ CONCLUÍDO (13 de 16):
   [1]  Facebook Pixel ← INSTALADO (ID: 1981946709023806)
        → PageView + Lead + Contact (phone) + Contact (whatsapp)
        → Domínio VERIFICADO no Meta Business Suite (8 Mar 2026)
   [3]  Bing Webmaster Tools ← VERIFICADO + sitemap 159 URLs + IndexNow
+  [4]  Yelp ← COMPLETO (12 Mar 2026)
+       → Nome corrigido, 7 fotos, descrição, gutters removido, NAP ok
+  [4b] Facebook Page ← BIO + ESPECIALIDADES + ÁREAS ATUALIZADOS (12 Mar 2026)
+       → Tampa removida, gutters removido, 7 especialidades, promoção
+       → Falta: mudar nome da página pra "Bubbles Enterprise Soffit & Fascia"
+  [5]  Angi ← CANCELADO + REMOVIDO do código e plataformas
   [6]  Links redes sociais ← INSTALADO (Instagram + Facebook + Yelp + Nextdoor)
   [7]  Nextdoor ← CRIADO + VERIFICADO + sameAs instalado
   [11] Cloudflare ← VERIFICADO (não usa, bots AI liberados)
@@ -475,16 +508,18 @@ Abra cada um destes e faça as perguntas abaixo:
   [14] Mobile Audit ← 7 correções aplicadas + deploy feito (8 Mar 2026)
 
 ⚠️ SUSPENSO:
-  [2]  Google Business Profile ← SUSPENSO ("deceptive content")
-       → Dashboard de recuperação: Admin/Recuperacao-GBP.html
+  [2]  Google Business Profile ← 2a APELAÇÃO SUBMETIDA (12 Mar 2026)
+       → Case ID: [1-8338000040261] via eduardornj@gmail.com (EN/US)
+       → Aguardando resposta até ~26 Mar 2026
+       → Se negado: responder ao email toda semana até humano responder
 
 🔄 EM ANDAMENTO:
-  [5]  Angi ← 80% FEITO (perfil criado ID 26560128, aguardando ativação pública)
   [8]  Reviews ← Página /review CRIADA com todas as plataformas
        → Falta: salvar template no celular + começar a pedir
+  [16] reCAPTCHA v3 ← KEYS GERADAS (14 Mar 2026)
+       → Falta: implementar no frontend + validar no backend + deploy
 
 PENDENTE:
-  [4]  Yelp ← completar perfil (fotos, informações)
   [9]  Testar citações AI ← 10 min/mês
   [10] Acorn Finance URL ← me mandar o link
 ```

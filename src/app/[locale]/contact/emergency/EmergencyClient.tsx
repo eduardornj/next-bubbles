@@ -30,6 +30,13 @@ export default function EmergencyClient() {
         setStatus("sending");
         try {
             const form = e.currentTarget;
+
+            // Get reCAPTCHA token
+            const recaptchaToken = await (window as Window & { grecaptcha?: { execute: (key: string, options: { action: string }) => Promise<string> } }).grecaptcha?.execute(
+                "6LfcYYosAAAAAFuEjO8kGDIqOjwsXMoKmWgBGyuh",
+                { action: "emergency_form_submit" }
+            ) ?? "";
+
             const fd = new FormData();
             fd.append("name", (form.elements.namedItem("name") as HTMLInputElement).value);
             fd.append("phone", (form.elements.namedItem("phone") as HTMLInputElement).value);
@@ -38,13 +45,14 @@ export default function EmergencyClient() {
             fd.append("damage_type", (form.elements.namedItem("damage_type") as HTMLSelectElement).value);
             fd.append("description", (form.elements.namedItem("description") as HTMLTextAreaElement).value ?? "");
             files.forEach(f => fd.append("photos", f));
+            fd.append("recaptcha_token", recaptchaToken);
 
             const res = await fetch("/api/emergency-repair", { method: "POST", body: fd });
             if (!res.ok) throw new Error("server error");
             setStatus("success");
             if (typeof window !== "undefined") {
                 if (typeof (window as Window & { gtag?: (...args: unknown[]) => void }).gtag === "function") {
-                    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "generate_lead");
+                    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "qualify_lead");
                 }
                 if (typeof (window as Window & { fbq?: (...args: unknown[]) => void }).fbq === "function") {
                     (window as Window & { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");

@@ -59,6 +59,13 @@ function ContactForm() {
         setStatus("sending");
         try {
             const form = e.currentTarget;
+
+            // Get reCAPTCHA token
+            const recaptchaToken = await (window as Window & { grecaptcha?: { execute: (key: string, options: { action: string }) => Promise<string> } }).grecaptcha?.execute(
+                "6LfcYYosAAAAAFuEjO8kGDIqOjwsXMoKmWgBGyuh",
+                { action: "contact_form_submit" }
+            ) ?? "";
+
             const fd = new FormData();
             fd.append("firstName", (form.elements.namedItem("firstName") as HTMLInputElement).value);
             fd.append("lastName", (form.elements.namedItem("lastName") as HTMLInputElement).value);
@@ -70,13 +77,14 @@ function ContactForm() {
             fd.append("message", (form.elements.namedItem("message") as HTMLTextAreaElement).value ?? "");
             if (onlineEstimateValue) fd.append("online_estimate", onlineEstimateValue);
             files.forEach(f => fd.append("photos", f));
+            fd.append("recaptcha_token", recaptchaToken);
 
             const res = await fetch("/api/contact", { method: "POST", body: fd });
             if (!res.ok) throw new Error("server error");
             setStatus("success");
             if (typeof window !== "undefined") {
                 if (typeof (window as Window & { gtag?: (...args: unknown[]) => void }).gtag === "function") {
-                    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "generate_lead");
+                    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "qualify_lead");
                 }
                 if (typeof (window as Window & { fbq?: (...args: unknown[]) => void }).fbq === "function") {
                     (window as Window & { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");

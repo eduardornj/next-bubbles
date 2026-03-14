@@ -160,6 +160,26 @@ export async function POST(req: NextRequest) {
         }
 
         const formData = await req.formData();
+        const recaptchaToken = (formData.get('recaptcha_token') as string) ?? '';
+
+        // Validate reCAPTCHA token
+        if (recaptchaToken) {
+            try {
+                const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+                });
+                const recaptchaData = await recaptchaRes.json() as { success?: boolean; score?: number };
+                if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.5) {
+                    console.warn('[contact] reCAPTCHA validation failed:', { success: recaptchaData.success, score: recaptchaData.score, ip });
+                    return NextResponse.json({ error: 'Failed bot verification. Please try again.' }, { status: 403 });
+                }
+            } catch (err) {
+                console.error('[contact] reCAPTCHA verification error:', err);
+                return NextResponse.json({ error: 'Verification error. Please try again.' }, { status: 500 });
+            }
+        }
 
         const firstName = (formData.get('firstName') as string)?.trim();
         const lastName = (formData.get('lastName') as string)?.trim() || '';
