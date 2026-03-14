@@ -377,6 +377,89 @@ Abra cada um destes e faça as perguntas abaixo:
 
 ---
 
+## 17. UTM — Marketing Campaign Tracking ✅ ATIVO
+
+**Status: 🚀 IMPLEMENTADO (14 Mar 2026)**
+
+**O que é:** UTM (Urchin Tracking Module) são parâmetros que rastreiam a origem de cada visitante no Google Analytics.
+
+**Exemplo:**
+```
+bubblesenterprise.com?utm_source=facebook&utm_medium=post&utm_campaign=spring_promo_2026
+```
+
+**O que você vai conseguir rastrear:**
+- [x] De qual plataforma vem o visitante (Facebook, WhatsApp, LinkedIn, etc)
+- [x] Qual tipo de post/conteúdo (post, story, email, etc)
+- [x] Qual campanha/iniciativa (spring_promo, emergency_repair, etc)
+- [x] Qual elemento específico (botão topo, imagem hero, etc)
+
+**Ferramentas disponíveis:**
+
+### 1️⃣ **Gerador Visual (Copiar/Colar)**
+- URL: `bubblesenterprise.com/utm-generator`
+- Selecione: plataforma, tipo, campanha
+- Clique: Copiar
+- Cole no seu post/WhatsApp
+
+### 2️⃣ **Guia Completo com URLs Prontas**
+- Arquivo: `UTM-GUIA-COMPLETO.md`
+- Contém templates prontos para cada canal
+- Apenas substitua `[CAMPANHA]` pelo nome da sua
+
+### 3️⃣ **Função TypeScript (Para Devs)**
+- Arquivo: `src/lib/utm-generator.ts`
+- Use em componentes para gerar URLs automaticamente
+- Templates prontos: `UTM_TEMPLATES`
+
+**Como usar (Simples):**
+
+1. Vá em `bubblesenterprise.com/utm-generator`
+2. Preencha:
+   - Plataforma: "Facebook"
+   - Tipo: "post"
+   - Campanha: "spring_promo_2026"
+3. Clique "Copiar"
+4. Cole no seu post
+
+**Como usar (Avançado - Dev):**
+
+```typescript
+import { generateUTMUrl, UTM_TEMPLATES } from '@/lib/utm-generator';
+
+const fbUrl = generateUTMUrl(
+  'bubblesenterprise.com',
+  UTM_TEMPLATES.facebook.post('spring_promo_2026')
+);
+// Resultado: https://bubblesenterprise.com?utm_source=facebook&utm_medium=post&utm_campaign=spring_promo_2026
+```
+
+**Canais suportados:**
+- ✅ Facebook (posts, stories, ads)
+- ✅ WhatsApp (direct share)
+- ✅ LinkedIn (posts, company page)
+- ✅ Instagram (posts, stories)
+- ✅ Email (newsletter, follow-up)
+- ✅ Nextdoor (posts)
+- ✅ Google Business Profile (posts)
+- ✅ SMS (text messages)
+- ✅ Referral (customer shares)
+
+**Rastrear resultados:**
+1. Espere 1-2 semanas com UTM em uso
+2. Acesse: Google Analytics 4 → Aquisição → Resumo da campanha
+3. Veja qual canal gera mais leads (qualify_lead)
+4. Foque nos canais que convertem
+
+- [x] Gerador visual criado (`/utm-generator`)
+- [x] Guia completo documentado (`UTM-GUIA-COMPLETO.md`)
+- [x] Função TypeScript pronta (`src/lib/utm-generator.ts`)
+- [x] Exemplos para cada plataforma
+- [ ] Começar a usar UTM em todos os posts
+- [ ] Verificar resultados no GA4 após 2 semanas
+
+---
+
 ## 11. ~~Cloudflare — Verificar se bots AI estão bloqueados~~ ✅ CONCLUÍDO
 
 **Status: 100% FEITO — não usa Cloudflare, bots AI não estão bloqueados.**
@@ -506,7 +589,7 @@ Abra cada um destes e faça as perguntas abaixo:
 # RESUMO VISUAL
 
 ```
-✅ CONCLUÍDO (14 de 16):
+✅ CONCLUÍDO (15 de 17):
   [1]  Facebook Pixel ← INSTALADO (ID: 1981946709023806)
        → PageView + Lead + Contact (phone) + Contact (whatsapp)
        → Domínio VERIFICADO no Meta Business Suite (8 Mar 2026)
@@ -525,6 +608,8 @@ Abra cada um destes e faça as perguntas abaixo:
   [14] Mobile Audit ← 7 correções aplicadas + deploy feito (8 Mar 2026)
   [16] reCAPTCHA v3 ← DEPLOYED (14 Mar 2026)
        → Script + token capture + backend validation + Vercel env var configurada
+  [17] UTM Generator ← IMPLEMENTADO (14 Mar 2026)
+       → Gerador visual + guia completo + função TypeScript + 9 canais suportados
 
 ⚠️ SUSPENSO:
   [2]  Google Business Profile ← 2a APELAÇÃO SUBMETIDA (12 Mar 2026)
