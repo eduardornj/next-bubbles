@@ -2,7 +2,7 @@
   "meta": {
     "siteTitle": "Bubbles Enterprise Soffit | Instalação Premium em Orlando",
     "siteDescription": "Especialistas em instalação e reparo de soffit e fascia em Orlando e Flórida Central. Construção nova e substituição. Licenciados e segurados. Ligue (407) 715-1790.",
-    "homepageTitle": "Bubbles Enterprise | Instalação de Soffit e Fascia em Orlando, FL",
+    "homepageTitle": "Bubbles Enterprise | Reparo e Instalação de Soffit e Fascia em Orlando, FL",
     "homepageDescription": "Reparo, instalação e substituição de soffit e fascia em Orlando, FL. Serviços de emergência disponíveis. Prevenção de animais e danos de tempestade. Licenciados e segurados. Ligue (407) 715-1790."
   },
   "nav": {
@@ -1677,22 +1677,19 @@
       "google": "Google",
       "yelp": "Yelp",
       "facebook": "Facebook",
-      "nextdoor": "Nextdoor",
-      "angi": "Angi"
+      "nextdoor": "Nextdoor"
     },
     "descriptions": {
       "google": "Quando alguém pesquisa soffit em Orlando, seu review aparece primeiro",
-      "yelp": "Ajude outros donos de casa a comparar e escolher bem",
+      "yelp": "Nos encontre no Yelp — listados e ativos em Orlando",
       "facebook": "Sua indicação chega nos amigos, família e vizinhos",
-      "nextdoor": "Seus vizinhos confiam na indicação de quem mora perto",
-      "angi": "A maior plataforma de home services dos EUA"
+      "nextdoor": "Seus vizinhos confiam na indicação de quem mora perto"
     },
-    "encourage1": "Bom começo! Faltam 4. Você está fazendo diferença de verdade.",
-    "encourage2": "Já estamos quase na metade! Continue assim.",
-    "encourage3": "Mais da metade! Faltam só mais 2.",
-    "encourage4": "Falta só 1! Você está quase completando todas!",
+    "encourage1": "Bom começo! Faltam 3. Você está fazendo diferença de verdade.",
+    "encourage2": "Metade feita! Faltam só mais 2.",
+    "encourage3": "Falta só 1! Você está quase completando todas!",
     "celebrationTitle": "Você é Incrível!",
-    "celebrationDesc": "Você avaliou em todas as 5 plataformas. Nós valorizamos muito o seu apoio. Isso ajuda outras famílias brasileiras a encontrar um serviço de confiança aqui em Orlando.",
+    "celebrationDesc": "Você avaliou em todas as 4 plataformas. Nós valorizamos muito o seu apoio. Isso ajuda outras famílias brasileiras a encontrar um serviço de confiança aqui em Orlando.",
     "celebrationCta": "Indicar Para um Amigo",
     "celebrationClose": "Fechar",
     "ctaTitle": "Precisa de Mais Algum Serviço?",

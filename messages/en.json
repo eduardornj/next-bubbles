@@ -2,7 +2,7 @@
   "meta": {
     "siteTitle": "Bubbles Enterprise Soffit | Orlando's Premium Installation",
     "siteDescription": "Soffit and Fascia installation and repair specialist covering New Construction and Remove & Replace scenarios in Orlando and Central Florida.",
-    "homepageTitle": "Bubbles Enterprise — Soffit & Fascia Installation Orlando, FL",
+    "homepageTitle": "Bubbles Enterprise — Soffit & Fascia Repair & Installation Orlando, FL",
     "homepageDescription": "Expert soffit & fascia repair, installation & replacement in Orlando, FL. Emergency services available. Prevent animal intrusion & storm damage. Licensed & Insured. Call (407) 715-1790."
   },
   "nav": {
@@ -1681,22 +1681,19 @@
       "google": "Google",
       "yelp": "Yelp",
       "facebook": "Facebook",
-      "nextdoor": "Nextdoor",
-      "angi": "Angi"
+      "nextdoor": "Nextdoor"
     },
     "descriptions": {
       "google": "Help us show up when homeowners search for soffit in Orlando",
-      "yelp": "Yelp reviews help homeowners compare local contractors",
+      "yelp": "Find us on Yelp — we're listed and active in Orlando",
       "facebook": "Your recommendation reaches friends, family, and neighbors",
-      "nextdoor": "Your neighbors trust recommendations from people they know",
-      "angi": "Angi is where homeowners find top-rated contractors"
+      "nextdoor": "Your neighbors trust recommendations from people they know"
     },
-    "encourage1": "Great start! 4 more to go — you're making a real difference.",
-    "encourage2": "Awesome! You're almost halfway there. Keep it going!",
-    "encourage3": "More than halfway! Just 2 more platforms to go.",
-    "encourage4": "So close! One more review and you've completed them all!",
+    "encourage1": "Great start! 3 more to go — you're making a real difference.",
+    "encourage2": "Halfway there! Just 2 more platforms to go.",
+    "encourage3": "So close! One more review and you've completed them all!",
     "celebrationTitle": "You're Amazing!",
-    "celebrationDesc": "You just helped us on all 5 platforms. We truly appreciate your support — it means the world to our team and helps other families find reliable service.",
+    "celebrationDesc": "You just helped us on all 4 platforms. We truly appreciate your support — it means the world to our team and helps other families find reliable service.",
     "celebrationCta": "Get a Friend's Estimate",
     "celebrationClose": "Close",
     "ctaTitle": "Need More Soffit & Fascia Work?",

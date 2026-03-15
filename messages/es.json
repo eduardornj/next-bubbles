@@ -2,7 +2,7 @@
   "meta": {
     "siteTitle": "Bubbles Enterprise Soffit | Instalación Premium en Orlando",
     "siteDescription": "Especialistas en instalación y reparación de soffit y fascia en Orlando y Florida Central. Construcción nueva y reemplazo. Licenciados y asegurados. Llame (407) 715-1790.",
-    "homepageTitle": "Bubbles Enterprise | Instalación de Soffit y Fascia en Orlando, FL",
+    "homepageTitle": "Bubbles Enterprise | Reparación e Instalación de Soffit y Fascia en Orlando, FL",
     "homepageDescription": "Reparación, instalación y reemplazo de soffit y fascia en Orlando, FL. Servicios de emergencia disponibles. Prevención de animales y daños de tormenta. Licenciados y asegurados. Llame (407) 715-1790."
   },
   "nav": {
@@ -1677,22 +1677,19 @@
       "google": "Google",
       "yelp": "Yelp",
       "facebook": "Facebook",
-      "nextdoor": "Nextdoor",
-      "angi": "Angi"
+      "nextdoor": "Nextdoor"
     },
     "descriptions": {
       "google": "Cuando alguien busca soffit en Orlando, su opinión aparece primero",
-      "yelp": "Ayude a otras familias a comparar y elegir con confianza",
+      "yelp": "Encuéntrenos en Yelp — listados y activos en Orlando",
       "facebook": "Recomiéndenos a sus amigos, vecinos y familiares",
-      "nextdoor": "Sus vecinos confían en las recomendaciones de quienes conocen",
-      "angi": "La plataforma #1 de servicios para el hogar en Estados Unidos"
+      "nextdoor": "Sus vecinos confían en las recomendaciones de quienes conocen"
     },
-    "encourage1": "¡Buen comienzo! Faltan 4. Usted está haciendo una gran diferencia.",
-    "encourage2": "¡Excelente! Ya casi está a la mitad. ¡Siga así!",
-    "encourage3": "¡Más de la mitad! Solo faltan 2 plataformas más.",
-    "encourage4": "¡Tan cerca! Una opinión más y habrá completado todas.",
+    "encourage1": "¡Buen comienzo! Faltan 3. Usted está haciendo una gran diferencia.",
+    "encourage2": "¡A la mitad! Solo faltan 2 plataformas más.",
+    "encourage3": "¡Tan cerca! Una opinión más y habrá completado todas.",
     "celebrationTitle": "¡Usted es Increíble!",
-    "celebrationDesc": "Dejó su opinión en las 5 plataformas. Valoramos mucho su apoyo. Esto ayuda a otras familias hispanas a encontrar un servicio confiable y profesional.",
+    "celebrationDesc": "Dejó su opinión en las 4 plataformas. Valoramos mucho su apoyo. Esto ayuda a otras familias hispanas a encontrar un servicio confiable y profesional.",
     "celebrationCta": "Recomendar a un Amigo",
     "celebrationClose": "Cerrar",
     "ctaTitle": "¿Necesita Otro Proyecto para su Hogar?",
