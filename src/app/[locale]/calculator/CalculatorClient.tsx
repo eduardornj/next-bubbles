@@ -14,10 +14,10 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 // ─────────────────────────────────────────────
-// MCP PRICING ENGINE — pricing.md v2.3
+// MCP PRICING ENGINE — pricing.md v3.0
 // Exposed as pure functions for WebMCP / URL-param invocation.
-// OverhangRate: Aluminum $4/$5/$7 | Vinyl $3.50/$4.50/$6.50
-// LaborRate:    New Construction $4 | R&R 1-story $6 | R&R 2-story $7
+// OverhangRate: Aluminum $5/$6.50/$9 | Vinyl $4.50/$6/$8.50
+// LaborRate:    New Construction $5 | R&R 1-story $7 | R&R 2-story $8
 // ─────────────────────────────────────────────
 
 export type JobType = 'new' | 'replace_1' | 'replace_2';
@@ -25,17 +25,17 @@ export type Material = 'aluminum' | 'vinyl';
 
 /** Returns the per-LF overhang rate or -1 if blocked (>36"). */
 export function getOverhangRate(overhangInches: number, material: Material): number {
-    if (overhangInches <= 12) return material === 'vinyl' ? 3.50 : 4.00;
-    if (overhangInches <= 24) return material === 'vinyl' ? 4.50 : 5.00;
-    if (overhangInches <= 36) return material === 'vinyl' ? 6.50 : 7.00;
+    if (overhangInches <= 12) return material === 'vinyl' ? 4.50 : 5.00;
+    if (overhangInches <= 24) return material === 'vinyl' ? 6.00 : 6.50;
+    if (overhangInches <= 36) return material === 'vinyl' ? 8.50 : 9.00;
     return -1; // >36" → requires on-site structural review
 }
 
 /** Returns the per-LF labor rate for the job type. */
 export function getLaborRate(jobType: JobType): number {
-    if (jobType === 'new') return 4;
-    if (jobType === 'replace_2') return 7;
-    return 6; // replace_1
+    if (jobType === 'new') return 5;
+    if (jobType === 'replace_2') return 8;
+    return 7; // replace_1
 }
 
 /** Core formula: LF × (overhangRate + laborRate). Returns -1 if blocked. */
@@ -317,7 +317,7 @@ function SmartCalculatorApp() {
                             "MCP pricing engine: getOverhangRate, getLaborRate, calculateTotal, calculateDeposit",
                             "Supports: new | replace_1 | replace_2 | repair",
                             "Materials: aluminum | vinyl",
-                            "Overhang ranges: ≤12in ($4/$3.50) | 13-24in ($5/$4.50) | 25-36in ($7/$6.50) | >36in blocked"
+                            "Overhang ranges: ≤12in ($5/$4.50) | 13-24in ($6.50/$6) | 25-36in ($9/$8.50) | >36in blocked"
                         ],
                         "potentialAction": {
                             "@type": "SearchAction",
