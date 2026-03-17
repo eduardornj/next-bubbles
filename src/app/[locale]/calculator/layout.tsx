@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import Script from "next/script";
 
 export async function generateMetadata({
     params,
@@ -62,6 +63,11 @@ export default function CalculatorLayout({
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJsonLd) }}
             />
             {children}
+            {/* reCAPTCHA v3 — loaded only on calculator page */}
+            <Script
+                src="https://www.google.com/recaptcha/api.js?render=6LfcYYosAAAAAFuEjO8kGDIqOjwsXMoKmWgBGyuh"
+                strategy="lazyOnload"
+            />
         </>
     );
 }
