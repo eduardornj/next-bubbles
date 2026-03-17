@@ -1092,7 +1092,7 @@ export const cities: CityData[] = [
         descriptionPt: "A maioria das casas em St. Cloud foi construida entre 2003 e 2010, e o soffit original nunca foi trocado. Vinil e alumínio daquela época duram de 15 a 20 anos, e esse prazo está vencendo agora. O problema e que por fora parece normal. Por dentro, a ventilação já falhou e a umidade começou a danificar a estrutura. Nós vemos isso toda semana em Harmony, no corredor da Narcoossee e nos condomínios ao longo da Canoe Creek. Uma vistoria gratuita resolve a duvida em 20 minutos.",
         descriptionEs: "Las casas de St. Cloud de los años 2003 a 2010 están llegando a un punto crítico. El soffit original de vinilo o aluminio tiene entre 15 y 20 años, y esa es exactamente la vida útil de esos materiales. Muchos propietarios nunca tuvieron que pensar en el soffit porque la casa era nueva cuando la compraron. Ahora los paneles se deforman, los ventilos se tapan y los animales encuentran entrada. En Harmony, Narcoossee y los vecindarios de HOA sobre Canoe Creek Road, esto se ve todas las semanas. La buena noticia: si se detecta a tiempo, la reparación es rápida y evita multas de HOA.",
         localNote: "St. Cloud sits at the southern end of the Narcoossee corridor, one of the fastest-growing residential stretches in Central da Flórida. Harmony alone has over 6,000 homes, nearly all built after 2003. With 75% of the city inside HOA communities, soffit appearance is not optional — faded, cracked, or sagging panels trigger violation letters. We work in these neighborhoods weekly and know the specific color codes and material specs that HOA boards require.",
-        localNotePt: "St. Cloud tem uma comunidade hispanica forte, especialmente porto-riquenha, e não tem uma presença brasileira grande como Kissimmee ou Orlando. Mesmo assim, nos atendemos em português para qualquer morador que precise. Orçamento por escrito, explicacao clara do serviço e acompanhamento em português do início ao fim. Se você mora em Harmony, no corredor da Narcoossee ou em qualquer condomínio de HOA da região, ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
+        localNotePt: "St. Cloud tem uma comunidade hispânica forte, especialmente porto-riquenha, e não tem uma presença brasileira grande como Kissimmee ou Orlando. Mesmo assim, nós atendemos em português para qualquer morador que precise. Orçamento por escrito, explicação clara do serviço e acompanhamento em português do início ao fim. Se você mora em Harmony, no corredor da Narcoossee ou em qualquer condomínio de HOA da região, ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
         localNoteEs: "St. Cloud es casa para miles de familias puertorriqueñas y latinas que compraron en Harmony, sobre la Narcoossee y en los vecindarios de Canoe Creek. Usted conoce su barrio, y nosotros también. Trabajamos aquí todas las semanas. Le damos presupuesto escrito en español, le explicamos exactamente lo que su casa necesita y cumplimos con lo que decimos. Muchos de nuestros clientes en St. Cloud llegaron por recomendación de un vecino que ya nos conoce. Llame al (407) 715-1790.",
         homeStyle: "Single-family homes in master-planned HOA communities, predominantly 1- and 2-story built 2003-2012",
         homeStylePt: "Casas unifamiliares em condominios planejados com HOA, maioria de 1 e 2 andares construidas entre 2003 e 2012",
@@ -1162,7 +1162,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Vocês atendem St. Cloud em português?",
-                a: "Sim. Mesmo St. Cloud não tendo uma comunidade brasileira grande, nos atendemos em português do início ao fim. Orçamento, explicacao do serviço, acompanhamento da obra. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
+                a: "Sim. Mesmo St. Cloud não tendo uma comunidade brasileira grande, nós atendemos em português do início ao fim. Orçamento, explicação do serviço, acompanhamento da obra. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
             },
         ],
         faqsEs: [
@@ -1258,7 +1258,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Vocês atendem em português em Daytona Beach?",
-                a: "Sim. Mesmo Daytona Beach não tendo uma comunidade brasileira expressiva, nos atendemos em português para qualquer morador que precise. Orçamento por escrito, explicacao do serviço e acompanhamento. Ligue (407) 715-1790 ou mande mensagem no WhatsApp para agendar.",
+                a: "Sim. Mesmo Daytona Beach não tendo uma comunidade brasileira expressiva, nós atendemos em português para qualquer morador que precise. Orçamento por escrito, explicação do serviço e acompanhamento. Ligue (407) 715-1790 ou mande mensagem no WhatsApp para agendar.",
             },
         ],
         faqsEs: [
@@ -1354,7 +1354,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Vocês atendem em português em Palm Bay?",
-                a: "Sim. Todo o processo e em português: orçamento, explicacao do serviço, obra e pos-serviço. Manda WhatsApp para (407) 715-1790 ou liga direto. Agendamos a vistoria no próximo dia de serviço na região de Brevard County.",
+                a: "Sim. Todo o processo é em português: orçamento, explicação do serviço, obra e pós-serviço. Manda WhatsApp para (407) 715-1790 ou liga direto. Agendamos a vistoria no próximo dia de serviço na região de Brevard County.",
             },
         ],
         faqsEs: [
@@ -1642,7 +1642,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Vocês atendem a comunidade brasileira de Casselberry?",
-                a: "Sim. Casselberry tem brasileiros em Deer Run e nos bairros perto da US-17/92. Vários clientes nossos aqui chegaram por indicação de vizinho. Atendemos tudo em português: orçamento, explicacao do serviço, acompanhamento da obra. Ligue (407) 715-1790 ou mande WhatsApp.",
+                a: "Sim. Casselberry tem brasileiros em Deer Run e nos bairros perto da US-17/92. Vários clientes nossos aqui chegaram por indicação de vizinho. Atendemos tudo em português: orçamento, explicação do serviço, acompanhamento da obra. Ligue (407) 715-1790 ou mande WhatsApp.",
             },
         ],
         faqsEs: [
@@ -1956,7 +1956,7 @@ export const cities: CityData[] = [
         descriptionPt: "Windermere é um dos enderecos mais valorizados de toda a Flórida Central, com casas grandes ao redor do Butler Chain of Lakes. Isleworth, Keenes Pointe, Windermere Trails, Lake Butler Sound: são propriedades com beirais enormes, fascia customizada e segundo andar alto. O problema é que muitas dessas casas dos anos 90 e 2000 ainda tem o soffit de alumínio original, que depois de 25 a 30 anos de sol e umidade já oxidou e empenou por dentro. Por fora parece tudo certo. Só uma vistoria mostra a realidade.",
         descriptionEs: "Windermere es una de las direcciones más exclusivas del centro de Flórida, con propiedades grandes alrededor del Butler Chain of Lakes. Isleworth, Keenes Pointe, Windermere Trails, Lake Butler Sound: son casas con aleros enormes, fascia personalizada y construcción de dos pisos. El problema es que muchas de estas viviendas de los años 90 y 2000 todavía tienen el soffit de aluminio original, que después de 25 a 30 años de sol y humedad ya se oxidó y deformó por dentro. Desde afuera parece todo bien. Solo una inspección muestra la realidad.",
         localNote: "Windermere is a town of just 3,500 residents, but the surrounding unincorporated areas push the service population much higher. Homes range from $500K townhomes near Horizon West to $10M+ lakefront estates on the Butler Chain. The town's strict tree preservation ordinances mean dense canopy is a permanent factor in soffit maintenance.",
-        localNotePt: "Windermere é pequena em população, mas as casas ao redor são enormes e de alto padrão. Tem brasileiro morando aqui, principalmente em Windermere Trails e arredores. A cobertura de árvores é densa por causa das leis de preservacao da cidade, o que acelera o desgaste do soffit. Muitos dos nossos clientes aqui chegaram por indicação. Orçamento grátis, por escrito, e você decide com calma.",
+        localNotePt: "Windermere é pequena em população, mas as casas ao redor são enormes e de alto padrão. Tem brasileiro morando aqui, principalmente em Windermere Trails e arredores. A cobertura de árvores é densa por causa das leis de preservação da cidade, o que acelera o desgaste do soffit. Muitos dos nossos clientes aqui chegaram por indicação. Orçamento grátis, por escrito, e você decide com calma.",
         localNoteEs: "Windermere es pequeña en población, pero las casas alrededor son enormes y de alto nivel. La cobertura de árboles es densa por las leyes de preservación de la ciudad, lo que acelera el desgaste del soffit. Las propiedades en Isleworth, Keenes Pointe y Lake Butler Sound requieren trabajo preciso con materiales aprobados por el HOA. Presupuesto gratuito, detallado por escrito, usted decide sin prisa.",
         homeStyle: "Luxury lakefront estates, custom-built homes, gated communities with oversized overhangs",
         homeStylePt: "Mansoes a beira do lago, casas sob medida, condominios fechados com beirais enormes",
@@ -2026,7 +2026,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Windermere tem muita árvore. Isso afeta o soffit?",
-                a: "Muito. As leis de preservacao de árvores de Windermere fazem com que a cobertura verde seja permanente. Folhas caem, umidade fica presa e bicho faz ninho. Isso acelera o desgaste do soffit de forma absurda, principalmente nas casas perto do Butler Chain of Lakes. Uma vistoria grátis mostra exatamente o que está acontecendo no seu.",
+                a: "Muito. As leis de preservação de árvores de Windermere fazem com que a cobertura verde seja permanente. Folhas caem, umidade fica presa e bicho faz ninho. Isso acelera o desgaste do soffit de forma absurda, principalmente nas casas perto do Butler Chain of Lakes. Uma vistoria grátis mostra exatamente o que está acontecendo no seu.",
             },
         ],
         faqsEs: [
