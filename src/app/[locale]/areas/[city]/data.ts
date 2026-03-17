@@ -1096,7 +1096,7 @@ export const cities: CityData[] = [
         localNoteEs: "St. Cloud es casa para miles de familias puertorriqueñas y latinas que compraron en Harmony, sobre la Narcoossee y en los vecindarios de Canoe Creek. Usted conoce su barrio, y nosotros también. Trabajamos aquí todas las semanas. Le damos presupuesto escrito en español, le explicamos exactamente lo que su casa necesita y cumplimos con lo que decimos. Muchos de nuestros clientes en St. Cloud llegaron por recomendación de un vecino que ya nos conoce. Llame al (407) 715-1790.",
         homeStyle: "Single-family homes in master-planned HOA communities, predominantly 1- and 2-story built 2003-2012",
         homeStylePt: "Casas unifamiliares em condominios planejados com HOA, maioria de 1 e 2 andares construidas entre 2003 e 2012",
-        homeStyleEs: "Casas unifamiliares en comunidades planificadas con HOA, mayoria de 1 y 2 pisos construidas entre 2003 y 2012",
+        homeStyleEs: "Casas unifamiliares en comunidades planificadas con HOA, mayoría de 1 y 2 pisos construidas entre 2003 y 2012",
         population: "~74,000",
         zipCodes: ["34769", "34771", "34772", "34773"],
         nearbyAreas: ["Kissimmee", "Harmony", "Buenaventura Lakes", "Narcoossee"],
