@@ -14,14 +14,14 @@ import "../globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "optional",
+  display: "swap",
 });
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
   subsets: ["latin"],
-  display: "optional",
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -263,10 +263,10 @@ export default async function LocaleLayout({
         <Script id="fb-contact-events" strategy="lazyOnload">
           {`document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var h=a.href||'';if(h.startsWith('tel:')){typeof fbq==='function'&&fbq('track','Contact',{method:'phone'});typeof gtag==='function'&&gtag('event','phone_call_click');}if(h.includes('wa.me')){typeof fbq==='function'&&fbq('track','Contact',{method:'whatsapp'});typeof gtag==='function'&&gtag('event','whatsapp_click');}});`}
         </Script>
-        {/* reCAPTCHA v3 */}
+        {/* reCAPTCHA v3 — lazy loaded, only needed on form interaction */}
         <Script
           src="https://www.google.com/recaptcha/api.js?render=6LfcYYosAAAAAFuEjO8kGDIqOjwsXMoKmWgBGyuh"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
         />
         <noscript>
           <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1981946709023806&ev=PageView&noscript=1" alt="" />
