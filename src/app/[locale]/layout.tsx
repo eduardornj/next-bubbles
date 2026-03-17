@@ -101,8 +101,6 @@ export default async function LocaleLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.clarity.ms" />
         <link rel="preconnect" href="https://connect.facebook.net" />
-        <link rel="preconnect" href="https://www.google.com/recaptcha/" />
-        <link rel="preconnect" href="https://www.gstatic.com/recaptcha/" />
         {/* Bing Webmaster Tools verification */}
         <meta name="msvalidate.01" content="CB1FE7A80A1DB0E8717B86B5BD81AE24" />
         {/* WebMCP Manifest */}
@@ -263,11 +261,7 @@ export default async function LocaleLayout({
         <Script id="fb-contact-events" strategy="lazyOnload">
           {`document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var h=a.href||'';if(h.startsWith('tel:')){typeof fbq==='function'&&fbq('track','Contact',{method:'phone'});typeof gtag==='function'&&gtag('event','phone_call_click');}if(h.includes('wa.me')){typeof fbq==='function'&&fbq('track','Contact',{method:'whatsapp'});typeof gtag==='function'&&gtag('event','whatsapp_click');}});`}
         </Script>
-        {/* reCAPTCHA v3 — lazy loaded, only needed on form interaction */}
-        <Script
-          src="https://www.google.com/recaptcha/api.js?render=6LfcYYosAAAAAFuEjO8kGDIqOjwsXMoKmWgBGyuh"
-          strategy="lazyOnload"
-        />
+        {/* reCAPTCHA v3 — loaded only on /contact pages, not globally */}
         <noscript>
           <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1981946709023806&ev=PageView&noscript=1" alt="" />
         </noscript>

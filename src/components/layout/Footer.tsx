@@ -233,7 +233,9 @@ export function Footer({ locale = "en" }: FooterProps) {
             <span className="text-xs text-white/60">{t.specialists}</span>
           </div>
           {/* Language switcher — client component seta cookie NEXT_LOCALE antes de navegar */}
-          <LanguageSwitcherClient locale={locale} variant="footer" />
+          <div style={{ minWidth: '80px', minHeight: '32px' }}>
+            <LanguageSwitcherClient locale={locale} variant="footer" />
+          </div>
         </div>
       </div>
     </footer>

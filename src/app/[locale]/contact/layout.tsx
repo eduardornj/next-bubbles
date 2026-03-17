@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import Script from "next/script";
 
 const BASE = "https://bubblesenterprise.com";
 
@@ -59,6 +60,11 @@ export default function ContactLayout({ children }: { children: React.ReactNode 
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             {children}
+            {/* reCAPTCHA v3 — loaded only on contact pages */}
+            <Script
+                src="https://www.google.com/recaptcha/api.js?render=6LfcYYosAAAAAFuEjO8kGDIqOjwsXMoKmWgBGyuh"
+                strategy="lazyOnload"
+            />
         </>
     );
 }
