@@ -147,8 +147,8 @@ const postsByLocale: Record<string, {
     es: [
         {
             slug: "tax-refund-soffit-investment",
-            title: "Recibio Su Reembolso de Impuestos. Y Ahora Que? La Inversion Mas Inteligente para Su Hogar",
-            excerpt: "El reembolso promedio es $2,800. La mayoria lo gasta en cosas que pierden valor de la noche a la manana. Los propietarios inteligentes de Orlando lo invierten en soffit y fascia.",
+            title: "Recibió Su Reembolso de Impuestos. ¿Y Ahora Qué? La Inversión Más Inteligente para Su Hogar",
+            excerpt: "El reembolso promedio es $2,800. La mayoría lo gasta en cosas que pierden valor de la noche a la mañana. Los propietarios inteligentes de Orlando lo invierten en soffit y fascia.",
             category: "Inversión en Su Hogar",
             readTime: "7 min de lectura",
             date: "2026-03-10",
