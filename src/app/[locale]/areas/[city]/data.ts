@@ -37,7 +37,7 @@ export const cities: CityData[] = [
         descriptionEs: "Kissimmee creció rápidamente en los años 90 y 2000, y eso dejó miles de casas con soffit de aluminio original que ya tiene entre 20 y 30 años de uso sin haber sido reemplazado. El aluminio de esa época era delgado, y el clima del condado Osceola no perdona: humedad alta todo el año, lluvias fuertes de verano y temporada de huracanes que aflojan paneles hasta soltarlos. En Flora Vista, Remington, Bellalago y a lo largo de la US-192, vemos cada semana casas donde el soffit parece bien por fuera, pero por dentro la ventilación ya falló, la humedad se acumuló y la fascia empezó a pudrirse. En casas de 2 pisos en Bellalago, el problema es peor porque nadie sube a revisar. En casas de 1 piso en Remington y Buenaventura Lakes, ramas y hojas se acumulan sobre el alero y aceleran el deterioro. La inspección gratuita toma 20 minutos y le muestra todo con fotos, sin obligación.",
         localNote: "Kissimmee sits just south of Orlando in Osceola County, with a housing stock dominated by 1990s-2000s construction in the $250K-$450K range. The city's zip codes 34741 through 34747 cover a sprawling mix of established subdivisions and newer communities, nearly all built during the same tourism-boom window. Flora Vista, Tuscan Hills, and Remington are single-story-heavy neighborhoods where original aluminum soffit is reaching end of life on most homes simultaneously. Bellalago and Solivita trend toward two-story construction with deeper overhangs that accumulate more moisture damage. Buenaventura Lakes is one of the densest residential areas in the county, and its volume-built homes share identical soffit materials from the same era. Hurricane seasons hit Osceola County hard, and Kissimmee's flat terrain and lakeside positioning mean wind-driven rain reaches soffit panels from angles that inland cities rarely experience.",
         homeStyle: "Single-family residential, many 1-story ranch homes and newer 2-story communities",
-        homeStylePt: "Casas unifamiliares, muitas de 1 andar estilo ranch e condominios mais novos de 2 andares",
+        homeStylePt: "Casas unifamiliares, muitas de 1 andar estilo ranch e condomínios mais novos de 2 andares",
         homeStyleEs: "Viviendas unifamiliares, muchas de 1 piso estilo ranch y comunidades más nuevas de 2 pisos",
         population: "~80,000",
         zipCodes: ["34741", "34742", "34743", "34744", "34746", "34747"],
@@ -61,7 +61,7 @@ export const cities: CityData[] = [
         ],
         whyBulletsPt: [
             "Licenciados e segurados na Flórida, tudo certinho",
-            "Orçamento grátis presencial, você ve o problema junto e decide com calma",
+            "Orçamento grátis presencial, você vê o problema junto e decide com calma",
             "Maioria dos serviços em Kissimmee agendados em 3 dias ou menos",
             "Garantia de 1 ano na mão de obra, documentada por escrito",
             "Orçamento linha por linha. Você sabe exatamente o que está pagando",
@@ -98,15 +98,15 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "Como sei se o soffit da minha casa em Kissimmee precisa de troca?",
-                a: "As casas dos anos 90 e 2000 em Kissimmee tem soffit de alumínio que dura entre 15 e 25 anos. Os sinais são: manchas escuras perto do beiral, pedacos soltos, barulho de bicho no teto, ou tinta descascando na fascia. Muitas vezes o dano só aparece quando abrimos. Fazemos uma vistoria gratuita em 20 minutos e mostramos fotos do que encontramos. Manda mensagem no WhatsApp ou liga (407) 715-1790.",
+                a: "As casas dos anos 90 e 2000 em Kissimmee têm soffit de alumínio que dura entre 15 e 25 anos. Os sinais são: manchas escuras perto do beiral, pedaços soltos, barulho de bicho no teto, ou tinta descascando na fascia. Muitas vezes o dano só aparece quando abrimos. Fazemos uma vistoria gratuita em 20 minutos e mostramos fotos do que encontramos. Manda mensagem no WhatsApp ou liga (407) 715-1790.",
             },
             {
                 q: "Qual o custo médio da troca de soffit em Kissimmee?",
-                a: "Cada casa e diferente. Depende da metragem, se e alumínio ou vinil, e se a fascia também precisa sair. As casas ranch de 1 andar aqui em Flora Vista e Tuscan Hills costumam ter projetos mais simples. Casas de 2 andares em Bellalago pedem equipamento extra. Não tem como dar valor sem ver. A vistoria e grátis, o orçamento e por escrito, você decide depois. Usa nossa calculadora para ter uma referência inicial.",
+                a: "Cada casa é diferente. Depende da metragem, se é alumínio ou vinil, e se a fascia também precisa sair. As casas ranch de 1 andar aqui em Flora Vista e Tuscan Hills costumam ter projetos mais simples. Casas de 2 andares em Bellalago pedem equipamento extra. Não tem como dar valor sem ver. A vistoria é grátis, o orçamento é por escrito, você decide depois. Usa nossa calculadora para ter uma referência inicial.",
             },
             {
                 q: "Quanto tempo demora para trocar o soffit em Kissimmee?",
-                a: "A maioria das casas de 1 andar em Kissimmee ficam prontas em 1 a 2 dias de trabalho. Casas de 2 andares podem levar até 3 dias. Agendamos a maioria dos serviços na mesma semana. Para tempestade ou bicho no teto, a resposta e no mesmo dia. Ligue (407) 715-1790.",
+                a: "A maioria das casas de 1 andar em Kissimmee ficam prontas em 1 a 2 dias de trabalho. Casas de 2 andares podem levar até 3 dias. Agendamos a maioria dos serviços na mesma semana. Para tempestade ou bicho no teto, a resposta é no mesmo dia. Ligue (407) 715-1790.",
             },
         ],
         faqsEs: [
@@ -138,7 +138,7 @@ export const cities: CityData[] = [
         population: "~31,000",
         zipCodes: ["32789", "32790", "32792"],
         nearbyAreas: ["Maitland", "Casselberry", "Eatonville", "Orlando (north)"],
-        localNotePt: "Winter Park virou escolha de muitas famílias brasileiras que querem boa escola e bairro tranquilo sem morar no caos de Orlando. O detalhe e que as casas mais antigas da região escondem bem o problema de soffit. Por fora parece intacto, por dentro já apodreceu. Atendemos em português, orçamento grátis.",
+        localNotePt: "Winter Park virou escolha de muitas famílias brasileiras que querem boa escola e bairro tranquilo sem morar no caos de Orlando. O detalhe é que as casas mais antigas da região escondem bem o problema de soffit. Por fora parece intacto, por dentro já apodreceu. Atendemos em português, orçamento grátis.",
         localNoteEs: "Muchas familias latinoamericanas eligieron Winter Park por las escuelas y la tranquilidad de las calles con árboles. Las casas más antiguas de la zona esconden bien el problema de soffit. Por fuera parece intacto, por dentro ya se pudrió. Le atendemos en español, presupuesto detallado sin sorpresas.",
         topService: "Wood-to-Aluminum Replacement",
         commonIssue: "Rotted wood soffit on 1950s–1980s homes — decades of Florida humidity cause structural fascia damage",
@@ -160,7 +160,7 @@ export const cities: CityData[] = [
             "Vistoria grátis em Winter Park. Mostramos fotos do que encontramos, você decide",
             "Especialistas em converter soffit de madeira para alumínio ventilado",
             "Garantia de 1 ano na mão de obra, por escrito",
-            "Protegemos jardim, calcada e paisagismo durante toda a obra",
+            "Protegemos jardim, calçada e paisagismo durante toda a obra",
             "Combinamos cor e perfil para manter o charme original da casa",
             "Fascia podre ou bicho entrando pelo beiral? Atendimento prioritário",
             "Beirais grandes de Winter Park são nosso dia a dia. Sabemos lidar",
@@ -194,15 +194,15 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "O soffit de madeira da minha casa em Winter Park precisa mesmo ser trocado?",
-                a: "Se a casa tem soffit de madeira original dos anos 50 a 80, a resposta quase sempre e sim. A madeira absorveu umidade por decadas e está comprometida por dentro, mesmo que a pintura pareça intacta. Nós removemos tudo, verificamos a fascia e a estrutura do beiral, tratamos o que for necessário e instalamos alumínio ventilado que não precisa de manutenção. Vistoria gratuita, ligue (407) 715-1790.",
+                a: "Se a casa tem soffit de madeira original dos anos 50 a 80, a resposta quase sempre e sim. A madeira absorveu umidade por décadas e está comprometida por dentro, mesmo que a pintura pareça intacta. Nós removemos tudo, verificamos a fascia e a estrutura do beiral, tratamos o que for necessário e instalamos alumínio ventilado que não precisa de manutenção. Vistoria gratuita, ligue (407) 715-1790.",
             },
             {
                 q: "Quanto custa a conversão de madeira para alumínio em Winter Park?",
-                a: "As casas de Winter Park tem beirais grandes e detalhes no telhado que variam muito de uma casa para outra. Algumas precisam de troca de fascia também, e isso só descobrimos quando abrimos. Por esse motivo, o orçamento e sempre presencial e por escrito. Você ve tudo antes de decidir. Use nossa calculadora para ter uma referência, e ligue (407) 715-1790 para marcar a vistoria grátis.",
+                a: "As casas de Winter Park tem beirais grandes e detalhes no telhado que variam muito de uma casa para outra. Algumas precisam de troca de fascia também, e isso só descobrimos quando abrimos. Por esse motivo, o orçamento é sempre presencial e por escrito. Você vê tudo antes de decidir. Use nossa calculadora para ter uma referência, e ligue (407) 715-1790 para marcar a vistoria grátis.",
             },
             {
                 q: "Vocês tomam cuidado com o jardim e o paisagismo durante a obra?",
-                a: "Sim. Winter Park tem casas com jardim maduro, árvores grandes e calçadas que precisam de atenção. Nossa equipe protege tudo antes de começar e limpa no final. Ninguém quer terminar uma obra e descobrir que o jardim foi destruido. Nós entendemos isso.",
+                a: "Sim. Winter Park tem casas com jardim maduro, árvores grandes e calçadas que precisam de atenção. Nossa equipe protege tudo antes de começar e limpa no final. Ninguém quer terminar uma obra e descobrir que o jardim foi destruído. Nós entendemos isso.",
             },
         ],
         faqsEs: [
@@ -229,7 +229,7 @@ export const cities: CityData[] = [
         descriptionEs: "La proximidad al Lake Monroe crea un nivel de humedad que acelera la deterioración del soffit y la fascia, especialmente en las casas históricas del centro de Sanford que conservan madera original de décadas atrás. Muchos propietarios pintan y repintan sin notar que la estructura ya está dañada por dentro. En las nuevas urbanizaciones al norte, el problema es otro: instalaciones de soffit sin ventilación adecuada que necesitan corrección temprana. En ambos casos, una inspección a tiempo evita reparaciones costosas.",
         localNote: "Sanford is seeing rapid growth with new residential developments alongside its established historic neighborhoods. Both new construction (requiring first-time installation) and older homes needing replacement are common job types here.",
         homeStyle: "Mix of historic homes near downtown and newer subdivisions in northern Sanford",
-        homeStylePt: "Casas historicas perto do centro e condominios novos ao norte de Sanford",
+        homeStylePt: "Casas históricas perto do centro e condomínios novos ao norte de Sanford",
         homeStyleEs: "Casas historicas cerca del centro y urbanizaciones nuevas al norte de Sanford",
         population: "~63,000",
         zipCodes: ["32771", "32773"],
@@ -298,7 +298,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Qual o prazo para agendamento em Sanford?",
-                a: "Nos Zip Codes 32771 e 32773 agendamos vistorias em 24 a 48 horas na maioria dos casos. O serviço em si costuma ficar para a mesma semana. Se e emergência de tempestade ou bicho no teto, a resposta e no mesmo dia. Manda mensagem no WhatsApp ou liga (407) 715-1790.",
+                a: "Nos Zip Codes 32771 e 32773 agendamos vistorias em 24 a 48 horas na maioria dos casos. O serviço em si costuma ficar para a mesma semana. Se é emergência de tempestade ou bicho no teto, a resposta é no mesmo dia. Manda mensagem no WhatsApp ou liga (407) 715-1790.",
             },
         ],
         faqsEs: [
@@ -325,7 +325,7 @@ export const cities: CityData[] = [
         descriptionEs: "Clermont está en el punto más alto de Central da Flórida, y eso cambia todo durante la temporada de tormentas. El viento golpea con más fuerza las casas en las colinas, y el soffit de vinilo de las urbanizaciones de los años 2000 no fue diseñado para soportar esa exposición. Paneles que se vuelan, fascia que se separa, entrada de agua por el alero. Vemos esto cada temporada de lluvias en Clermont. El aluminio con clasificación de viento resuelve el problema, y el reemplazo es más sencillo de lo que parece si se hace antes del próximo huracán.",
         localNote: "Clermont's many newer subdivisions built in the 2000s–2010s are now reaching the age where soffit panels start to show wear. The elevated terrain also means homes are more exposed to wind during storm season.",
         homeStyle: "Newer single-family subdivisions, many 1-story and 2-story homes built 2000–2015",
-        homeStylePt: "Condominios mais novos, casas de 1 e 2 andares construidas entre 2000 e 2015",
+        homeStylePt: "Condomínios mais novos, casas de 1 e 2 andares construídas entre 2000 e 2015",
         homeStyleEs: "Urbanizaciones más nuevas, casas de 1 y 2 pisos construidas entre 2000 y 2015",
         population: "~50,000",
         zipCodes: ["34711", "34714", "34715"],
@@ -386,7 +386,7 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "Por que as casas de Clermont sofrem mais com dano de tempestade no soffit?",
-                a: "Clermont fica no terreno mais alto de Central da Flórida. Quando a tempestade chega, o vento e mais forte aqui do que na maioria dos bairros de Orlando. O soffit de vinil dos condomínios dos anos 2000 não foi projetado para essa exposição. Painéis voam, fascia descola, e a água entra pelo beiral. Nós instalamos alumínio com classificação de vento que resolve de vez. Ligue (407) 715-1790 para orçamento grátis.",
+                a: "Clermont fica no terreno mais alto de Central da Flórida. Quando a tempestade chega, o vento é mais forte aqui do que na maioria dos bairros de Orlando. O soffit de vinil dos condomínios dos anos 2000 não foi projetado para essa exposição. Painéis voam, fascia descola, e a água entra pelo beiral. Nós instalamos alumínio com classificação de vento que resolve de vez. Ligue (407) 715-1790 para orçamento grátis.",
             },
             {
                 q: "Quanto custa trocar o soffit em Clermont?",
@@ -421,7 +421,7 @@ export const cities: CityData[] = [
         descriptionEs: "Winter Garden tiene dos problemas de soffit completamente diferentes. En el centro histórico, las casas antiguas conservan soffit de madera original que se pudrió por dentro después de décadas de humedad. En Stoneybrook West y Waterleigh, el problema es otro: el aluminio necesita coincidir exactamente con el perfil y color que exige el HOA, y muchas constructoras instalan material genérico que no cumple. Nosotros hacemos el reemplazo completo en el centro y la instalación correcta en los condominios.",
         localNote: "Winter Garden's historic district has many older homes with wood original soffit in need of aluminum or vinyl replacement. Newer communities like Stoneybrook West and Waterleigh regularly request soffit installation for new construction.",
         homeStyle: "Historic downtown homes + large new master-planned communities",
-        homeStylePt: "Casas historicas do centro e grandes condominios planejados novos",
+        homeStylePt: "Casas históricas do centro e grandes condomínios planejados novos",
         homeStyleEs: "Casas historicas del centro y grandes comunidades planificadas nuevas",
         population: "~45,000",
         zipCodes: ["34787"],
@@ -482,7 +482,7 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "A madeira do soffit no centro histórico de Winter Garden precisa mesmo ser trocada?",
-                a: "Na maioria dos casos, sim. As casas do centro histórico tem soffit de madeira com decadas de umidade absorvida. A pintura esconde o problema, mas por dentro a madeira já está comprometida. Nós removemos tudo, verificamos a fascia e a estrutura, e instalamos alumínio ventilado que não precisa de pintura nem manutenção. Vistoria gratuita, ligue (407) 715-1790.",
+                a: "Na maioria dos casos, sim. As casas do centro histórico têm soffit de madeira com décadas de umidade absorvida. A pintura esconde o problema, mas por dentro a madeira já está comprometida. Nós removemos tudo, verificamos a fascia e a estrutura, e instalamos alumínio ventilado que não precisa de pintura nem manutenção. Vistoria gratuita, ligue (407) 715-1790.",
             },
             {
                 q: "Vocês conhecem as regras de HOA de Stoneybrook West e Waterleigh?",
@@ -517,12 +517,12 @@ export const cities: CityData[] = [
         descriptionEs: "Oviedo creció en los años 90 y 2000 con comunidades planificadas para familias. Alafaya Woods, Carillon, Twin Rivers, Live Oak Reserve, Ekana: son casas de 2 pisos con soffit de aluminio original que ya tiene 20 a 25 años. El problema en casas de 2 pisos es que nadie sube a revisar. La ventilación falla primero, la humedad se instala en el ático y comienza a dañar la fascia y la estructura del alero por dentro. Cuando la mancha aparece vista desde el suelo, el daño ya se extendió. Lo vemos todas las semanas en los códigos postales 32765 y 32766. Una inspección con escalera le muestra la realidad en 20 minutos, sin costo.",
         localNote: "Oviedo sits in the UCF corridor of Seminole County, anchored by families who chose the area for top-rated Seminole County schools and the quiet suburban environment. Alafaya Woods is one of the largest subdivisions in the region, with predominantly two-story homes built between 1995 and 2005 that are now entering the 20-to-25-year replacement cycle. Carillon and Twin Rivers follow the same timeline. Newer communities like Live Oak Reserve, Riverside at Twin Rivers, and Ekana have homes under 15 years old that are not yet due for replacement but occasionally need storm damage repair. Home prices in Oviedo range from $350K to $700K, and homeowners here invest in maintenance before problems escalate. We schedule estimates in Oviedo within 24 hours, and most replacements are completed within the same week.",
         homeStyle: "Upper-middle-class single-family homes, many 2-story, built 1990s–2005",
-        homeStylePt: "Casas unifamiliares de classe media alta, muitas de 2 andares, construidas entre 1990 e 2005",
+        homeStylePt: "Casas unifamiliares de classe média alta, muitas de 2 andares, construídas entre 1990 e 2005",
         homeStyleEs: "Casas unifamiliares de clase media alta, muchas de 2 pisos, construidas entre 1990 y 2005",
         population: "~42,000",
         zipCodes: ["32765", "32766"],
         nearbyAreas: ["Chuluota", "Alafaya", "Waterford Lakes", "Sanford"],
-        localNotePt: "Oviedo atrai famílias brasileiras que buscam escola de qualidade no condado de Seminole sem abrir mão de segurança e tranquilidade. Em Alafaya Woods, Carillon e Live Oak Reserve tem brasileiros que compraram casa nos anos 2000 e 2010 e agora estao vendo o soffit original começar a dar problema. São proprietários que planejam, que fazem a coisa certa. Vários dos nossos clientes em Oviedo chegaram por indicação de vizinho. Nós atendemos em português, fazemos orçamento presencial grátis e explicamos tudo com foto antes de você decidir. WhatsApp ou ligação, (407) 715-1790.",
+        localNotePt: "Oviedo atrai famílias brasileiras que buscam escola de qualidade no condado de Seminole sem abrir mão de segurança e tranquilidade. Em Alafaya Woods, Carillon e Live Oak Reserve têm brasileiros que compraram casa nos anos 2000 e 2010 e agora estão vendo o soffit original começar a dar problema. São proprietários que planejam, que fazem a coisa certa. Vários dos nossos clientes em Oviedo chegaram por indicação de vizinho. Nós atendemos em português, fazemos orçamento presencial grátis e explicamos tudo com foto antes de você decidir. WhatsApp ou ligação, (407) 715-1790.",
         localNoteEs: "Oviedo tiene un 22% de población hispana, familias bien establecidas que eligieron esta ciudad por las escuelas del condado Seminole y la tranquilidad del barrio. En Alafaya Woods, Carillon, Twin Rivers y Live Oak Reserve conocemos a muchos de sus vecinos. Son propietarios que planifican y que prefieren resolver antes de que el problema crezca. Muchos de nuestros clientes en Oviedo llegaron por recomendación de un vecino que ya nos conoce. Le atendemos en español, con presupuesto detallado y por escrito. Llame al (407) 715-1790.",
         topService: "Scheduled Remove & Replace",
         commonIssue: "1990s–2000s aluminum soffit on 2-story homes reaching 20–25 year lifespan — proactive replacement before failure",
@@ -582,7 +582,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Quanto custa trocar o soffit em casas de 2 andares em Oviedo?",
-                a: "Casas de 2 andares como as de Alafaya Woods, Live Oak Reserve e Ekana tem mais pes lineares e exigem equipamento para o segundo andar, o que afeta o escopo. O valor também depende do estado da fascia, que só sabemos quando abrimos. Nós vamos até a casa, medimos tudo e entregamos orçamento por escrito antes de você decidir qualquer coisa. Sem custo, sem compromisso. Use nossa calculadora para ter uma referência inicial.",
+                a: "Casas de 2 andares como as de Alafaya Woods, Live Oak Reserve e Ekana têm mais pés lineares e exigem equipamento para o segundo andar, o que afeta o escopo. O valor também depende do estado da fascia, que só sabemos quando abrimos. Nós vamos até a casa, medimos tudo e entregamos orçamento por escrito antes de você decidir qualquer coisa. Sem custo, sem compromisso. Use nossa calculadora para ter uma referência inicial.",
             },
             {
                 q: "Vocês atendem a comunidade brasileira de Oviedo?",
@@ -673,12 +673,12 @@ export const cities: CityData[] = [
         ],
         faqsPt: [
             {
-                q: "Minha casa em Rock Springs Ridge tem menos de 10 anos e o soffit já está empenando. E normal?",
-                a: "Infelizmente e mais comum do que deveria. Muitas construtoras no corredor do SR-429 usaram vinil de qualidade inferior para cortar custos. O sol do lado oeste bate nos beirais a tarde inteira e acelera a deformação. Nós vemos isso em Rock Springs Ridge, Wekiva Run e The Reserve at Wekiva. A troca por alumínio ventilado resolve de vez e dura três vezes mais. Vistoria gratuita, ligue (407) 715-1790 ou mande WhatsApp.",
+                q: "Minha casa em Rock Springs Ridge tem menos de 10 anos e o soffit já está empenando. É normal?",
+                a: "Infelizmente é mais comum do que deveria. Muitas construtoras no corredor do SR-429 usaram vinil de qualidade inferior para cortar custos. O sol do lado oeste bate nos beirais a tarde inteira e acelera a deformação. Nós vemos isso em Rock Springs Ridge, Wekiva Run e The Reserve at Wekiva. A troca por alumínio ventilado resolve de vez e dura três vezes mais. Vistoria gratuita, ligue (407) 715-1790 ou mande WhatsApp.",
             },
             {
                 q: "Tem bicho entrando pelo soffit da minha casa em Apopka. E por causa dos viveiros?",
-                a: "Em parte sim. Apopka e conhecida como a capital dos viveiros da Flórida, e toda essa vegetação e área agricola ao redor atrai esquilos, guaxinins e ratos em quantidade. Qualquer fresta no soffit vira porta de entrada. Nós removemos a parte danificada, vedamos todos os pontos de acesso e instalamos alumínio novo ventilado. Atendimento de emergência no mesmo dia. Ligue (407) 715-1790.",
+                a: "Em parte sim. Apopka é conhecida como a capital dos viveiros da Flórida, e toda essa vegetação e área agrícola ao redor atrai esquilos, guaxinins e ratos em quantidade. Qualquer fresta no soffit vira porta de entrada. Nós removemos a parte danificada, vedamos todos os pontos de acesso e instalamos alumínio novo ventilado. Atendimento de emergência no mesmo dia. Ligue (407) 715-1790.",
             },
             {
                 q: "Vocês atendem as casas antigas de Errol Estate e do centro de Apopka?",
@@ -705,16 +705,16 @@ export const cities: CityData[] = [
         name: "Lake Mary",
         county: "Seminole County",
         description: "Lake Mary is one of Seminole County's most affluent communities, with a high concentration of executive homes and master-planned developments. Homeowners here expect premium quality and fast service — we deliver both.",
-        descriptionPt: "As casas executivas de Lake Mary, especialmente em Heathrow e Timacuan, tem de 300 a 500 pes lineares de soffit. Quando o alumínio original começa a oxidar ou empenar, o problema aparece em escala grande. São fachadas longas, beirais de dois andares e perfis que o HOA exige combinar com precisao. Nós fazemos esse tipo de projeto toda semana e entregamos orçamento detalhado, por escrito, antes de mexer em qualquer coisa.",
+        descriptionPt: "As casas executivas de Lake Mary, especialmente em Heathrow e Timacuan, tem de 300 a 500 pés lineares de soffit. Quando o alumínio original começa a oxidar ou empenar, o problema aparece em escala grande. São fachadas longas, beirais de dois andares e perfis que o HOA exige combinar com precisão. Nós fazemos esse tipo de projeto toda semana e entregamos orçamento detalhado, por escrito, antes de mexer em qualquer coisa.",
         descriptionEs: "Las casas ejecutivas de Lake Mary, en comunidades como Heathrow y Timacuan, tienen entre 300 y 500 pies lineales de soffit y fascia. Cuando el aluminio original se oxida o deforma, el daño se extiende rápidamente por fachadas de dos pisos y aleros largos. El HOA exige que el perfil y el color del reemplazo sean idénticos al original. Nosotros conocemos esas especificaciones porque trabajamos en estos vecindarios todas las semanas. Presupuesto detallado y por escrito antes de comenzar.",
         localNote: "Lake Mary's upscale communities like Heathrow, Timacuan Golf & Country Club, and The Crossings feature larger homes with more linear footage of soffit and fascia. These jobs tend to be more comprehensive and homeowners invest in aluminum for longevity.",
         homeStyle: "Upscale executive homes, many large 2-story with significant overhang",
-        homeStylePt: "Casas executivas de alto padrao, muitas de 2 andares com beirais extensos",
+        homeStylePt: "Casas executivas de alto padrão, muitas de 2 andares com beirais extensos",
         homeStyleEs: "Casas ejecutivas de alto nivel, muchas de 2 pisos con aleros extensos",
         population: "~16,000",
         zipCodes: ["32746"],
         nearbyAreas: ["Heathrow", "Longwood", "Sanford", "Debary"],
-        localNotePt: "Em Heathrow e em alguns condomínios de Lake Mary tem brasileiros que se estabeleceram bem por aqui. Profissionais, empresarios, gente que construiu uma vida solida nessa região. Quando precisam de serviço, querem alguem confiável e pontual. E exatamente assim que trabalhamos. Atendemos em português.",
+        localNotePt: "Em Heathrow e em alguns condomínios de Lake Mary têm brasileiros que se estabeleceram bem por aqui. Profissionais, empresários, gente que construiu uma vida sólida nessa região. Quando precisam de serviço, querem alguém confiável e pontual. É exatamente assim que trabalhamos. Atendemos em português.",
         localNoteEs: "Heathrow y Lake Mary atraen a profesionales latinoamericanos que ya tienen años viviendo en la zona. Son propietarios exigentes que valoran puntualidad, trabajo limpio y presupuesto transparente. Trabajamos aquí con ese mismo nivel de exigencia. Le atendemos en español.",
         topService: "Premium Aluminum Remove & Replace",
         commonIssue: "Large executive homes with high linear footage — 300–500 LF of soffit and fascia requiring comprehensive replacement",
@@ -737,8 +737,8 @@ export const cities: CityData[] = [
             "Alumínio premium para casas executivas em Heathrow, Timacuan e The Crossings",
             "1 ano de garantia na mão de obra, por escrito",
             "Equipe organizada. Nos limpamos tudo antes de ir embora",
-            "Projetos de 300 a 500 pes lineares em casas de 2 andares com beiral extenso",
-            "Cor e perfil combinados com precisao para passar na vistoria do HOA",
+            "Projetos de 300 a 500 pés lineares em casas de 2 andares com beiral extenso",
+            "Cor e perfil combinados com precisão para passar na vistoria do HOA",
             "Orçamento detalhado por item. Você sabe exatamente o que está pagando",
             "Atendendo Lake Mary e Seminole County desde 2020. Fale com nós em português",
         ],
@@ -770,11 +770,11 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "Vocês entram em Heathrow e nos condomínios fechados de Lake Mary?",
-                a: "Sim, toda semana. Atendemos Heathrow, Timacuan, The Crossings e outras comunidades com portaria. Já conhecemos os procedimentos de acesso e os padroes que cada HOA exige. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
+                a: "Sim, toda semana. Atendemos Heathrow, Timacuan, The Crossings e outras comunidades com portaria. Já conhecemos os procedimentos de acesso e os padrões que cada HOA exige. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
             },
             {
                 q: "Quanto custa trocar soffit em casas grandes de Lake Mary?",
-                a: "Casas executivas aqui tem de 300 a 500 pes lineares de soffit, o que e bem acima da média de Central da Flórida. O orçamento varia com a metragem, o tipo de alumínio e se a fascia também precisa de troca. Nós vamos até a casa, medimos tudo e entregamos orçamento por escrito antes de você decidir qualquer coisa. Sem custo.",
+                a: "Casas executivas aqui tem de 300 a 500 pés lineares de soffit, o que é bem acima da média de Central da Flórida. O orçamento varia com a metragem, o tipo de alumínio e se a fascia também precisa de troca. Nós vamos até a casa, medimos tudo e entregamos orçamento por escrito antes de você decidir qualquer coisa. Sem custo.",
             },
             {
                 q: "Em quanto tempo vocês conseguem fazer a vistoria em Lake Mary?",
@@ -801,7 +801,7 @@ export const cities: CityData[] = [
         name: "Altamonte Springs",
         county: "Seminole County",
         description: "Altamonte Springs packs over 100 neighborhoods into a dense inner-ring suburb where 1970s-through-1990s ranch homes dominate the housing stock. Spring Valley, Jamestown, Spring Oaks, and the neighborhoods surrounding Crane's Roost were built with thin-gauge aluminum soffit that was never designed to last 30 to 50 years in Florida's climate. That aluminum has oxidized, warped at the seams, and opened gaps that allow wasps, squirrels, and moisture into attic spaces. Along Hermits Trail and the Lake Orienta corridor, mature tree canopy compounds the problem by trapping humidity against panels and dropping debris into fascia channels. In Forest City and Altamonte Landing, older homes with original wood soffit face advanced rot hidden under decades of exterior paint. We work in zip codes 32701 and 32714 every week, and Altamonte consistently ranks as one of our highest-volume service areas in Seminole County.",
-        descriptionPt: "Altamonte Springs tem mais de 100 bairros, e a maioria das casas em Spring Valley, Barclay Woods, Spring Lake Hills e ao redor de Crane's Roost foi construida entre 1970 e 1990. São casas ranch de um andar com soffit de alumínio fino que nunca foi trocado. Depois de 30 a 50 anos de sol e chuva da Flórida, esse alumínio oxidou, empenou e abriu frestas por onde bicho entra e umidade se acumula. O dano real fica escondido: a ventilação falha primeiro, a umidade se instala no ático, e quando você percebe a mancha por fora, a fascia de madeira por dentro já está comprometida. Nós vemos isso toda semana nos Zip Codes 32701 e 32714. Uma vistoria gratuita de 20 minutos mostra exatamente o que está acontecendo na sua casa.",
+        descriptionPt: "Altamonte Springs tem mais de 100 bairros, e a maioria das casas em Spring Valley, Barclay Woods, Spring Lake Hills e ao redor de Crane's Roost foi construída entre 1970 e 1990. São casas ranch de um andar com soffit de alumínio fino que nunca foi trocado. Depois de 30 a 50 anos de sol e chuva da Flórida, esse alumínio oxidou, empenou e abriu frestas por onde bicho entra e umidade se acumula. O dano real fica escondido: a ventilação falha primeiro, a umidade se instala no ático, e quando você percebe a mancha por fora, a fascia de madeira por dentro já está comprometida. Nós vemos isso toda semana nos Zip Codes 32701 e 32714. Uma vistoria gratuita de 20 minutos mostra exatamente o que está acontecendo na sua casa.",
         descriptionEs: "Altamonte Springs tiene más de 100 vecindarios, y la mayoría de las casas en Spring Valley, Barclay Woods, Spring Lake Hills y los alrededores de Crane's Roost fueron construidas entre 1970 y 1990. Son casas ranch de un piso con soffit de aluminio delgado que nunca fue reemplazado. Después de 30 a 50 años de sol y lluvia de Flórida, ese aluminio se oxidó, se deformó y abrió grietas donde entran animales y se acumula humedad. El daño real está oculto: la ventilación falla primero, la humedad se instala en el ático, y cuando usted nota la mancha por fuera, la fascia de madera por dentro ya está comprometida. Lo vemos todas las semanas en los códigos postales 32701 y 32714. Una inspección gratuita de 20 minutos le muestra exactamente lo que está pasando en su propiedad.",
         localNote: "Altamonte Springs sits between I-4 and SR-436, making it one of the most accessible suburbs in Seminole County and one of our most-visited service areas. The city's housing stock is overwhelmingly single-story ranch homes priced between $250K and $450K, owned by a mix of long-term residents and recent buyers discovering deferred maintenance for the first time. Spring Valley and Spring Oaks alone have hundreds of homes with original thin-gauge aluminum from the late 1970s and early 1980s that has never been replaced. The Crane's Roost area, Jamestown, and neighborhoods along Hermits Trail generate a steady volume of full remove-and-replace jobs year-round. Forest City and Altamonte Landing, on the western edge, include older homes with wood soffit that rotted years ago under heavy tree cover. Same-day estimates are common here because we typically have a crew within minutes of any Altamonte address.",
         homeStyle: "Established single-family neighborhoods, many ranch-style from 1970s–1990s",
@@ -847,7 +847,7 @@ export const cities: CityData[] = [
             "Experiência com casas ranch dos anos 70 a 90 em Spring Valley, Barclay Woods e Spring Lake Hills",
             "Garantia de 1 ano na mão de obra, documentada por escrito",
             "Altamonte fica no centro da nossa rota diaria. Orçamento no mesmo dia é comum aqui",
-            "Avaliação honesta: nos falamos se vale reparar ou se e melhor trocar tudo de uma vez",
+            "Avaliação honesta: nos falamos se vale reparar ou se é melhor trocar tudo de uma vez",
             "Orçamento detalhado por item, por escrito. Você sabe exatamente o que está pagando",
             "Bicho no teto ou painel solto depois de tempestade? Atendimento prioritário",
             "Equipe fala português. WhatsApp ou ligação, (407) 715-1790",
@@ -866,11 +866,11 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "Minha casa em Spring Valley tem soffit dos anos 70. O que acontece se eu não trocar?",
-                a: "O alumínio dos anos 70 já passou dos 50 anos de uso. O problema não e só estetico. A ventilação falha, a umidade se acumula no ático, e a fascia de madeira por dentro começa a apodrecer. Nós vemos isso toda semana em Spring Valley e Barclay Woods. Se esperar mais, o custo sobe porque a fascia também precisa de troca. Uma vistoria gratuita de 20 minutos mostra exatamente onde você está. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
+                a: "O alumínio dos anos 70 já passou dos 50 anos de uso. O problema não é só estético. A ventilação falha, a umidade se acumula no ático, e a fascia de madeira por dentro começa a apodrecer. Nós vemos isso toda semana em Spring Valley e Barclay Woods. Se esperar mais, o custo sobe porque a fascia também precisa de troca. Uma vistoria gratuita de 20 minutos mostra exatamente onde você está. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
             },
             {
                 q: "Quanto custa trocar o soffit em Altamonte Springs?",
-                a: "Casas ranch de um andar, que são a maioria nos Zip Codes 32701 e 32714, tem metragem menor e o projeto sai mais acessível do que casas de dois andares. O valor depende dos pes lineares, do estado da fascia e se precisa de troca completa ou parcial. Se encontrarmos madeira podre durante a remoção, orçamos a fascia separado e ligamos antes de fazer qualquer coisa a mais. Tudo por escrito. Use nossa calculadora para ter uma ideia inicial.",
+                a: "Casas ranch de um andar, que são a maioria nos Zip Codes 32701 e 32714, tem metragem menor e o projeto sai mais acessível do que casas de dois andares. O valor depende dos pés lineares, do estado da fascia e se precisa de troca completa ou parcial. Se encontrarmos madeira podre durante a remoção, orçamos a fascia separado e ligamos antes de fazer qualquer coisa a mais. Tudo por escrito. Use nossa calculadora para ter uma ideia inicial.",
             },
             {
                 q: "Vocês atendem a comunidade brasileira de Altamonte Springs?",
@@ -897,7 +897,7 @@ export const cities: CityData[] = [
         name: "Celebration",
         county: "Osceola County",
         description: "Celebration is Disney's master-planned community south of Orlando, built between 1996 and the mid-2000s. Every home here has deep overhangs as part of the town's signature traditional architecture. After 25+ years of Florida humidity, UV, and hurricane seasons, the original aluminum soffit on these homes is reaching end of life. The community's strict HOA requires exact color-matching, approved material profiles, and in many cases pre-approval before any exterior work begins.",
-        descriptionPt: "Celebration foi construida entre 1996 e meados dos anos 2000. Todas as casas tem beiral profundo, que é a marca registrada da arquitetura da cidade. O problema é que depois de 25 anos de sol, chuva e temporada de furacões, o alumínio original já oxidou, empenou e começou a soltar. Por fora parece bonito. Por dentro, a história é outra. O HOA aqui é um dos mais rigorosos de toda a Flórida Central. Cor errada, perfil diferente, material não aprovado: você recebe carta. Nós já fizemos serviço em Celebration e sabemos exatamente o que o HOA exige. Trocamos, passa na vistoria de primeira.",
+        descriptionPt: "Celebration foi construída entre 1996 e meados dos anos 2000. Todas as casas tem beiral profundo, que é a marca registrada da arquitetura da cidade. O problema é que depois de 25 anos de sol, chuva e temporada de furacões, o alumínio original já oxidou, empenou e começou a soltar. Por fora parece bonito. Por dentro, a história é outra. O HOA aqui é um dos mais rigorosos de toda a Flórida Central. Cor errada, perfil diferente, material não aprovado: você recebe carta. Nós já fizemos serviço em Celebration e sabemos exatamente o que o HOA exige. Trocamos, passa na vistoria de primeira.",
         descriptionEs: "Celebration fue construida entre 1996 y mediados de los 2000. Todas las casas tienen aleros profundos, que son la marca registrada de la arquitectura del pueblo. El problema es que después de 25 años de sol, lluvia y temporada de huracanes, el aluminio original ya se oxidó, se deformó y empezó a soltarse. Desde afuera se ve bien. Por dentro, la historia es otra. El HOA aquí es uno de los más estrictos de toda la Flórida Central. Color equivocado, perfil diferente, material no aprobado: usted recibe carta de violación. Nosotros ya hemos trabajado en Celebration y sabemos exactamente lo que el HOA exige. Reemplazamos, pasa la inspección en el primer intento.",
         localNote: "Celebration sits just south of US-192 in Osceola County. Homes range from $400K village townhomes to $1M+ estate properties along the lake. The town's Architectural Review Board controls all exterior modifications including soffit and fascia. Original homes from 1996-2005 are now 20-30 years old with aluminum that has never been replaced.",
         localNotePt: "Celebration fica logo abaixo da US-192, em Osceola County. Tem brasileiro morando aqui, muitos compraram pela segurança e pelo padrão da comunidade. O que a maioria não percebe é que o soffit original nunca foi trocado. Depois de 25 anos, bicho entra, umidade acumula e o alumínio deforma por dentro. Nós fazemos a vistoria grátis, mostramos o problema com foto, e o orçamento vem por escrito antes de qualquer coisa. WhatsApp ou ligação, como preferir.",
@@ -970,7 +970,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Quanto custa trocar soffit em Celebration?",
-                a: "Os beirais de Celebration são mais profundos do que a média, então a metragem linear e maior. O custo depende dos pes lineares, do material e se a fascia também precisa de troca. A combinação de cor e perfil para o HOA já está incluida no orçamento, sem custo extra. Vistoria gratuita: (407) 715-1790.",
+                a: "Os beirais de Celebration são mais profundos do que a média, então a metragem linear e maior. O custo depende dos pés lineares, do material e se a fascia também precisa de troca. A combinação de cor e perfil para o HOA já está incluida no orçamento, sem custo extra. Vistoria gratuita: (407) 715-1790.",
             },
         ],
         faqsEs: [
@@ -999,7 +999,7 @@ export const cities: CityData[] = [
         localNotePt: "Orlando tem a maior comunidade brasileira de toda a Flórida Central. De Hunters Creek a Dr. Phillips, de Lake Nona a MetroWest, brasileiro comprou casa em cada canto dessa cidade. Nós atendemos em português, fazemos orçamento no mesmo dia na maioria dos casos, e boa parte dos nossos clientes chegou por indicação de vizinho. Um manda no grupo do condomínio, outro liga, e de repente temos três casas na mesma semana no mesmo bairro. E assim que funciona. WhatsApp ou ligação, (407) 715-1790.",
         localNoteEs: "Orlando tiene la comunidad hispana más grande de Central da Flórida. Puertorriqueños, colombianos, venezolanos, mexicanos: cada barrio tiene su propia dinámica. En Pine Hills, Azalea Park, Hunters Creek, MetroWest, por todos lados hay familias latinas que compraron su primera casa y nunca tuvieron que pensar en soffit hasta ahora. Nosotros le explicamos todo antes de empezar, presupuesto por escrito, sin presión. Muchos de nuestros clientes llegaron porque un vecino les dio nuestro número. Así trabajamos. Llame al (407) 715-1790.",
         homeStyle: "Highly diverse — historic bungalows, mid-century ranches, modern subdivisions, HOA communities",
-        homeStylePt: "Grande variedade: bungalows historicos, ranches dos anos 50-60, condominios modernos e comunidades com HOA",
+        homeStylePt: "Grande variedade: bungalows históricos, ranches dos anos 50-60, condomínios modernos e comunidades com HOA",
         homeStyleEs: "Gran variedad: bungalows históricos, ranches de los años 50-60, urbanizaciones modernas y comunidades con HOA",
         population: "~320,000",
         zipCodes: ["32801", "32803", "32804", "32805", "32806", "32807", "32808", "32809", "32810", "32811", "32812", "32814", "32817", "32818", "32819", "32822", "32824", "32825", "32826", "32827", "32829", "32832", "32835", "32836", "32837", "32839"],
@@ -1058,7 +1058,7 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "Vocês atendem todos os bairros de Orlando?",
-                a: "Todos, sem excecao. College Park, Delaney Park, Dr. Phillips, Pine Hills, Azalea Park, MetroWest, Hunters Creek, Lake Nona, Airport South. Nós cobrimos os 26 Zip Codes de Orlando e temos equipes na rua todos os dias. Ligue (407) 715-1790 ou mande WhatsApp para orçamento grátis no mesmo dia.",
+                a: "Todos, sem exceção. College Park, Delaney Park, Dr. Phillips, Pine Hills, Azalea Park, MetroWest, Hunters Creek, Lake Nona, Airport South. Nós cobrimos os 26 Zip Codes de Orlando e temos equipes na rua todos os dias. Ligue (407) 715-1790 ou mande WhatsApp para orçamento grátis no mesmo dia.",
             },
             {
                 q: "Quanto custa trocar soffit em Orlando?",
@@ -1066,7 +1066,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Em quanto tempo vocês conseguem ir até minha casa em Orlando?",
-                a: "No mesmo dia na maioria dos casos. Orlando é a nossa base. Nós temos várias equipes aqui diariamente e normalmente conseguimos mandar alguem em poucas horas, não dias. A maioria dos serviços começa em 2 a 3 dias depois do orçamento. Bicho no teto ou dano de tempestade tem prioridade imediata. Ligue (407) 715-1790.",
+                a: "No mesmo dia na maioria dos casos. Orlando é a nossa base. Nós temos várias equipes aqui diariamente e normalmente conseguimos mandar alguém em poucas horas, não dias. A maioria dos serviços começa em 2 a 3 dias depois do orçamento. Bicho no teto ou dano de tempestade tem prioridade imediata. Ligue (407) 715-1790.",
             },
         ],
         faqsEs: [
@@ -1089,13 +1089,13 @@ export const cities: CityData[] = [
         name: "St. Cloud",
         county: "Osceola County",
         description: "St. Cloud's housing boom peaked in the mid-2000s, and those homes are now hitting the 15-to-20-year mark where original vinyl and aluminum soffit starts failing. Most homeowners have never had to think about soffit before because the material was new when they moved in. That window is closing. Warped panels, discolored vents, and early pest entry are showing up across Harmony, the Narcoossee corridor, and HOA communities along Canoe Creek Road. The fix is straightforward if caught early, but ignoring it leads to fascia rot and HOA violation notices.",
-        descriptionPt: "A maioria das casas em St. Cloud foi construida entre 2003 e 2010, e o soffit original nunca foi trocado. Vinil e alumínio daquela época duram de 15 a 20 anos, e esse prazo está vencendo agora. O problema e que por fora parece normal. Por dentro, a ventilação já falhou e a umidade começou a danificar a estrutura. Nós vemos isso toda semana em Harmony, no corredor da Narcoossee e nos condomínios ao longo da Canoe Creek. Uma vistoria gratuita resolve a duvida em 20 minutos.",
+        descriptionPt: "A maioria das casas em St. Cloud foi construída entre 2003 e 2010, e o soffit original nunca foi trocado. Vinil e alumínio daquela época duram de 15 a 20 anos, e esse prazo está vencendo agora. O problema e que por fora parece normal. Por dentro, a ventilação já falhou e a umidade começou a danificar a estrutura. Nós vemos isso toda semana em Harmony, no corredor da Narcoossee e nos condomínios ao longo da Canoe Creek. Uma vistoria gratuita resolve a duvida em 20 minutos.",
         descriptionEs: "Las casas de St. Cloud de los años 2003 a 2010 están llegando a un punto crítico. El soffit original de vinilo o aluminio tiene entre 15 y 20 años, y esa es exactamente la vida útil de esos materiales. Muchos propietarios nunca tuvieron que pensar en el soffit porque la casa era nueva cuando la compraron. Ahora los paneles se deforman, los ventilos se tapan y los animales encuentran entrada. En Harmony, Narcoossee y los vecindarios de HOA sobre Canoe Creek Road, esto se ve todas las semanas. La buena noticia: si se detecta a tiempo, la reparación es rápida y evita multas de HOA.",
         localNote: "St. Cloud sits at the southern end of the Narcoossee corridor, one of the fastest-growing residential stretches in Central da Flórida. Harmony alone has over 6,000 homes, nearly all built after 2003. With 75% of the city inside HOA communities, soffit appearance is not optional — faded, cracked, or sagging panels trigger violation letters. We work in these neighborhoods weekly and know the specific color codes and material specs that HOA boards require.",
         localNotePt: "St. Cloud tem uma comunidade hispânica forte, especialmente porto-riquenha, e não tem uma presença brasileira grande como Kissimmee ou Orlando. Mesmo assim, nós atendemos em português para qualquer morador que precise. Orçamento por escrito, explicação clara do serviço e acompanhamento em português do início ao fim. Se você mora em Harmony, no corredor da Narcoossee ou em qualquer condomínio de HOA da região, ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
         localNoteEs: "St. Cloud es casa para miles de familias puertorriqueñas y latinas que compraron en Harmony, sobre la Narcoossee y en los vecindarios de Canoe Creek. Usted conoce su barrio, y nosotros también. Trabajamos aquí todas las semanas. Le damos presupuesto escrito en español, le explicamos exactamente lo que su casa necesita y cumplimos con lo que decimos. Muchos de nuestros clientes en St. Cloud llegaron por recomendación de un vecino que ya nos conoce. Llame al (407) 715-1790.",
         homeStyle: "Single-family homes in master-planned HOA communities, predominantly 1- and 2-story built 2003-2012",
-        homeStylePt: "Casas unifamiliares em condominios planejados com HOA, maioria de 1 e 2 andares construidas entre 2003 e 2012",
+        homeStylePt: "Casas unifamiliares em condomínios planejados com HOA, maioria de 1 e 2 andares construídas entre 2003 e 2012",
         homeStyleEs: "Casas unifamiliares en comunidades planificadas con HOA, mayoría de 1 y 2 pisos construidas entre 2003 y 2012",
         population: "~74,000",
         zipCodes: ["34769", "34771", "34772", "34773"],
@@ -1118,7 +1118,7 @@ export const cities: CityData[] = [
         whyBulletsPt: [
             "Licenciados e segurados na Flórida",
             "Orçamento grátis em St. Cloud, sem compromisso",
-            "Especializados em casas dos anos 2000 que estao precisando de troca pela primeira vez",
+            "Especializados em casas dos anos 2000 que estão precisando de troca pela primeira vez",
             "1 ano de garantia na mão de obra, por escrito",
             "Documentação de cor e material para aprovação do HOA incluida",
             "Opções em alumínio e vinil com ventilação adequada",
@@ -1153,7 +1153,7 @@ export const cities: CityData[] = [
         ],
         faqsPt: [
             {
-                q: "Minha casa em St. Cloud foi construida em 2006 e o soffit parece bom. Precisa mesmo trocar?",
+                q: "Minha casa em St. Cloud foi construída em 2006 e o soffit parece bom. Precisa mesmo trocar?",
                 a: "Pode ser que sim. Vinil e alumínio instalados nos anos 2000 duram de 15 a 20 anos. Visto de baixo, os painéis parecem inteiros, mas a ventilação já pode ter falhado e a umidade está se acumulando atrás da fascia. Nós vemos isso toda semana em Harmony e no corredor da Narcoossee. A vistoria gratuita leva uns 20 minutos e mostra exatamente a situação. Ligue (407) 715-1790.",
             },
             {
@@ -1185,13 +1185,13 @@ export const cities: CityData[] = [
         name: "Daytona Beach",
         county: "Volusia County",
         description: "Daytona Beach sits directly on the Atlantic coast, and that changes everything about soffit maintenance. Salt-laden air accelerates aluminum corrosion 3 to 5 times faster than inland Central da Flórida. Homes that would last 20-25 years in Orlando need full soffit replacement after just 10-15 years here. Hurricane Milton in 2024 compounded the problem, ripping panels off beachside properties and exposing fascia to months of salt spray. Communities like Latitude Margaritaville (3,900+ homes), LPGA, and Pelican Bay all have homes now showing visible pitting, white oxidation streaks, and panel separation that will only accelerate from here.",
-        descriptionPt: "Daytona Beach fica direto na costa atlantica, e o ar salgado faz com soffit o que a umidade sozinha não consegue. Alumínio que duraria 20 anos em Orlando corroi em 10 a 15 anos aqui. O Furacão Milton em 2024 piorou tudo, arrancando painéis e expondo a fascia ao sal por meses. Comunidades como Latitude Margaritaville, LPGA e Pelican Bay estao cheias de casas com oxidação visível e painéis se soltando. O problema não para de piorar enquanto não troca.",
+        descriptionPt: "Daytona Beach fica direto na costa atlântica, e o ar salgado faz com soffit o que a umidade sozinha não consegue. Alumínio que duraria 20 anos em Orlando corroi em 10 a 15 anos aqui. O Furacão Milton em 2024 piorou tudo, arrancando painéis e expondo a fascia ao sal por meses. Comunidades como Latitude Margaritaville, LPGA e Pelican Bay estão cheias de casas com oxidação visível e painéis se soltando. O problema não para de piorar enquanto não troca.",
         descriptionEs: "Daytona Beach está directamente en la costa atlántica, y eso cambia todo sobre el mantenimiento del soffit. El aire salado corroe el aluminio de 3 a 5 veces más rápido que en el interior de Flórida. Casas que durarían 20 años en Orlando necesitan reemplazo completo en solo 10 a 15 años aquí. El Huracán Milton en 2024 empeoró la situación, arrancando paneles y exponiendo la fascia a meses de sal. Comunidades como Latitude Margaritaville, LPGA y Pelican Bay tienen casas con oxidación visible y paneles separándose.",
         localNote: "We are based in Orlando, 57 minutes from Daytona Beach. We schedule Daytona Beach jobs on dedicated service days to ensure our crews arrive on time and complete work without rushing. We do not promise same-day estimates here, but we do promise reliability: scheduled appointments kept, written quotes honored, and no surprises. Our Volusia County clients in Ormond Beach, Port Orange, and New Smyrna Beach are scheduled on the same service days for efficiency.",
-        localNotePt: "Nós somos de Orlando, a 57 minutos de Daytona Beach. Não temos como prometer vistoria no mesmo dia aqui, mas o que nos prometemos e cumprimento: dia marcado e dia cumprido, orçamento por escrito e sem surpresas. Organizamos os serviços de Daytona Beach em dias dedicados para que a equipe chegue no horario e termine sem correria. Se você mora em Daytona e precisa de atendimento em português, ligue (407) 715-1790 ou mande mensagem no WhatsApp. Nós agendamos e vamos até você.",
+        localNotePt: "Nós somos de Orlando, a 57 minutos de Daytona Beach. Não temos como prometer vistoria no mesmo dia aqui, mas o que nos prometemos e cumprimento: dia marcado e dia cumprido, orçamento por escrito e sem surpresas. Organizamos os serviços de Daytona Beach em dias dedicados para que a equipe chegue no horário e termine sem correria. Se você mora em Daytona e precisa de atendimento em português, ligue (407) 715-1790 ou mande mensagem no WhatsApp. Nós agendamos e vamos até você.",
         localNoteEs: "Nuestra base está en Orlando, a 57 minutos de Daytona Beach. No prometemos visitas el mismo día, pero sí le prometemos cumplimiento: día programado es día cumplido, presupuesto escrito y sin sorpresas. Organizamos los trabajos de Daytona Beach en días dedicados para que el equipo llegue puntual y termine sin apuros. Llame al (407) 715-1790 para programar su inspección.",
         homeStyle: "Mix of beachside condos, older single-family homes, and 55+ master-planned communities",
-        homeStylePt: "Condominios na praia, casas unifamiliares mais antigas e comunidades planejadas 55+",
+        homeStylePt: "Condomínios na praia, casas unifamiliares mais antigas e comunidades planejadas 55+",
         homeStyleEs: "Condominios en la playa, casas unifamiliares antiguas y comunidades planificadas 55+",
         population: "~93,000",
         zipCodes: ["32114", "32117", "32118", "32119", "32124"],
@@ -1250,7 +1250,7 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "Vocês são de Orlando. Como funciona o atendimento em Daytona Beach?",
-                a: "Nos organizamos os serviços de Daytona Beach em dias dedicados. A equipe vem especificamente para a região, chega no horario e termina sem correria. Não oferecemos vistoria no mesmo dia em Daytona, mas cumprimos todo agendamento marcado. A maioria das vistorias e agendada em 3 a 5 dias uteis. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
+                a: "Nos organizamos os serviços de Daytona Beach em dias dedicados. A equipe vem especificamente para a região, chega no horário e termina sem correria. Não oferecemos vistoria no mesmo dia em Daytona, mas cumprimos todo agendamento marcado. A maioria das vistorias é agendada em 3 a 5 dias uteis. Ligue (407) 715-1790 ou mande mensagem no WhatsApp.",
             },
             {
                 q: "Por que o soffit estraga mais rápido em Daytona Beach do que em Orlando?",
@@ -1281,13 +1281,13 @@ export const cities: CityData[] = [
         name: "Palm Bay",
         county: "Brevard County",
         description: "Palm Bay has over 37,000 single-family homes — 83% of all housing in the city — and the bulk of them sit in Port Malabar, a massive subdivision built between the 1960s and 1980s. That means thousands of homes with original aluminum soffit that is 40 to 60 years old, well past any reasonable service life. Oxidation, warping, and pest entry points are the norm, not the exception. Newer communities like Bayside Lakes and the upcoming Ashton Park development (3,793 homes planned) add HOA-standard replacement work to the mix, but the real volume here is aging housing stock that needs full remove and replace.",
-        descriptionPt: "Palm Bay tem mais de 37 mil casas, e a grande maioria foi construida entre os anos 60 e 80. O soffit original dessas casas já passou dos 40 anos de uso. Alumínio dessa época não aguenta o clima da Flórida por tanto tempo: oxida, entorta, abre fresta, e bicho entra. O problema é que por fora parece só um detalhe estetico, mas por dentro já pode ter dano na madeira de sustentação. Uma vistoria gratuita mostra exatamente o que precisa ser feito, sem compromisso.",
+        descriptionPt: "Palm Bay tem mais de 37 mil casas, e a grande maioria foi construída entre os anos 60 e 80. O soffit original dessas casas já passou dos 40 anos de uso. Alumínio dessa época não aguenta o clima da Flórida por tanto tempo: oxida, entorta, abre fresta, e bicho entra. O problema é que por fora parece só um detalhe estético, mas por dentro já pode ter dano na madeira de sustentação. Uma vistoria gratuita mostra exatamente o que precisa ser feito, sem compromisso.",
         descriptionEs: "Palm Bay tiene más de 37,000 casas unifamiliares, la gran mayoría construidas entre los años 60 y 80. El soffit original de esas viviendas ya tiene 40 a 60 años de uso, mucho más de lo que el aluminio de esa época fue diseñado para durar. Oxidación, deformación y puntos de entrada para animales son problemas comunes en Port Malabar y las subdivisiones más antiguas. Una inspección gratuita le muestra exactamente el estado de su soffit, sin obligación.",
         localNote: "Port Malabar alone accounts for thousands of homes built in the 1960s-1980s, making it one of the densest concentrations of aging soffit in Brevard County. Bayside Lakes adds gated-community HOA work, and the 3,793-home Ashton Park development will bring new construction demand. Palm Bay is 74 miles from our Orlando base — we schedule dedicated service days for this area, arriving prepared for the full job rather than offering same-day response.",
         localNotePt: "Palm Bay fica a 74 milhas de Orlando, então nos organizamos diferente: agendamos dias dedicados para a região de Brevard County, e quando vamos, vamos preparados para resolver tudo de uma vez. Atendemos em português do orçamento até a entrega final. Se você mora em Port Malabar, Bayside Lakes ou qualquer bairro de Palm Bay, liga ou manda WhatsApp que agendamos a vistoria no próximo dia de serviço na região.",
         localNoteEs: "Palm Bay tiene una comunidad hispana sólida, especialmente en Port Malabar y los barrios al sur de la ciudad. Estamos a 74 millas de Orlando, por eso programamos días dedicados para Brevard County. Cuando vamos, llegamos preparados para completar el trabajo. Le atendemos en español, con presupuesto escrito y sin sorpresas. Llame al (407) 715-1790 y programamos su inspección en el próximo día de servicio en la zona.",
         homeStyle: "Predominantly 1960s-1980s single-family ranch homes, newer gated communities, large-scale new construction planned",
-        homeStylePt: "Maioria casas ranch dos anos 60 a 80, condominios fechados mais novos e grandes empreendimentos novos planejados",
+        homeStylePt: "Maioria casas ranch dos anos 60 a 80, condomínios fechados mais novos e grandes empreendimentos novos planejados",
         homeStyleEs: "Mayoría casas ranch de los años 60 a 80, comunidades cerradas más nuevas y grandes desarrollos nuevos planificados",
         population: "~125,000",
         zipCodes: ["32905", "32907", "32908", "32909"],
@@ -1377,13 +1377,13 @@ export const cities: CityData[] = [
         name: "Port St. Lucie",
         county: "St. Lucie County",
         description: "Port St. Lucie is one of the largest cities in Florida by population — over 284,000 residents — and 87% of its housing is single-family homes. Nearly half were built between 1970 and 1999 during the General Development Corp. era, when tens of thousands of lots were platted and developed with builder-grade materials. That generation of soffit is now 30 to 50 years old. Many homes were patched after Hurricanes Frances and Jeanne in 2004 but never properly replaced, leaving underlying damage that continues to worsen. The other half, built since 2000 in communities like Tradition (18,000+ home sites) and St. Lucie West (14,000+ homes), are approaching their first major maintenance cycle.",
-        descriptionPt: "Port St. Lucie tem quase 300 mil habitantes e a maioria das casas e unifamiliar. Metade foi construida entre os anos 70 e 90, na época da General Development Corp., com material básico de construção. Esse soffit já tem 30 a 50 anos. Muitas casas levaram remendo depois dos furacões de 2004, mas nunca tiveram troca de verdade. O dano original continua la, escondido atrás de um pedaco de alumínio novo colado por cima do velho. A outra metade, em comunidades como Tradition e St. Lucie West, já está chegando no primeiro ciclo de manutenção seria.",
+        descriptionPt: "Port St. Lucie tem quase 300 mil habitantes e a maioria das casas é unifamiliar. Metade foi construída entre os anos 70 e 90, na época da General Development Corp., com material básico de construção. Esse soffit já tem 30 a 50 anos. Muitas casas levaram remendo depois dos furacões de 2004, mas nunca tiveram troca de verdade. O dano original continua lá, escondido atrás de um pedaço de alumínio novo colado por cima do velho. A outra metade, em comunidades como Tradition e St. Lucie West, já está chegando no primeiro ciclo de manutenção séria.",
         descriptionEs: "Port St. Lucie es una de las ciudades más grandes de Flórida, con más de 284,000 residentes. El 87% de las viviendas son casas unifamiliares. Casi la mitad fueron construidas entre 1970 y 1999 durante la era de General Development Corp., con materiales básicos de construcción. Ese soffit ya tiene 30 a 50 años de uso. Muchas casas recibieron parches después de los huracanes Frances y Jeanne en 2004, pero nunca un reemplazo completo. El daño original sigue ahí, oculto detrás de remiendos superficiales. Las comunidades más nuevas como Tradition y St. Lucie West ya están entrando en su primer ciclo de mantenimiento mayor.",
         localNote: "Port St. Lucie is 127 miles from our Orlando base — the furthest point in our service area. We schedule dedicated service days here, typically combining multiple jobs per trip. The General Development Corp. era homes (1970s-1990s) dominate the older sections, while Tradition's 18,000+ home sites, St. Lucie West's 14,000+ homes, and PGA Village's 34 subdivisions represent the newer stock. Hurricane Frances and Jeanne (2004) damage is still being discovered on older homes during soffit replacement — rot and water intrusion that was patched over but never resolved.",
         localNotePt: "Port St. Lucie tem uma comunidade brasileira estabelecida, com mercados, restaurantes e igrejas brasileiras na região. Nós atendemos em português e conhecemos a realidade de quem mora longe de Orlando mas quer um serviço profissional de verdade. Port St. Lucie fica a 127 milhas da nossa base, então agendamos dias dedicados para a região, combinando vários serviços por viagem. Manda WhatsApp para (407) 715-1790 e agendamos no próximo dia de serviço em St. Lucie County.",
         localNoteEs: "Port St. Lucie tiene una comunidad hispana importante, el 24% de la población. En Tradition, St. Lucie West y los barrios más antiguos del centro, muchas familias hispanas son dueñas de casa por primera vez y quieren mantener su propiedad en buen estado. Estamos a 127 millas de Orlando, por eso programamos días dedicados para St. Lucie County, combinando varios trabajos por viaje. Le atendemos en español, con presupuesto detallado y por escrito. Llame al (407) 715-1790 para programar.",
         homeStyle: "Mix of 1970s-1990s General Development Corp. era homes and post-2000 master-planned communities",
-        homeStylePt: "Casas da era General Development Corp. dos anos 70 a 90 e condominios planejados pos-2000",
+        homeStylePt: "Casas da era General Development Corp. dos anos 70 a 90 e condomínios planejados pós-2000",
         homeStyleEs: "Casas de la era General Development Corp. de los años 70 a 90 y comunidades planificadas post-2000",
         population: "~284,000",
         zipCodes: ["34952", "34953", "34983", "34984", "34986", "34987"],
@@ -1572,7 +1572,7 @@ export const cities: CityData[] = [
         descriptionPt: "Casselberry fica no meio de mais de 30 lagos, e isso cria um microclima de umidade que nenhum soffit de alumínio dos anos 70 e 80 foi projetado para aguentar por 40 a 50 anos. As casas ranch de Deer Run, com seus 24 sub-bairros, são as que mais nos chamam. O alumínio original era de bitola fina, e a umidade constante dos lagos Howell, Concord e Kathryn acelerou a oxidação, abriu furos nos painéis e criou pontos de entrada para esquilos, guaxinins e marimbondos. Na área de Fern Park e nos bairros que fazem fronteira com Winter Springs, o problema e parecido: soffit que parece inteiro visto de baixo, mas quando abrimos a fascia já está molhada e com início de apodrecimento. Secret Lake e Howell Estates também são áreas onde trabalhamos com frequência. A vistoria gratuita leva cerca de 20 minutos e mostra tudo com foto, sem compromisso.",
         descriptionEs: "Casselberry está rodeada por más de 30 lagos, y esa humedad constante castiga el soffit original de aluminio en las casas de los años 70 y 80. El aluminio de aquella época era de calibre delgado, y los lagos Howell, Concord y Kathryn mantienen una humedad constante que aceleró la oxidación y creó puntos de entrada para ardillas, mapaches y avispas. En Deer Run, con sus 24 sub-vecindarios, es donde más trabajamos. En Fern Park y los barrios que limitan con Winter Springs, el problema es similar: soffit que parece bien desde abajo, pero al abrir la fascia ya está mojada. Secret Lake y Howell Estates son otras áreas frecuentes. La inspección gratuita toma 20 minutos y le muestra todo con fotos, sin obligación.",
         localNote: "Casselberry's 70+ neighborhoods keep our crews busy year-round, and the sheer density of lakes makes humidity the defining variable for every soffit job here. Deer Run is the largest single community — 24+ sub-neighborhoods of 1970s-1980s ranch homes — and we typically have multiple active jobs there at any given time. Homes along Lake Howell, Lake Concord, and Lake Kathryn see the worst soffit deterioration, but even inland streets deal with the ambient moisture that defines this area. The Fern Park corridor along US-17/92, Queenstown, Deerfield, and Howell Estates round out our most frequent service areas. Seminole County code enforcement is active in Casselberry, and we regularly work with homeowners who received a citation for deteriorated exterior panels and need a fast, compliant resolution.",
-        localNotePt: "Casselberry tem uma comunidade brasileira forte, especialmente em Deer Run e nos bairros perto da US-17/92. São famílias que compraram casa quando os preços eram mais acessiveis e agora estao enfrentando a primeira manutenção seria do soffit. Deer Run, Howell Estates, Secret Lake, Lake Kathryn, Fern Park. Nós conhecemos cada um desses bairros. Vários clientes nossos aqui chegaram por indicação de vizinho brasileiro. Ligue (407) 715-1790 ou mande mensagem no WhatsApp. Orçamento grátis, por escrito, sem surpresa.",
+        localNotePt: "Casselberry tem uma comunidade brasileira forte, especialmente em Deer Run e nos bairros perto da US-17/92. São famílias que compraram casa quando os preços eram mais acessíveis e agora estão enfrentando a primeira manutenção séria do soffit. Deer Run, Howell Estates, Secret Lake, Lake Kathryn, Fern Park. Nós conhecemos cada um desses bairros. Vários clientes nossos aqui chegaram por indicação de vizinho brasileiro. Ligue (407) 715-1790 ou mande mensagem no WhatsApp. Orçamento grátis, por escrito, sem surpresa.",
         localNoteEs: "Deer Run, Howell Estates, Secret Lake, Lake Kathryn, Tiberon, Fern Park: trabajamos en estos barrios de Casselberry todas las semanas. Muchas familias puertorriqueñas, colombianas y venezolanas compraron casa aquí por los precios accesibles y la ubicación central en Seminole County. Esas casas de los años 70 y 80 tienen el soffit original que ya cumplió su vida útil, y la humedad de los 30 lagos de la ciudad aceleró el deterioro. Si usted nota manchas, paneles sueltos o huecos en el soffit, no espere a que el problema llegue a la fascia. Le atendemos en español, con presupuesto detallado por escrito y trabajo garantizado. Llame al (407) 715-1790.",
         homeStyle: "1970s-1980s single-story ranch homes, original aluminum soffit, many lake-adjacent",
         homeStylePt: "Casas ranch de 1 andar dos anos 70 e 80, soffit de aluminio original, muitas perto de lagos",
@@ -1634,7 +1634,7 @@ export const cities: CityData[] = [
         faqsPt: [
             {
                 q: "Minha casa em Deer Run tem o soffit original e eu vejo manchas escuras. E grave?",
-                a: "Provavelmente sim. Deer Run e o maior bairro de Casselberry, com 24 sub-bairros, e quase todas as casas foram construidas nos anos 70 e 80 com alumínio fino. Manchas escuras geralmente significam que a umidade já passou pelo soffit e está danificando a fascia por tras. Nós vemos isso toda semana em Deer Run. A vistoria gratuita mostra exatamente o tamanho do problema. Ligue (407) 715-1790 ou mande WhatsApp.",
+                a: "Provavelmente sim. Deer Run é o maior bairro de Casselberry, com 24 sub-bairros, e quase todas as casas foram construídas nos anos 70 e 80 com alumínio fino. Manchas escuras geralmente significam que a umidade já passou pelo soffit e está danificando a fascia por atrás. Nós vemos isso toda semana em Deer Run. A vistoria gratuita mostra exatamente o tamanho do problema. Ligue (407) 715-1790 ou mande WhatsApp.",
             },
             {
                 q: "A umidade dos lagos danifica mais o soffit em Casselberry?",
@@ -1761,7 +1761,7 @@ export const cities: CityData[] = [
         name: "Lake Nona",
         county: "Orange County",
         description: "Lake Nona is one of Central da Flórida's fastest-growing master-planned communities, with thousands of new homes built since 2005. The area's modern construction means many homes have aluminum soffit that is now 15–20 years old and beginning to show wear from Florida's humidity, UV, and storm cycles. Neighborhoods like Laureate Park, Eagle Creek, Moss Park, and Village Walk feature deep overhangs that trap moisture and invite pests when ventilation panels fail.",
-        descriptionPt: "Lake Nona é uma das regioes que mais cresce em Orlando, com milhares de casas construidas desde 2005. O que muitos proprietários não sabem é que alumínio com 15 a 20 anos de sol e chuva de Flórida já começa a oxidar e empenar por dentro. As casas de Laureate Park, Eagle Creek, Moss Park e Village Walk tem beiral grande, que acumula umidade e vira porta de entrada para bicho quando a ventilação falha. Uma vistoria gratuita de 20 minutos mostra se o seu soffit já precisa de atenção.",
+        descriptionPt: "Lake Nona é uma das regiões que mais cresce em Orlando, com milhares de casas construídas desde 2005. O que muitos proprietários não sabem é que alumínio com 15 a 20 anos de sol e chuva de Flórida já começa a oxidar e empenar por dentro. As casas de Laureate Park, Eagle Creek, Moss Park e Village Walk têm beiral grande, que acumula umidade e vira porta de entrada para bicho quando a ventilação falha. Uma vistoria gratuita de 20 minutos mostra se o seu soffit já precisa de atenção.",
         descriptionEs: "Lake Nona es una de las comunidades de más rápido crecimiento en Orlando, con miles de viviendas construidas desde 2005. Lo que muchos propietarios no saben es que el aluminio original con 15 a 20 años de sol y lluvias de Flórida ya empieza a oxidarse y deformarse por dentro. Las casas de Laureate Park, Eagle Creek, Moss Park y Village Walk tienen aleros profundos que acumulan humedad y se convierten en entrada para plagas cuando falla la ventilación. Una inspección gratuita de 20 minutos le muestra si su soffit necesita atención.",
         localNote: "Lake Nona sits in southeast Orlando near the Medical City campus. Homes here range from $350K townhomes in Laureate Park to $1M+ estates in Eagle Creek. The area's strict HOA standards require precise color-matching and approved materials, making professional soffit work essential.",
         localNotePt: "Lake Nona fica no sudeste de Orlando, perto do Medical City. Tem muito brasileiro morando aqui, especialmente em Laureate Park e arredores. Muitos dos nossos clientes de Lake Nona chegaram por indicação de vizinho. Atendemos pelo WhatsApp, vamos até a casa, fazemos o orçamento na hora e você decide sem pressa.",
@@ -1863,7 +1863,7 @@ export const cities: CityData[] = [
         localNotePt: "Dr. Phillips é a 'Little Brazil' de Orlando desde os anos 90. Você desce a Sand Lake Road e passa pelo Chima Steakhouse, pelo BoiBrazil, pelo Steak on Fire. Vai no mercado e encontra paes de queijo, guarana, carne de primeira. Bay Hill, Vizcaya, Emerson Pointe, Phillips Landing, Sand Lake Hills: são bairros onde brasileiro comprou casa, criou os filhos e fez comunidade. Nós conhecemos essas ruas porque atendemos aqui toda semana. A maioria dos nossos clientes em Dr. Phillips chegou por indicação de outro brasileiro do bairro. Orçamento grátis, por escrito, e você decide no seu tempo. Ligue (407) 715-1790 ou mande WhatsApp.",
         localNoteEs: "Dr. Phillips tiene un 13,2% de población hispana y latina, familias que eligieron esta comunidad por la calidad de vida, las escuelas y la seguridad. Bay Hill, con el legado de Arnold Palmer, es sinónimo de prestigio. Vizcaya tiene guardia las 24 horas. Emerson Pointe, Phillips Landing, Bay Vista Estates: son barrios donde usted invirtió en su propiedad y quiere mantenerla impecable. Los HOA aquí son estrictos con la apariencia exterior, y el soffit es una de las primeras cosas que notan. Nosotros conocemos los códigos de color y los requisitos de cada comunidad porque trabajamos aquí todas las semanas. Presupuesto gratuito, detallado por escrito. Llame al (407) 715-1790.",
         homeStyle: "Upscale single-family, 2-story executive homes, gated estates with large overhangs and mature tree cover",
-        homeStylePt: "Casas de alto padrao, 2 andares, condominios fechados com beirais grandes e árvores maduras",
+        homeStylePt: "Casas de alto padrão, 2 andares, condomínios fechados com beirais grandes e árvores maduras",
         homeStyleEs: "Viviendas de alto nivel, casas ejecutivas de 2 pisos, comunidades cerradas con aleros grandes y arboles maduros",
         population: "~12,500",
         zipCodes: ["32819", "32836"],
@@ -1889,7 +1889,7 @@ export const cities: CityData[] = [
             "Equipe brasileira que fala português do orçamento até a entrega final",
             "1 ano de garantia na mão de obra, por escrito, sem letra miuda",
             "Trabalhamos em Bay Hill, Vizcaya, Phillips Landing, Emerson Pointe e Sand Lake Hills toda semana",
-            "Experiência com casas de alto padrão de Dr. Phillips: 300 a 600+ pes lineares de soffit",
+            "Experiência com casas de alto padrão de Dr. Phillips: 300 a 600+ pés lineares de soffit",
             "Combinamos cor exata do HOA, conhecemos os códigos de cada condomínio da região",
             "Bicho no teto ou painel arrancou na tempestade? Atendimento de emergência no mesmo dia",
             "WhatsApp direto: mande mensagem para (407) 715-1790 e respondemos rápido",
@@ -1930,7 +1930,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Minha casa em Dr. Phillips tem 30 anos e o soffit nunca foi trocado. Está na hora?",
-                a: "Provavelmente sim. As casas dos anos 80 e 90 em Dr. Phillips foram construidas com alumínio fino que durava 20 a 25 anos. Com as árvores enormes da região segurando umidade contra o beiral o ano inteiro, esse prazo encurta. Nós vemos painéis oxidados, ventilação entupida e fascia comprometida toda semana aqui. A vistoria gratuita leva uns 20 minutos e mostra exatamente o que precisa ser feito. Ligue (407) 715-1790 ou mande WhatsApp.",
+                a: "Provavelmente sim. As casas dos anos 80 e 90 em Dr. Phillips foram construídas com alumínio fino que durava 20 a 25 anos. Com as árvores enormes da região segurando umidade contra o beiral o ano inteiro, esse prazo encurta. Nós vemos painéis oxidados, ventilação entupida e fascia comprometida toda semana aqui. A vistoria gratuita leva uns 20 minutos e mostra exatamente o que precisa ser feito. Ligue (407) 715-1790 ou mande WhatsApp.",
             },
         ],
         faqsEs: [
@@ -1959,7 +1959,7 @@ export const cities: CityData[] = [
         localNotePt: "Windermere é pequena em população, mas as casas ao redor são enormes e de alto padrão. Tem brasileiro morando aqui, principalmente em Windermere Trails e arredores. A cobertura de árvores é densa por causa das leis de preservação da cidade, o que acelera o desgaste do soffit. Muitos dos nossos clientes aqui chegaram por indicação. Orçamento grátis, por escrito, e você decide com calma.",
         localNoteEs: "Windermere es pequeña en población, pero las casas alrededor son enormes y de alto nivel. La cobertura de árboles es densa por las leyes de preservación de la ciudad, lo que acelera el desgaste del soffit. Las propiedades en Isleworth, Keenes Pointe y Lake Butler Sound requieren trabajo preciso con materiales aprobados por el HOA. Presupuesto gratuito, detallado por escrito, usted decide sin prisa.",
         homeStyle: "Luxury lakefront estates, custom-built homes, gated communities with oversized overhangs",
-        homeStylePt: "Mansoes a beira do lago, casas sob medida, condominios fechados com beirais enormes",
+        homeStylePt: "Mansões à beira do lago, casas sob medida, condomínios fechados com beirais enormes",
         homeStyleEs: "Residencias de lujo frente al lago, casas a medida, comunidades cerradas con aleros grandes",
         population: "~3,500 (town); ~25,000 surrounding area",
         zipCodes: ["34786"],
@@ -1985,7 +1985,7 @@ export const cities: CityData[] = [
             "Maioria dos serviços agendados na mesma semana",
             "Garantia de 1 ano na mão de obra, documentada por escrito",
             "Combinamos cor exata do HOA em Isleworth, Keenes Pointe e Lake Butler Sound",
-            "Experiência com casas grandes. 500 a 1.000+ pes lineares de soffit, sem problema",
+            "Experiência com casas grandes. 500 a 1.000+ pés lineares de soffit, sem problema",
             "Bicho no teto ou painel voou na tempestade? Atendemos no mesmo dia",
             "Equipe fala português. WhatsApp, ligação, como preferir",
             "Desde 2020 em Windermere e toda a região oeste de Orlando",
@@ -2022,7 +2022,7 @@ export const cities: CityData[] = [
             },
             {
                 q: "Quanto custa trocar soffit em uma casa grande de Windermere?",
-                a: "As casas de Windermere estao entre as maiores que trabalhamos, com 500 a mais de 1.000 pes lineares de soffit. O custo depende do tamanho, material, condicao da fascia e se precisa de equipamento para segundo andar. Fazemos vistoria grátis com orçamento por escrito, linha por linha. Use nossa calculadora para ter uma ideia inicial.",
+                a: "As casas de Windermere estão entre as maiores que trabalhamos, com 500 a mais de 1.000 pés lineares de soffit. O custo depende do tamanho, material, condição da fascia e se precisa de equipamento para segundo andar. Fazemos vistoria grátis com orçamento por escrito, linha por linha. Use nossa calculadora para ter uma ideia inicial.",
             },
             {
                 q: "Windermere tem muita árvore. Isso afeta o soffit?",
