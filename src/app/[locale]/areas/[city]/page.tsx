@@ -152,7 +152,7 @@ export default async function CityPage({ params }: Props) {
     const lp = (path: string) => locale === "en" ? path : `/${locale}${path}`;
 
     const services = [
-        { title: t("svc1Title"), href: lp("/repairs"),           desc: t("svc1Desc", { issue: city.commonIssue }) },
+        { title: t("svc1Title"), href: lp("/repairs"),           desc: t("svc1Desc", { issue: (locale === "pt" && city.commonIssuePt) ? city.commonIssuePt : city.commonIssue }) },
         { title: t("svc2Title"), href: lp("/remove-replace"),    desc: t("svc2Desc", { topService: city.topService, city: city.name }) },
         { title: t("svc3Title"), href: lp("/new-construction"),  desc: t("svc3Desc", { county: city.county }) },
         { title: t("svc4Title"), href: lp("/contact/emergency"), desc: t("svc4Desc", { city: city.name }) },
