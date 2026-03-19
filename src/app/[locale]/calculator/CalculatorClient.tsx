@@ -258,6 +258,7 @@ function SmartCalculatorApp() {
             const fd = new FormData();
             fd.append('name', (form.elements.namedItem('name') as HTMLInputElement).value);
             fd.append('phone', (form.elements.namedItem('phone') as HTMLInputElement).value);
+            fd.append('email', (form.elements.namedItem('email') as HTMLInputElement).value ?? '');
             fd.append('address', (form.elements.namedItem('address') as HTMLInputElement).value);
             fd.append('description', (form.elements.namedItem('description') as HTMLTextAreaElement).value ?? '');
             repairFiles.forEach(f => fd.append('photos', f));
@@ -673,6 +674,11 @@ function SmartCalculatorApp() {
                                             <input id="repair-phone" type="tel" name="phone" required autoComplete="tel" placeholder="(407) 000-0000"
                                                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bubble-primary focus:border-bubble-primary outline-none transition-all text-sm font-medium text-gray-900" />
                                         </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="repair-email" className="block text-sm font-bold text-gray-700 mb-1.5">Email</label>
+                                        <input id="repair-email" type="email" name="email" autoComplete="email" placeholder="email@example.com"
+                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bubble-primary focus:border-bubble-primary outline-none transition-all text-sm font-medium text-gray-900" />
                                     </div>
                                     <div>
                                         <label htmlFor="repair-address" className="block text-sm font-bold text-gray-700 mb-1.5">{t('labelAddress')} <span className="text-red-500">*</span></label>

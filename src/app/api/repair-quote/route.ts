@@ -140,6 +140,7 @@ export async function POST(req: NextRequest) {
 
         const name = (formData.get('name') as string)?.trim();
         const phone = (formData.get('phone') as string)?.trim();
+        const email = (formData.get('email') as string)?.trim() || '';
         const address = (formData.get('address') as string)?.trim();
         const description = (formData.get('description') as string)?.trim() || '';
         const photos = formData.getAll('photos') as File[];
@@ -176,6 +177,7 @@ export async function POST(req: NextRequest) {
             `<b>📸 REPAIR QUOTE REQUEST</b>\n\n` +
             `<b>Name:</b> ${esc(name)}\n` +
             `<b>Phone:</b> ${esc(phone)}\n` +
+            (email ? `<b>Email:</b> ${esc(email)}\n` : '') +
             `<b>Address:</b> ${esc(address)}\n` +
             (description ? `<b>Description:</b> ${esc(description)}\n` : '') +
             `<b>Photos:</b> ${validPhotos.length}\n` +
