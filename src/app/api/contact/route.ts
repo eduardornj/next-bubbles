@@ -217,23 +217,50 @@ export async function POST(req: NextRequest) {
             })
         );
 
-        const transporter = createMailTransport();
         const date = formatDate();
         const phoneDigits = phone.replace(/\D/g, '');
 
-        await transporter.sendMail({
-            from: `"Bubbles Enterprise Site" <${process.env.SMTP_USER}>`,
-            to: process.env.SMTP_TO || 'quote@bubblesenterprise.com',
-            replyTo: email,
-            subject: `🏠 New Lead — ${esc(firstName)} ${esc(lastName)} · ${esc(service)}`,
-            html: buildEmailHtml({ firstName: esc(firstName), lastName: esc(lastName), email: esc(email), phone: esc(phone), phoneDigits, address: esc(address), gateCode: esc(gateCode), service: esc(service), message: esc(message), onlineEstimate: esc(onlineEstimate), photoCount: validPhotos.length, date }),
-            attachments,
+        // Telegram — primary delivery
+        const TELEGRAM_BOT_TOKEN = "8106013583:AAGunAdgWPiavf6hso4uJYgB6lWsdBiHLVA";
+        const TELEGRAM_CHAT_ID = "1715908263";
+
+        const telegramMsg =
+            `<b>🏠 NEW LEAD — CONTACT FORM</b>\n\n` +
+            `<b>Service:</b> ${esc(service)}\n` +
+            `<b>Name:</b> ${esc(firstName)} ${esc(lastName)}\n` +
+            `<b>Phone:</b> ${esc(phone)}\n` +
+            `<b>Email:</b> ${esc(email)}\n` +
+            `<b>Address:</b> ${esc(address)}\n` +
+            (gateCode ? `<b>Gate Code:</b> ${esc(gateCode)}\n` : '') +
+            (onlineEstimate ? `<b>Online Estimate:</b> ${esc(onlineEstimate)}\n` : '') +
+            (message ? `<b>Message:</b> ${esc(message)}\n` : '') +
+            `<b>Photos:</b> ${validPhotos.length}\n` +
+            `<b>Date:</b> ${date}`;
+
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: telegramMsg, parse_mode: "HTML" }),
         });
+
+        // Send photos to Telegram if any
+        if (validPhotos.length > 0) {
+            for (const att of attachments) {
+                const fd = new FormData();
+                fd.append("chat_id", TELEGRAM_CHAT_ID);
+                fd.append("photo", new Blob([att.content]), att.filename);
+                fd.append("caption", `${esc(firstName)} ${esc(lastName)} — ${esc(service)}`);
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+                    method: "POST",
+                    body: fd,
+                });
+            }
+        }
 
         return NextResponse.json({ ok: true });
     } catch (err) {
         const e = err instanceof Error ? err : new Error(String(err));
-        console.error('[contact] SMTP_HOST:', process.env.SMTP_HOST, 'SMTP_USER:', process.env.SMTP_USER, 'Error:', e.message);
-        return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+        console.error('[contact] Error:', e.message);
+        return NextResponse.json({ error: 'Failed to send' }, { status: 500 });
     }
 }
