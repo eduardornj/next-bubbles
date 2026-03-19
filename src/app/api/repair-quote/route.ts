@@ -174,7 +174,7 @@ export async function POST(req: NextRequest) {
         const TELEGRAM_CHAT_ID = "1715908263";
 
         const telegramMsg =
-            `<b>📸 REPAIR QUOTE REQUEST</b>\n\n` +
+            `<b>📐 CALCULATOR QUOTE</b>\n\n` +
             `<b>Name:</b> ${esc(name)}\n` +
             `<b>Phone:</b> ${esc(phone)}\n` +
             (email ? `<b>Email:</b> ${esc(email)}\n` : '') +
@@ -194,7 +194,7 @@ export async function POST(req: NextRequest) {
                 const fd = new FormData();
                 fd.append("chat_id", TELEGRAM_CHAT_ID);
                 fd.append("photo", new Blob([att.content]), att.filename);
-                fd.append("caption", `📸 ${esc(name)} — Repair Quote`);
+                fd.append("caption", `📐 ${esc(name)} — Calculator Quote`);
                 await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd });
             }
         }
