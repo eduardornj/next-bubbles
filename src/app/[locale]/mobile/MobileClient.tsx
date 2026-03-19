@@ -596,10 +596,24 @@ export default function MobileClient({ locale }: { locale: string }) {
           </div>
         )}
 
-        {/* Swipe-back ghost indicator (steps 2-4) */}
+        {/* Back button (steps 2-4) */}
         {step > 1 && step < 5 && (
-          <div className="absolute left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
-            <ArrowLeft className="w-4 h-4 text-white/[0.08]" />
+          <div className="px-4 pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                haptic();
+                if (step === 2) goTo(1, "backward");
+                else if (step === 3) goTo(2, "backward");
+                else if (step === 4) {
+                  if (data.type === "installation" && data.subtype === "new-construction") goTo(2, "backward");
+                  else goTo(3, "backward");
+                }
+              }}
+              className="w-10 h-10 rounded-full backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] flex items-center justify-center active:scale-90 active:bg-white/[0.15] transition-all duration-150"
+            >
+              <ArrowLeft className="w-5 h-5 text-white/60" />
+            </button>
           </div>
         )}
 
@@ -707,9 +721,10 @@ export default function MobileClient({ locale }: { locale: string }) {
                           key={sub}
                           type="button"
                           onClick={() => handleRepairSubtype(sub)}
-                          className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7`}
-                          style={{ animationDelay: `${idx * 80}ms` }}
+                          className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7 animate-[fadeInUp_400ms_ease-out_both] relative overflow-hidden group`}
+                          style={{ animationDelay: `${idx * 100 + 100}ms` }}
                         >
+                          <div className="absolute inset-0 opacity-0 group-active:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] transition-opacity duration-300" />
                           {icons[sub]}
                           <span className="text-white font-semibold">
                             {sub === "soffit" ? t.soffit : sub === "fascia" ? t.fascia : t.soffitAndFascia}
@@ -733,16 +748,18 @@ export default function MobileClient({ locale }: { locale: string }) {
                     <button
                       type="button"
                       onClick={() => handleInstallSubtype("new-construction")}
-                      className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7`}
+                      className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7 animate-[fadeInUp_400ms_ease-out_100ms_both] relative overflow-hidden group`}
                     >
+                      <div className="absolute inset-0 opacity-0 group-active:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] transition-opacity duration-300" />
                       <Building2 className="w-6 h-6 text-bubble-secondary" />
                       <span className="text-white font-semibold">{t.newConstruction}</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => handleInstallSubtype("renovation")}
-                      className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7`}
+                      className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7 animate-[fadeInUp_400ms_ease-out_200ms_both] relative overflow-hidden group`}
                     >
+                      <div className="absolute inset-0 opacity-0 group-active:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] transition-opacity duration-300" />
                       <RefreshCw className="w-6 h-6 text-bubble-secondary" />
                       <span className="text-white font-semibold">{t.renovation}</span>
                     </button>
