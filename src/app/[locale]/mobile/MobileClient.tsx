@@ -495,20 +495,21 @@ export default function MobileClient({ locale }: { locale: string }) {
 
       {/* Content with relative z */}
       <div className="relative z-10 flex-1 flex flex-col">
-        {/* Progress bar */}
-        {step < 5 && (
-          <div className="px-6 pt-4 pb-2">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-white/30 font-medium tracking-wide">
-                {t.step} {visualStep} {t.of} {totalSteps}
-              </span>
-            </div>
-            <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+        {/* Progress dots — app style, no text */}
+        {step > 1 && step < 5 && (
+          <div className="flex items-center justify-center gap-2 pt-4 pb-1">
+            {Array.from({ length: totalSteps }, (_, i) => (
               <div
-                className="h-full rounded-full bg-gradient-to-r from-bubble-primary to-cyan-400 transition-all duration-500 ease-out shadow-[0_0_8px_rgba(37,99,235,0.5)]"
-                style={{ width: `${(visualStep / totalSteps) * 100}%` }}
+                key={i}
+                className={`rounded-full transition-all duration-300 ${
+                  i + 1 === visualStep
+                    ? "w-6 h-2 bg-gradient-to-r from-bubble-primary to-cyan-400 shadow-[0_0_8px_rgba(37,99,235,0.5)]"
+                    : i + 1 < visualStep
+                    ? "w-2 h-2 bg-bubble-primary/60"
+                    : "w-2 h-2 bg-white/10"
+                }`}
               />
-            </div>
+            ))}
           </div>
         )}
 
