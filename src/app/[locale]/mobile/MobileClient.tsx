@@ -368,7 +368,10 @@ export default function MobileClient({ locale }: { locale: string }) {
       data.photos.forEach((photo) => fd.append("photos", photo));
 
       const res = await fetch("/api/mobile-lead", { method: "POST", body: fd });
-      if (!res.ok) throw new Error("Server error");
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || `Server error ${res.status}`);
+      }
 
       setStatus("success");
       goTo(5, "forward");
@@ -381,7 +384,8 @@ export default function MobileClient({ locale }: { locale: string }) {
       if (typeof (window as Window & { fbq?: (...args: unknown[]) => void }).fbq === "function") {
         (window as Window & { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead");
       }
-    } catch {
+    } catch (err) {
+      console.error("[mobile] Submit error:", err);
       setStatus("error");
       setErrorToast(true);
     }

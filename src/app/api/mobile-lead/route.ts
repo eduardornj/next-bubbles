@@ -274,7 +274,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (err) {
     const e = err instanceof Error ? err : new Error(String(err));
-    console.error("[mobile-lead] Error:", e.message);
-    return NextResponse.json({ error: "Failed to process request." }, { status: 500 });
+    console.error("[mobile-lead] Error:", e.message, e.stack);
+    return NextResponse.json({ error: `Failed: ${e.message}` }, { status: 500 });
   }
 }
