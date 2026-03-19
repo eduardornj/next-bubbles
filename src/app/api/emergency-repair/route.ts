@@ -157,6 +157,7 @@ export async function POST(req: NextRequest) {
 
         const name = (formData.get('name') as string)?.trim();
         const phone = (formData.get('phone') as string)?.trim();
+        const email = (formData.get('email') as string)?.trim() || '';
         const address = (formData.get('address') as string)?.trim();
         const gateCode = (formData.get('gate_code') as string)?.trim() || '';
         const damageType = (formData.get('damage_type') as string)?.trim() || 'Not specified';
@@ -196,6 +197,7 @@ export async function POST(req: NextRequest) {
             `<b>Damage:</b> ${esc(damageType)}\n` +
             `<b>Name:</b> ${esc(name)}\n` +
             `<b>Phone:</b> ${esc(phone)}\n` +
+            (email ? `<b>Email:</b> ${esc(email)}\n` : '') +
             `<b>Address:</b> ${esc(address)}\n` +
             (gateCode ? `<b>Gate Code:</b> ${esc(gateCode)}\n` : '') +
             (description ? `<b>Description:</b> ${esc(description)}\n` : '') +

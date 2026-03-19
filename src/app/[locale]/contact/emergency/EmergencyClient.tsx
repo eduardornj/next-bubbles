@@ -40,6 +40,7 @@ export default function EmergencyClient() {
             const fd = new FormData();
             fd.append("name", (form.elements.namedItem("name") as HTMLInputElement).value);
             fd.append("phone", (form.elements.namedItem("phone") as HTMLInputElement).value);
+            fd.append("email", (form.elements.namedItem("email") as HTMLInputElement).value ?? "");
             fd.append("address", (form.elements.namedItem("address") as HTMLInputElement).value);
             fd.append("gate_code", (form.elements.namedItem("gate_code") as HTMLInputElement).value ?? "");
             fd.append("damage_type", (form.elements.namedItem("damage_type") as HTMLSelectElement).value);
@@ -202,6 +203,18 @@ export default function EmergencyClient() {
                                                 className="w-full bg-red-950/80 border border-red-700 rounded-xl px-4 py-3 text-white placeholder-red-400 focus:outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400 transition text-sm"
                                             />
                                         </div>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="emg-email" className="block text-xs font-bold text-red-200 uppercase tracking-wider mb-1.5">Email</label>
+                                        <input
+                                            id="emg-email"
+                                            type="email"
+                                            name="email"
+                                            autoComplete="email"
+                                            placeholder="email@example.com"
+                                            className="w-full bg-red-950/80 border border-red-700 rounded-xl px-4 py-3 text-white placeholder-red-400 focus:outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400 transition text-sm"
+                                        />
                                     </div>
 
                                     <div>
