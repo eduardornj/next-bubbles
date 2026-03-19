@@ -466,7 +466,7 @@ export default function MobileClient({ locale }: { locale: string }) {
             {/* Logo — updated to bubbles-logo.png */}
             <div className="flex justify-center mb-8">
               <Image
-                src="/bubbles-logo.png"
+                src="/logo-512.png"
                 alt="Bubbles Enterprise"
                 width={140}
                 height={0}
@@ -609,7 +609,7 @@ export default function MobileClient({ locale }: { locale: string }) {
                 {/* Logo with scale-in animation + glow */}
                 <div className="mb-6 animate-[fadeScaleIn_600ms_cubic-bezier(0.25,0.1,0.25,1)_both]">
                   <Image
-                    src="/bubbles-logo.png"
+                    src="/logo-512.png"
                     alt="Bubbles Enterprise"
                     width={160}
                     height={0}
