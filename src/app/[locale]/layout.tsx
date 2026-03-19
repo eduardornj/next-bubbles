@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { WebMCPProvider } from "@/components/WebMCPProvider";
 import Script from "next/script";
 import { Phone, MessageCircle } from "lucide-react";
+import { headers } from "next/headers";
 import "../globals.css";
 
 const inter = Inter({
@@ -84,6 +85,22 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+
+  // Detect /mobile route — strip all site chrome (header, footer, FABs)
+  const headersList = await headers();
+  const isMobile = headersList.get("x-is-mobile-app") === "1";
+
+  if (isMobile) {
+    return (
+      <html lang={locale} className={`${inter.variable} ${poppins.variable}`}>
+        <body className="antialiased">
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    );
+  }
 
   // WhatsApp message per locale
   const whatsappMessages: Record<string, string> = {
