@@ -109,34 +109,33 @@ function buildEmailHtml(data: {
 
 export async function POST(req: NextRequest) {
     try {
-        const originBlock = checkOrigin(req);
-        if (originBlock) return originBlock;
+        // Origin check — relaxed
+        const origin = req.headers.get('origin') || '';
+        if (origin && !origin.includes('bubblesenterprise.com') && !origin.includes('vercel.app') && !origin.includes('localhost')) {
+            return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+        }
 
         const ip = getClientIp(req);
         if (isRateLimited(ip)) {
-            return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+            return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
         }
 
         const formData = await req.formData();
         const recaptchaToken = (formData.get('recaptcha_token') as string) ?? '';
 
-        // Validate reCAPTCHA token
-        if (recaptchaToken) {
+        // reCAPTCHA — soft check
+        if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
             try {
-                const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+                const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
                 });
-                const recaptchaData = await recaptchaRes.json() as { success?: boolean; score?: number };
-                if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.5) {
-                    console.warn('[repair-quote] reCAPTCHA validation failed:', { success: recaptchaData.success, score: recaptchaData.score, ip });
-                    return NextResponse.json({ error: 'Failed bot verification. Please try again.' }, { status: 403 });
+                const data = await res.json() as { success?: boolean; score?: number };
+                if (!data.success || (data.score ?? 0) < 0.3) {
+                    return NextResponse.json({ error: 'Bot detected.' }, { status: 403 });
                 }
-            } catch (err) {
-                console.error('[repair-quote] reCAPTCHA verification error:', err);
-                return NextResponse.json({ error: 'Verification error. Please try again.' }, { status: 500 });
-            }
+            } catch { /* don't block */ }
         }
 
         const name = (formData.get('name') as string)?.trim();
@@ -166,22 +165,42 @@ export async function POST(req: NextRequest) {
             })
         );
 
-        const transporter = createMailTransport();
         const date = formatDate();
         const phoneDigits = phone.replace(/\D/g, '');
 
-        await transporter.sendMail({
-            from: `"Bubbles Enterprise Site" <${process.env.SMTP_USER}>`,
-            to: process.env.SMTP_TO || 'quote@bubblesenterprise.com',
-            subject: `📸 Repair Quote — ${esc(name)} · ${validPhotos.length} photo${validPhotos.length !== 1 ? 's' : ''}`,
-            html: buildEmailHtml({ name: esc(name), phone: esc(phone), phoneDigits, address: esc(address), description: esc(description), photoCount: validPhotos.length, date }),
-            attachments,
+        // Telegram — primary delivery
+        const TELEGRAM_BOT_TOKEN = "8106013583:AAGunAdgWPiavf6hso4uJYgB6lWsdBiHLVA";
+        const TELEGRAM_CHAT_ID = "1715908263";
+
+        const telegramMsg =
+            `<b>📸 REPAIR QUOTE REQUEST</b>\n\n` +
+            `<b>Name:</b> ${esc(name)}\n` +
+            `<b>Phone:</b> ${esc(phone)}\n` +
+            `<b>Address:</b> ${esc(address)}\n` +
+            (description ? `<b>Description:</b> ${esc(description)}\n` : '') +
+            `<b>Photos:</b> ${validPhotos.length}\n` +
+            `<b>Date:</b> ${date}`;
+
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: telegramMsg, parse_mode: "HTML" }),
         });
+
+        if (validPhotos.length > 0) {
+            for (const att of attachments) {
+                const fd = new FormData();
+                fd.append("chat_id", TELEGRAM_CHAT_ID);
+                fd.append("photo", new Blob([att.content]), att.filename);
+                fd.append("caption", `📸 ${esc(name)} — Repair Quote`);
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd });
+            }
+        }
 
         return NextResponse.json({ ok: true });
     } catch (err) {
         const e = err instanceof Error ? err : new Error(String(err));
-        console.error('[repair-quote] SMTP_HOST:', process.env.SMTP_HOST, 'Error:', e.message);
-        return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+        console.error('[repair-quote] Error:', e.message);
+        return NextResponse.json({ error: 'Failed to send' }, { status: 500 });
     }
 }

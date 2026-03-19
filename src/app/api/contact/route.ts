@@ -151,10 +151,38 @@ function buildEmailHtml(data: {
 
 export async function POST(req: NextRequest) {
     try {
-        // TODO: Re-enable security checks after testing
-        // Origin check, rate limiting, and reCAPTCHA temporarily disabled
+        // Origin check — relaxed
+        const origin = req.headers.get('origin') || '';
+        if (origin && !origin.includes('bubblesenterprise.com') && !origin.includes('vercel.app') && !origin.includes('localhost')) {
+            return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+        }
+
+        // Rate limiting
+        const ip = getClientIp(req);
+        if (isRateLimited(ip)) {
+            return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
+        }
 
         const formData = await req.formData();
+        const recaptchaToken = (formData.get('recaptcha_token') as string) ?? '';
+
+        // reCAPTCHA — soft check (don't block on failure)
+        if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
+            try {
+                const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+                });
+                const data = await res.json() as { success?: boolean; score?: number };
+                if (!data.success || (data.score ?? 0) < 0.3) {
+                    console.warn('[contact] reCAPTCHA blocked:', data);
+                    return NextResponse.json({ error: 'Bot detected.' }, { status: 403 });
+                }
+            } catch {
+                // reCAPTCHA failed but don't block the lead
+            }
+        }
 
         const firstName = (formData.get('firstName') as string)?.trim();
         const lastName = (formData.get('lastName') as string)?.trim() || '';
