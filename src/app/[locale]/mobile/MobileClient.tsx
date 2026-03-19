@@ -341,40 +341,79 @@ export default function MobileClient({ locale }: { locale: string }) {
     }
   }, [data, goTo]);
 
-  // ─── Desktop: QR / redirect screen ───────────────────────────
+  // ─── Desktop: Liquid Glass QR screen ──────────────────────────
   if (isDesktop) {
     return (
-      <div className="min-h-dvh flex flex-col items-center justify-center p-8 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]">
-        <div className="mb-8">
-          <Image
-            src="/logo-512.png"
-            alt="Bubbles Enterprise"
-            width={80}
-            height={80}
-            className="rounded-2xl"
-          />
+      <div className="min-h-dvh flex items-center justify-center p-8 bg-[#060a14] relative overflow-hidden">
+        {/* Animated background orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-bubble-primary/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: "4s" }} />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/15 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "6s", animationDelay: "1s" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-400/10 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: "5s", animationDelay: "2s" }} />
         </div>
-        <h1 className="text-2xl font-bold text-white mb-3 text-center font-[family-name:var(--font-heading)]">
-          {t.desktopTitle}
-        </h1>
-        <p className="text-slate-400 text-center max-w-md mb-8">{t.desktopSub}</p>
-        <div className="bg-white rounded-2xl p-6 mb-6">
-          {/* Simple text-based QR placeholder, no external dependency */}
-          <div className="w-48 h-48 flex items-center justify-center bg-slate-100 rounded-xl">
-            <div className="text-center px-4">
-              <Camera className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-              <p className="text-xs text-slate-500 font-medium leading-snug">
-                Scan with your phone camera
-              </p>
+
+        {/* Liquid glass card */}
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Glass container */}
+          <div className="backdrop-blur-2xl bg-white/[0.06] border border-white/[0.12] rounded-[2rem] p-10 shadow-[0_8px_64px_rgba(37,99,235,0.15),inset_0_1px_0_rgba(255,255,255,0.08)] max-w-md w-full">
+            {/* Logo */}
+            <div className="flex justify-center mb-8">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-bubble-primary to-bubble-dark flex items-center justify-center shadow-[0_4px_24px_rgba(37,99,235,0.4)]">
+                <Image
+                  src="/logo-512.png"
+                  alt="Bubbles Enterprise"
+                  width={64}
+                  height={64}
+                  className="rounded-xl"
+                />
+              </div>
             </div>
+
+            {/* Title */}
+            <h1 className="text-3xl font-bold text-white mb-2 text-center font-[family-name:var(--font-heading)]">
+              {t.desktopTitle}
+            </h1>
+            <p className="text-white/50 text-center mb-8 text-sm leading-relaxed max-w-xs mx-auto">
+              {t.desktopSub}
+            </p>
+
+            {/* QR Code — real QR using Google Charts API */}
+            <div className="flex justify-center mb-8">
+              <div className="bg-white rounded-2xl p-4 shadow-[0_4px_32px_rgba(37,99,235,0.2)]">
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://bubblesenterprise.com/mobile&bgcolor=ffffff&color=0f172a&margin=0"
+                  alt="QR Code — bubblesenterprise.com/mobile"
+                  width={200}
+                  height={200}
+                  className="rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Scan instruction */}
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="w-8 h-[1px] bg-white/20" />
+              <span className="text-white/40 text-xs uppercase tracking-widest font-medium">
+                {locale === "pt" ? "ou acesse" : locale === "es" ? "o visite" : "or visit"}
+              </span>
+              <div className="w-8 h-[1px] bg-white/20" />
+            </div>
+
+            {/* URL */}
+            <a
+              href="https://bubblesenterprise.com/mobile"
+              className="flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-bubble-primary/10 border border-bubble-primary/30 text-bubble-secondary font-semibold text-sm hover:bg-bubble-primary/20 hover:border-bubble-primary/50 transition-all duration-300"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><rect x="5" y="2" width="14" height="20" rx="2" /><circle cx="12" cy="18" r="1" /></svg>
+              bubblesenterprise.com/mobile
+            </a>
           </div>
+
+          {/* Subtle bottom text */}
+          <p className="mt-6 text-white/20 text-xs text-center">
+            Bubbles Enterprise Soffit &amp; Fascia
+          </p>
         </div>
-        <a
-          href="https://bubblesenterprise.com/mobile"
-          className="text-bubble-primary font-bold text-lg hover:underline"
-        >
-          bubblesenterprise.com/mobile
-        </a>
       </div>
     );
   }
