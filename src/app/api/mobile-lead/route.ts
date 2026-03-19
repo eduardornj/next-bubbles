@@ -11,8 +11,8 @@ import {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const TELEGRAM_BOT_TOKEN = "8106013583:AAGunAdgWPiavf6hso4uJYgB6lWsdBiHLVA";
-const TELEGRAM_CHAT_ID = "1715908263";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID!;
 
 // ── Telegram helpers ────────────────────────────────────────────
 async function sendTelegramMessage(text: string): Promise<void> {

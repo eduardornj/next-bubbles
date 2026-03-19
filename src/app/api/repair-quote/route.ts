@@ -170,8 +170,8 @@ export async function POST(req: NextRequest) {
         const phoneDigits = phone.replace(/\D/g, '');
 
         // Telegram — primary delivery
-        const TELEGRAM_BOT_TOKEN = "8106013583:AAGunAdgWPiavf6hso4uJYgB6lWsdBiHLVA";
-        const TELEGRAM_CHAT_ID = "1715908263";
+        const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
+        const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID!;
 
         const telegramMsg =
             `<b>📐 CALCULATOR QUOTE</b>\n\n` +
