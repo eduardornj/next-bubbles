@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, type ChangeEvent } from "react";
 import Image from "next/image";
-import { ArrowLeft, Camera, Check, ChevronRight, X } from "lucide-react";
+import { ArrowLeft, Camera, Check, ChevronRight, X, Wrench, Hammer, Building2, RefreshCw } from "lucide-react";
 
 // ─── i18n content ───────────────────────────────────────────────
 type Locale = "en" | "es" | "pt";
@@ -488,320 +488,367 @@ export default function MobileClient({ locale }: { locale: string }) {
       : "animate-[slideInLeft_300ms_ease-out_both]";
 
   return (
-    <div className="min-h-dvh flex flex-col bg-gradient-to-b from-[#0f172a] via-[#131c31] to-[#0f172a]">
-      {/* Progress bar */}
-      {step < 5 && (
-        <div className="px-6 pt-4 pb-2">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-500 font-medium">
-              {t.step} {visualStep} {t.of} {totalSteps}
-            </span>
-          </div>
-          <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-bubble-primary rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${(visualStep / totalSteps) * 100}%` }}
-            />
-          </div>
-        </div>
-      )}
+    <div className="min-h-dvh flex flex-col bg-[#060a14] relative overflow-hidden">
+      {/* Subtle ambient orbs */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-bubble-primary/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-400/5 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Content area */}
-      <div className="flex-1 flex flex-col px-6 pb-8" key={step}>
-        <div className={animClass}>
-          {/* ═══ STEP 1: Welcome ═══ */}
-          {step === 1 && (
-            <div className="flex-1 flex flex-col items-center justify-center min-h-[70dvh]">
-              <div className="mb-8">
-                <Image
-                  src="/logo-512.png"
-                  alt="Bubbles Enterprise"
-                  width={64}
-                  height={64}
-                  className="rounded-xl mx-auto"
-                  priority
-                />
-              </div>
-              <h1 className="text-2xl font-bold text-white text-center mb-2 font-[family-name:var(--font-heading)]">
-                {t.whatDoYouNeed}
-              </h1>
-              <p className="text-slate-400 text-sm text-center mb-10">
-                Soffit & Fascia Services
-              </p>
-              <div className="w-full max-w-sm space-y-4">
-                <button
-                  type="button"
-                  onClick={() => handleServiceType("repair")}
-                  className="w-full h-14 bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold rounded-xl border border-slate-700 transition-all duration-200 flex items-center justify-between px-6"
-                >
-                  <span>{t.repair}</span>
-                  <ChevronRight className="w-5 h-5 text-slate-500" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleServiceType("installation")}
-                  className="w-full h-14 bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold rounded-xl border border-slate-700 transition-all duration-200 flex items-center justify-between px-6"
-                >
-                  <span>{t.installation}</span>
-                  <ChevronRight className="w-5 h-5 text-slate-500" />
-                </button>
-              </div>
+      {/* Content with relative z */}
+      <div className="relative z-10 flex-1 flex flex-col">
+        {/* Progress bar */}
+        {step < 5 && (
+          <div className="px-6 pt-4 pb-2">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-white/30 font-medium tracking-wide">
+                {t.step} {visualStep} {t.of} {totalSteps}
+              </span>
             </div>
-          )}
-
-          {/* ═══ STEP 2a: Repair subtype ═══ */}
-          {step === 2 && data.type === "repair" && (
-            <div className="flex-1 flex flex-col min-h-[70dvh]">
-              <BackButton label={t.back} onClick={() => goTo(1, "backward")} />
-              <div className="flex-1 flex flex-col items-center justify-center">
-                <h2 className="text-xl font-bold text-white text-center mb-8 font-[family-name:var(--font-heading)]">
-                  {t.whatNeedsRepair}
-                </h2>
-                <div className="w-full max-w-sm space-y-4">
-                  {(["soffit", "fascia", "soffit-and-fascia"] as RepairSubtype[]).map((sub) => (
-                    <button
-                      key={sub}
-                      type="button"
-                      onClick={() => handleRepairSubtype(sub)}
-                      className="w-full h-14 bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold rounded-xl border border-slate-700 transition-all duration-200 flex items-center justify-between px-6"
-                    >
-                      <span>
-                        {sub === "soffit" ? t.soffit : sub === "fascia" ? t.fascia : t.soffitAndFascia}
-                      </span>
-                      <ChevronRight className="w-5 h-5 text-slate-500" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ═══ STEP 2b: Installation subtype ═══ */}
-          {step === 2 && data.type === "installation" && (
-            <div className="flex-1 flex flex-col min-h-[70dvh]">
-              <BackButton label={t.back} onClick={() => goTo(1, "backward")} />
-              <div className="flex-1 flex flex-col items-center justify-center">
-                <h2 className="text-xl font-bold text-white text-center mb-8 font-[family-name:var(--font-heading)]">
-                  {t.projectType}
-                </h2>
-                <div className="w-full max-w-sm space-y-4">
-                  <button
-                    type="button"
-                    onClick={() => handleInstallSubtype("new-construction")}
-                    className="w-full h-14 bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold rounded-xl border border-slate-700 transition-all duration-200 flex items-center justify-between px-6"
-                  >
-                    <span>{t.newConstruction}</span>
-                    <ChevronRight className="w-5 h-5 text-slate-500" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleInstallSubtype("renovation")}
-                    className="w-full h-14 bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold rounded-xl border border-slate-700 transition-all duration-200 flex items-center justify-between px-6"
-                  >
-                    <span>{t.renovation}</span>
-                    <ChevronRight className="w-5 h-5 text-slate-500" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ═══ STEP 3: Photos ═══ */}
-          {step === 3 && (
-            <div className="flex-1 flex flex-col min-h-[70dvh]">
-              <BackButton label={t.back} onClick={() => goTo(2, "backward")} />
-              <div className="flex-1 flex flex-col items-center justify-center py-8">
-                {data.type === "repair" ? (
-                  <>
-                    <h2 className="text-xl font-bold text-white text-center mb-2 font-[family-name:var(--font-heading)]">
-                      {t.take3Photos}
-                    </h2>
-                    <p className="text-slate-400 text-sm text-center mb-8">
-                      {t.photoInstructions}
-                    </p>
-                    <div className="grid grid-cols-3 gap-3 w-full max-w-sm mb-6">
-                      {[0, 1, 2].map((i) => (
-                        <PhotoSlot
-                          key={i}
-                          index={i}
-                          preview={data.previews[i]}
-                          label={`${t.photoSlotLabel} ${i + 1}`}
-                          fileRef={(el) => { fileRefs.current[i] = el; }}
-                          onSelect={(e) => handlePhotoSelect(i, e)}
-                          onRemove={() => removePhoto(i)}
-                        />
-                      ))}
-                    </div>
-                    {/* Optional extra photos / video */}
-                    {data.photos.filter(Boolean).length >= 3 && (
-                      <div className="w-full max-w-sm space-y-3">
-                        {[3, 4].map((i) =>
-                          data.previews[i] ? (
-                            <div key={i} className="flex items-center gap-3 bg-slate-800/60 rounded-xl p-3 border border-slate-700">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={data.previews[i]} alt={`Extra ${i - 2}`} className="w-12 h-12 rounded-lg object-cover" />
-                              <span className="text-sm text-slate-300 flex-1 truncate">{data.photos[i]?.name}</span>
-                              <button type="button" onClick={() => removePhoto(i)} className="p-1 text-slate-500 hover:text-red-400">
-                                <X className="w-4 h-4" />
-                              </button>
-                            </div>
-                          ) : (
-                            <label key={i} className="flex items-center gap-3 bg-slate-800/40 rounded-xl p-3 border border-dashed border-slate-700 cursor-pointer hover:border-slate-500 transition-colors">
-                              <Camera className="w-5 h-5 text-slate-500" />
-                              <span className="text-sm text-slate-400">
-                                {i === 4 ? t.addVideo : `${t.photoSlotLabel} ${i + 1} (${t.optional})`}
-                              </span>
-                              <input
-                                type="file"
-                                accept={i === 4 ? "image/*,video/*" : "image/*,video/*"}
-                                capture="environment"
-                                className="hidden"
-                                ref={(el) => { fileRefs.current[i] = el; }}
-                                onChange={(e) => handlePhotoSelect(i, e)}
-                              />
-                            </label>
-                          )
-                        )}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <h2 className="text-xl font-bold text-white text-center mb-2 font-[family-name:var(--font-heading)]">
-                      {t.take1Photo}
-                    </h2>
-                    <p className="text-slate-400 text-sm text-center mb-8">
-                      {t.take1PhotoSub}
-                    </p>
-                    <div className="w-full max-w-[200px] mb-6">
-                      <PhotoSlot
-                        index={0}
-                        preview={data.previews[0]}
-                        label={t.photoSlotLabel}
-                        fileRef={(el) => { fileRefs.current[0] = el; }}
-                        onSelect={(e) => handlePhotoSelect(0, e)}
-                        onRemove={() => removePhoto(0)}
-                      />
-                    </div>
-                  </>
-                )}
-
-                {/* Next button */}
-                <div className="w-full max-w-sm mt-6">
-                  <button
-                    type="button"
-                    disabled={data.photos.filter(Boolean).length < getRequiredPhotoCount(data)}
-                    onClick={() => goTo(4, "forward")}
-                    className="w-full h-14 bg-bubble-primary hover:bg-bubble-dark active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100 text-white font-bold rounded-xl transition-all duration-200"
-                  >
-                    {t.next}
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ═══ STEP 4: Contact info ═══ */}
-          {step === 4 && (
-            <div className="flex-1 flex flex-col min-h-[70dvh]">
-              <BackButton
-                label={t.back}
-                onClick={() => {
-                  if (data.type === "installation" && data.subtype === "new-construction") {
-                    goTo(2, "backward");
-                  } else {
-                    goTo(3, "backward");
-                  }
-                }}
+            <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-bubble-primary to-cyan-400 transition-all duration-500 ease-out shadow-[0_0_8px_rgba(37,99,235,0.5)]"
+                style={{ width: `${(visualStep / totalSteps) * 100}%` }}
               />
-              <div className="flex-1 flex flex-col justify-center py-8">
-                <h2 className="text-xl font-bold text-white text-center mb-8 font-[family-name:var(--font-heading)]">
-                  {t.yourInfo}
-                </h2>
-                <div className="w-full max-w-sm mx-auto space-y-4">
-                  <FormInput
-                    label={t.name}
-                    type="text"
-                    placeholder={t.namePlaceholder}
-                    value={data.name}
-                    required
-                    autoComplete="name"
-                    onChange={(v) => setData((prev) => ({ ...prev, name: v }))}
-                  />
-                  <FormInput
-                    label={t.email}
-                    type="email"
-                    placeholder={t.emailPlaceholder}
-                    value={data.email}
-                    required
-                    autoComplete="email"
-                    onChange={(v) => setData((prev) => ({ ...prev, email: v }))}
-                  />
-                  <FormInput
-                    label={t.phone}
-                    type="tel"
-                    placeholder={t.phonePlaceholder}
-                    value={data.phone}
-                    required
-                    autoComplete="tel"
-                    onChange={(v) => setData((prev) => ({ ...prev, phone: v }))}
-                  />
-                  <FormInput
-                    label={t.address}
-                    type="text"
-                    placeholder={t.addressPlaceholder}
-                    value={data.address}
-                    required
-                    autoComplete="street-address"
-                    onChange={(v) => setData((prev) => ({ ...prev, address: v }))}
-                  />
+            </div>
+          </div>
+        )}
 
-                  {status === "error" && (
-                    <p role="alert" className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-xl px-4 py-3 text-center">
-                      {t.errorGeneric}
-                    </p>
+        {/* Content area */}
+        <div className="flex-1 flex flex-col px-6 pb-8" key={step}>
+          <div className={animClass}>
+            {/* ═══ STEP 1: Welcome ═══ */}
+            {step === 1 && (
+              <div className="flex-1 flex flex-col items-center justify-center min-h-[70dvh]">
+                <div className="mb-8">
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(37,99,235,0.4)] ring-2 ring-white/10 mx-auto">
+                    <Image
+                      src="/logo-512.png"
+                      alt="Bubbles Enterprise"
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+                <h1 className="text-3xl font-bold text-center mb-2 font-[family-name:var(--font-heading)] tracking-tight bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                  {t.whatDoYouNeed}
+                </h1>
+                <p className="text-white/40 text-sm text-center mb-10 font-medium">
+                  Soffit & Fascia Services
+                </p>
+                <div className="w-full max-w-sm space-y-4">
+                  <button
+                    type="button"
+                    onClick={() => handleServiceType("repair")}
+                    className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Wrench className="w-5 h-5 text-white/40" />
+                      <span>{t.repair}</span>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-white/25" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleServiceType("installation")}
+                    className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Hammer className="w-5 h-5 text-white/40" />
+                      <span>{t.installation}</span>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-white/25" />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ═══ STEP 2a: Repair subtype ═══ */}
+            {step === 2 && data.type === "repair" && (
+              <div className="flex-1 flex flex-col min-h-[70dvh]">
+                <BackButton label={t.back} onClick={() => goTo(1, "backward")} />
+                <div className="flex-1 flex flex-col items-center justify-center">
+                  <h2 className="text-xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                    {t.whatNeedsRepair}
+                  </h2>
+                  <div className="w-full max-w-sm space-y-4">
+                    {(["soffit", "fascia", "soffit-and-fascia"] as RepairSubtype[]).map((sub) => {
+                      const icons: Record<RepairSubtype, React.ReactNode> = {
+                        soffit: <svg className="w-5 h-5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><path d="M4 10h16" /></svg>,
+                        fascia: <svg className="w-5 h-5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><rect x="3" y="8" width="18" height="3" rx="0.5" /><path d="M3 21h18M4 21V11M20 21V11M12 3l9 5M12 3L3 8" /></svg>,
+                        "soffit-and-fascia": <svg className="w-5 h-5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><rect x="3" y="8" width="18" height="3" rx="0.5" /></svg>,
+                      };
+                      return (
+                        <button
+                          key={sub}
+                          type="button"
+                          onClick={() => handleRepairSubtype(sub)}
+                          className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                        >
+                          <div className="flex items-center gap-3">
+                            {icons[sub]}
+                            <span>
+                              {sub === "soffit" ? t.soffit : sub === "fascia" ? t.fascia : t.soffitAndFascia}
+                            </span>
+                          </div>
+                          <ChevronRight className="w-5 h-5 text-white/25" />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ═══ STEP 2b: Installation subtype ═══ */}
+            {step === 2 && data.type === "installation" && (
+              <div className="flex-1 flex flex-col min-h-[70dvh]">
+                <BackButton label={t.back} onClick={() => goTo(1, "backward")} />
+                <div className="flex-1 flex flex-col items-center justify-center">
+                  <h2 className="text-xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                    {t.projectType}
+                  </h2>
+                  <div className="w-full max-w-sm space-y-4">
+                    <button
+                      type="button"
+                      onClick={() => handleInstallSubtype("new-construction")}
+                      className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Building2 className="w-5 h-5 text-white/40" />
+                        <span>{t.newConstruction}</span>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-white/25" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleInstallSubtype("renovation")}
+                      className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <RefreshCw className="w-5 h-5 text-white/40" />
+                        <span>{t.renovation}</span>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-white/25" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ═══ STEP 3: Photos ═══ */}
+            {step === 3 && (
+              <div className="flex-1 flex flex-col min-h-[70dvh]">
+                <BackButton label={t.back} onClick={() => goTo(2, "backward")} />
+                <div className="flex-1 flex flex-col items-center justify-center py-8">
+                  {data.type === "repair" ? (
+                    <>
+                      <h2 className="text-xl font-bold text-center mb-2 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                        {t.take3Photos}
+                      </h2>
+                      <p className="text-white/35 text-sm text-center mb-8">
+                        {t.photoInstructions}
+                      </p>
+                      <div className="grid grid-cols-3 gap-3 w-full max-w-sm mb-6">
+                        {[0, 1, 2].map((i) => (
+                          <PhotoSlot
+                            key={i}
+                            index={i}
+                            preview={data.previews[i]}
+                            label={`${t.photoSlotLabel} ${i + 1}`}
+                            fileRef={(el) => { fileRefs.current[i] = el; }}
+                            onSelect={(e) => handlePhotoSelect(i, e)}
+                            onRemove={() => removePhoto(i)}
+                          />
+                        ))}
+                      </div>
+                      {/* Optional extra photos / video */}
+                      {data.photos.filter(Boolean).length >= 3 && (
+                        <div className="w-full max-w-sm space-y-3">
+                          {[3, 4].map((i) =>
+                            data.previews[i] ? (
+                              <div key={i} className="flex items-center gap-3 bg-white/[0.04] rounded-xl p-3 border border-white/[0.1]">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={data.previews[i]} alt={`Extra ${i - 2}`} className="w-12 h-12 rounded-lg object-cover" />
+                                <span className="text-sm text-white/60 flex-1 truncate">{data.photos[i]?.name}</span>
+                                <button type="button" onClick={() => removePhoto(i)} className="p-1 text-white/30 hover:text-red-400 transition-colors">
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            ) : (
+                              <label key={i} className="flex items-center gap-3 bg-white/[0.03] rounded-xl p-3 border border-dashed border-white/[0.1] cursor-pointer hover:border-white/[0.2] hover:bg-white/[0.05] transition-all">
+                                <Camera className="w-5 h-5 text-white/30" />
+                                <span className="text-sm text-white/35">
+                                  {i === 4 ? t.addVideo : `${t.photoSlotLabel} ${i + 1} (${t.optional})`}
+                                </span>
+                                <input
+                                  type="file"
+                                  accept={i === 4 ? "image/*,video/*" : "image/*,video/*"}
+                                  capture="environment"
+                                  className="hidden"
+                                  ref={(el) => { fileRefs.current[i] = el; }}
+                                  onChange={(e) => handlePhotoSelect(i, e)}
+                                />
+                              </label>
+                            )
+                          )}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="text-xl font-bold text-center mb-2 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                        {t.take1Photo}
+                      </h2>
+                      <p className="text-white/35 text-sm text-center mb-8">
+                        {t.take1PhotoSub}
+                      </p>
+                      <div className="w-full max-w-[200px] mb-6">
+                        <PhotoSlot
+                          index={0}
+                          preview={data.previews[0]}
+                          label={t.photoSlotLabel}
+                          fileRef={(el) => { fileRefs.current[0] = el; }}
+                          onSelect={(e) => handlePhotoSelect(0, e)}
+                          onRemove={() => removePhoto(0)}
+                        />
+                      </div>
+                    </>
                   )}
 
-                  <button
-                    type="button"
-                    disabled={status === "sending" || !data.name || !data.email || !data.phone || !data.address}
-                    onClick={handleSubmit}
-                    className="w-full h-14 bg-bubble-primary hover:bg-bubble-dark active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100 text-white font-bold rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
-                  >
-                    {status === "sending" ? (
-                      <>
-                        <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        {t.sending}
-                      </>
-                    ) : (
-                      t.submit
-                    )}
-                  </button>
+                  {/* Next button */}
+                  <div className="w-full max-w-sm mt-6">
+                    <button
+                      type="button"
+                      disabled={data.photos.filter(Boolean).length < getRequiredPhotoCount(data)}
+                      onClick={() => goTo(4, "forward")}
+                      className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 hover:from-bubble-dark hover:to-bubble-primary active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 text-white font-bold rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(37,99,235,0.4)]"
+                    >
+                      {t.next}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* ═══ STEP 5: Success ═══ */}
-          {step === 5 && (
-            <div className="flex-1 flex flex-col items-center justify-center min-h-[80dvh]">
-              <div className="w-20 h-20 bg-green-500/20 border-4 border-green-500 rounded-full flex items-center justify-center mb-6 animate-[scaleIn_500ms_cubic-bezier(0.34,1.56,0.64,1)_both]">
-                <Check className="w-10 h-10 text-green-400" />
+            {/* ═══ STEP 4: Contact info ═══ */}
+            {step === 4 && (
+              <div className="flex-1 flex flex-col min-h-[70dvh]">
+                <BackButton
+                  label={t.back}
+                  onClick={() => {
+                    if (data.type === "installation" && data.subtype === "new-construction") {
+                      goTo(2, "backward");
+                    } else {
+                      goTo(3, "backward");
+                    }
+                  }}
+                />
+                <div className="flex-1 flex flex-col justify-center py-8">
+                  <h2 className="text-xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                    {t.yourInfo}
+                  </h2>
+                  <div className="w-full max-w-sm mx-auto space-y-4">
+                    <FormInput
+                      label={t.name}
+                      type="text"
+                      placeholder={t.namePlaceholder}
+                      value={data.name}
+                      required
+                      autoComplete="name"
+                      onChange={(v) => setData((prev) => ({ ...prev, name: v }))}
+                    />
+                    <FormInput
+                      label={t.email}
+                      type="email"
+                      placeholder={t.emailPlaceholder}
+                      value={data.email}
+                      required
+                      autoComplete="email"
+                      onChange={(v) => setData((prev) => ({ ...prev, email: v }))}
+                    />
+                    <FormInput
+                      label={t.phone}
+                      type="tel"
+                      placeholder={t.phonePlaceholder}
+                      value={data.phone}
+                      required
+                      autoComplete="tel"
+                      onChange={(v) => setData((prev) => ({ ...prev, phone: v }))}
+                    />
+                    <FormInput
+                      label={t.address}
+                      type="text"
+                      placeholder={t.addressPlaceholder}
+                      value={data.address}
+                      required
+                      autoComplete="street-address"
+                      onChange={(v) => setData((prev) => ({ ...prev, address: v }))}
+                    />
+
+                    {status === "error" && (
+                      <p role="alert" className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-xl px-4 py-3 text-center">
+                        {t.errorGeneric}
+                      </p>
+                    )}
+
+                    <button
+                      type="button"
+                      disabled={status === "sending" || !data.name || !data.email || !data.phone || !data.address}
+                      onClick={handleSubmit}
+                      className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 hover:from-bubble-dark hover:to-bubble-primary active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 text-white font-bold rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2"
+                    >
+                      {status === "sending" ? (
+                        <>
+                          <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          {t.sending}
+                        </>
+                      ) : (
+                        t.submit
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
-              <h2 className="text-2xl font-bold text-white text-center mb-3 font-[family-name:var(--font-heading)]">
-                {t.successTitle}
-              </h2>
-              <p className="text-slate-400 text-center max-w-xs mb-10">
-                {t.successSub}
-              </p>
-              <a
-                href={locale === "en" ? "/" : `/${locale}`}
-                className="text-sm text-slate-500 hover:text-slate-300 underline underline-offset-4 transition-colors"
-              >
-                {t.backToWebsite}
-              </a>
-            </div>
-          )}
+            )}
+
+            {/* ═══ STEP 5: Success ═══ */}
+            {step === 5 && (
+              <div className="flex-1 flex flex-col items-center justify-center min-h-[80dvh] relative">
+                {/* Mini sparkle particles */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white/30 rounded-full animate-[sparkle_3s_ease-in-out_infinite]"
+                      style={{
+                        top: `${15 + (i * 9) % 70}%`,
+                        left: `${10 + (i * 13) % 80}%`,
+                        animationDelay: `${i * 0.35}s`,
+                        animationDuration: `${2.5 + (i % 3)}s`,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <div className="w-24 h-24 bg-green-500/15 border-2 border-green-400/50 rounded-full flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(34,197,94,0.2)] animate-[scaleIn_500ms_cubic-bezier(0.34,1.56,0.64,1)_both]">
+                  <Check className="w-12 h-12 text-green-400" />
+                </div>
+                <h2 className="text-2xl font-bold text-center mb-3 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                  {t.successTitle}
+                </h2>
+                <p className="text-white/40 text-center max-w-xs mb-10">
+                  {t.successSub}
+                </p>
+                <a
+                  href={locale === "en" ? "/" : `/${locale}`}
+                  className="text-sm text-white/30 hover:text-white/60 underline underline-offset-4 transition-colors"
+                >
+                  {t.backToWebsite}
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -819,10 +866,15 @@ export default function MobileClient({ locale }: { locale: string }) {
           from { opacity: 0; transform: scale(0.5); }
           to { opacity: 1; transform: scale(1); }
         }
+        @keyframes sparkle {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          50% { opacity: 1; transform: scale(1); }
+        }
         @media (prefers-reduced-motion: reduce) {
           @keyframes slideInRight { from, to { opacity: 1; transform: none; } }
           @keyframes slideInLeft { from, to { opacity: 1; transform: none; } }
           @keyframes scaleIn { from, to { opacity: 1; transform: none; } }
+          @keyframes sparkle { from, to { opacity: 0.5; transform: scale(1); } }
         }
       `}</style>
     </div>
@@ -835,10 +887,10 @@ function BackButton({ label, onClick }: { label: string; onClick: () => void }) 
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-1.5 text-slate-400 hover:text-white py-3 -ml-1 self-start transition-colors"
+      className="flex items-center gap-1.5 text-white/40 hover:text-white/70 py-3 -ml-1 self-start transition-colors"
       aria-label={label}
     >
-      <ArrowLeft className="w-5 h-5" />
+      <ArrowLeft className="w-4 h-4" />
       <span className="text-sm font-medium">{label}</span>
     </button>
   );
@@ -867,7 +919,7 @@ function PhotoSlot({
           <img
             src={preview}
             alt={`${label} ${index + 1}`}
-            className="w-full h-full object-cover rounded-xl border-2 border-green-500/50"
+            className="w-full h-full object-cover rounded-2xl border-2 border-green-400/40 shadow-[0_4px_16px_rgba(34,197,94,0.15)]"
           />
           <button
             type="button"
@@ -879,9 +931,11 @@ function PhotoSlot({
           </button>
         </>
       ) : (
-        <label className="w-full h-full flex flex-col items-center justify-center bg-slate-800 border-2 border-dashed border-slate-600 rounded-xl cursor-pointer hover:border-slate-400 active:scale-95 transition-all">
-          <Camera className="w-7 h-7 text-slate-500 mb-1" />
-          <span className="text-[11px] text-slate-500 font-medium">{label}</span>
+        <label className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-white/15 bg-white/[0.04] cursor-pointer active:scale-95 transition-all overflow-hidden group">
+          {/* Gradient border glow on hover */}
+          <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-bubble-primary/20 to-cyan-400/10" />
+          <Camera className="relative z-10 w-8 h-8 text-white/25 mb-1 group-hover:text-white/40 transition-colors" />
+          <span className="relative z-10 text-[11px] text-white/30 font-medium group-hover:text-white/45 transition-colors">{label}</span>
           <input
             type="file"
             accept="image/*,video/*"
@@ -916,7 +970,7 @@ function FormInput({
   const id = `mobile-${label.toLowerCase().replace(/\s+/g, "-")}`;
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-slate-300 mb-1.5">
+      <label htmlFor={id} className="block text-[11px] font-medium text-white/40 mb-1.5 uppercase tracking-wider">
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <input
@@ -927,7 +981,7 @@ function FormInput({
         required={required}
         autoComplete={autoComplete}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full h-14 px-4 bg-slate-800 text-white placeholder:text-slate-500 border border-slate-600 rounded-xl focus:ring-2 focus:ring-bubble-primary focus:border-bubble-primary outline-none transition-all"
+        className="w-full h-14 px-4 bg-white/[0.06] text-white placeholder:text-white/25 border border-white/[0.12] rounded-xl focus:border-bubble-primary/50 focus:bg-white/[0.08] focus:ring-1 focus:ring-bubble-primary/30 outline-none transition-all"
       />
     </div>
   );
