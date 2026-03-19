@@ -149,8 +149,12 @@ function buildEmailHtml(d: {
 // ── Main handler ────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
   try {
-    const originBlock = checkOrigin(req);
-    if (originBlock) return originBlock;
+    // Origin check — allow bubblesenterprise.com + Vercel previews
+    const origin = req.headers.get("origin") || "";
+    const isAllowed = origin.includes("bubblesenterprise.com") || origin.includes("vercel.app") || origin.includes("localhost");
+    if (origin && !isAllowed) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
     const ip = getClientIp(req);
     if (isRateLimited(ip)) {
@@ -160,8 +164,8 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const recaptchaToken = (formData.get("recaptchaToken") as string) ?? "";
 
-    // Validate reCAPTCHA
-    if (recaptchaToken) {
+    // Validate reCAPTCHA — soft check (log but don't block on failure)
+    if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
       try {
         const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
           method: "POST",
@@ -169,11 +173,14 @@ export async function POST(req: NextRequest) {
           body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
         });
         const recaptchaData = (await recaptchaRes.json()) as { success?: boolean; score?: number };
-        if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.5) {
+        if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.3) {
+          // Only block very suspicious requests (score < 0.3 instead of 0.5)
+          console.warn("[mobile-lead] reCAPTCHA low score:", recaptchaData.score);
           return NextResponse.json({ error: "Bot verification failed." }, { status: 403 });
         }
-      } catch {
-        return NextResponse.json({ error: "Verification error." }, { status: 500 });
+      } catch (e) {
+        // reCAPTCHA failed but don't block the lead
+        console.warn("[mobile-lead] reCAPTCHA check failed, continuing:", e);
       }
     }
 
