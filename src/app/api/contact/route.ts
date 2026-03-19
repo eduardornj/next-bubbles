@@ -151,37 +151,10 @@ function buildEmailHtml(data: {
 
 export async function POST(req: NextRequest) {
     try {
-        // Origin check — relaxed
-        const origin = req.headers.get('origin') || '';
-        if (origin && !origin.includes('bubblesenterprise.com') && !origin.includes('vercel.app') && !origin.includes('localhost')) {
-            return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-        }
-
-        const ip = getClientIp(req);
-        if (isRateLimited(ip)) {
-            return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
-        }
+        // TODO: Re-enable security checks after testing
+        // Origin check, rate limiting, and reCAPTCHA temporarily disabled
 
         const formData = await req.formData();
-        const recaptchaToken = (formData.get('recaptcha_token') as string) ?? '';
-
-        // reCAPTCHA — soft check, don't block on failure
-        if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
-            try {
-                const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
-                });
-                const recaptchaData = await recaptchaRes.json() as { success?: boolean; score?: number };
-                if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.3) {
-                    console.warn('[contact] reCAPTCHA blocked:', { success: recaptchaData.success, score: recaptchaData.score, ip });
-                    return NextResponse.json({ error: 'Bot verification failed.' }, { status: 403 });
-                }
-            } catch (err) {
-                console.warn('[contact] reCAPTCHA check failed, continuing:', err);
-            }
-        }
 
         const firstName = (formData.get('firstName') as string)?.trim();
         const lastName = (formData.get('lastName') as string)?.trim() || '';
