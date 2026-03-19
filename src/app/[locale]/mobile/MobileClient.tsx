@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, type ChangeEvent } from "react";
 import Image from "next/image";
-import { ArrowLeft, Camera, Check, ChevronRight, X, Wrench, Hammer, Building2, RefreshCw } from "lucide-react";
+import { ArrowLeft, Camera, Check, X, Wrench, Hammer, Building2, RefreshCw } from "lucide-react";
 
 // ─── i18n content ───────────────────────────────────────────────
 type Locale = "en" | "es" | "pt";
@@ -220,6 +220,17 @@ function getVisualStep(step: Step, data: FormData): number {
   return step;
 }
 
+const haptic = () => {
+  if (typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate(10);
+};
+
+const hapticSuccess = () => {
+  if (typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate([50, 30, 100]);
+};
+
+// ─── Confetti colors ────────────────────────────────────────────
+const CONFETTI_COLORS = ["#2563EB", "#06B6D4", "#22C55E", "#A855F7", "#EAB308"];
+
 // ─── Main Component ─────────────────────────────────────────────
 export default function MobileClient({ locale }: { locale: string }) {
   const t = content[(locale as Locale) in content ? (locale as Locale) : "en"];
@@ -239,6 +250,8 @@ export default function MobileClient({ locale }: { locale: string }) {
 
   const fileRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
+  const touchStartX = useRef(0);
+  const [errorToast, setErrorToast] = useState(false);
 
   // Desktop detection
   useEffect(() => {
@@ -257,19 +270,29 @@ export default function MobileClient({ locale }: { locale: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Auto-dismiss error toast
+  useEffect(() => {
+    if (!errorToast) return;
+    const timer = setTimeout(() => setErrorToast(false), 4000);
+    return () => clearTimeout(timer);
+  }, [errorToast]);
+
   const goTo = useCallback((nextStep: Step, dir: "forward" | "backward" = "forward") => {
     setDirection(dir);
     setStep(nextStep);
+    haptic();
   }, []);
 
   const handleServiceType = useCallback((type: ServiceType) => {
     setData((prev) => ({ ...prev, type, subtype: null, photos: [], previews: [] }));
     goTo(2, "forward");
+    haptic();
   }, [goTo]);
 
   const handleRepairSubtype = useCallback((subtype: RepairSubtype) => {
     setData((prev) => ({ ...prev, subtype }));
     goTo(3, "forward");
+    haptic();
   }, [goTo]);
 
   const handleInstallSubtype = useCallback((subtype: InstallSubtype) => {
@@ -279,6 +302,7 @@ export default function MobileClient({ locale }: { locale: string }) {
     } else {
       goTo(3, "forward");
     }
+    haptic();
   }, [goTo]);
 
   const handlePhotoSelect = useCallback((index: number, e: ChangeEvent<HTMLInputElement>) => {
@@ -328,6 +352,7 @@ export default function MobileClient({ locale }: { locale: string }) {
 
       setStatus("success");
       goTo(5, "forward");
+      hapticSuccess();
 
       // Analytics
       if (typeof (window as Window & { gtag?: (...args: unknown[]) => void }).gtag === "function") {
@@ -338,8 +363,31 @@ export default function MobileClient({ locale }: { locale: string }) {
       }
     } catch {
       setStatus("error");
+      setErrorToast(true);
     }
   }, [data, goTo]);
+
+  // Swipe-to-go-back gesture
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const diff = e.changedTouches[0].clientX - touchStartX.current;
+    if (diff > 80 && step > 1 && step < 5) {
+      if (step === 2) {
+        goTo(1, "backward");
+      } else if (step === 3) {
+        goTo(2, "backward");
+      } else if (step === 4) {
+        if (data.type === "installation" && data.subtype === "new-construction") {
+          goTo(2, "backward");
+        } else {
+          goTo(3, "backward");
+        }
+      }
+    }
+  }, [step, data.type, data.subtype, goTo]);
 
   // ─── Desktop: Liquid Glass QR screen ──────────────────────────
   if (isDesktop) {
@@ -478,87 +526,104 @@ export default function MobileClient({ locale }: { locale: string }) {
     );
   }
 
-  // ─── Mobile: multi-step form ──────────────────────────────────
+  // ─── Mobile: native app multi-step form ─────────────────────────
   const totalSteps = getStepCount(data);
   const visualStep = getVisualStep(step, data);
 
   const animClass =
     direction === "forward"
-      ? "animate-[slideInRight_300ms_ease-out_both]"
-      : "animate-[slideInLeft_300ms_ease-out_both]";
+      ? "animate-[slideInFromRight_250ms_cubic-bezier(0.25,0.1,0.25,1)_both]"
+      : "animate-[slideInFromLeft_250ms_cubic-bezier(0.25,0.1,0.25,1)_both]";
 
   return (
-    <div className="min-h-dvh flex flex-col bg-[#060a14] relative overflow-hidden">
-      {/* Subtle ambient orbs */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-bubble-primary/8 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-400/5 rounded-full blur-[100px] pointer-events-none" />
+    <div
+      className="min-h-dvh flex flex-col bg-[#040810] relative overflow-hidden"
+      style={{ paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)" }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Ambient orbs */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-bubble-primary/[0.06] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-400/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Content with relative z */}
+      {/* Content layer */}
       <div className="relative z-10 flex-1 flex flex-col">
-        {/* Progress dots — app style, no text */}
+        {/* Progress dots (steps 2-4 only) */}
         {step > 1 && step < 5 && (
-          <div className="flex items-center justify-center gap-2 pt-4 pb-1">
+          <div
+            className="flex items-center justify-center gap-2 pt-2 pb-1"
+            style={{ paddingTop: "max(8px, env(safe-area-inset-top))" }}
+          >
             {Array.from({ length: totalSteps }, (_, i) => (
               <div
                 key={i}
                 className={`rounded-full transition-all duration-300 ${
                   i + 1 === visualStep
-                    ? "w-6 h-2 bg-gradient-to-r from-bubble-primary to-cyan-400 shadow-[0_0_8px_rgba(37,99,235,0.5)]"
+                    ? "w-6 h-1.5 bg-gradient-to-r from-bubble-primary to-cyan-400"
                     : i + 1 < visualStep
-                    ? "w-2 h-2 bg-bubble-primary/60"
-                    : "w-2 h-2 bg-white/10"
+                    ? "w-1.5 h-1.5 bg-white/20"
+                    : "w-1.5 h-1.5 bg-white/[0.08]"
                 }`}
               />
             ))}
           </div>
         )}
 
+        {/* Swipe-back ghost indicator (steps 2-4) */}
+        {step > 1 && step < 5 && (
+          <div className="absolute left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+            <ArrowLeft className="w-4 h-4 text-white/[0.08]" />
+          </div>
+        )}
+
         {/* Content area */}
         <div className="flex-1 flex flex-col px-6 pb-8" key={step}>
           <div className={animClass}>
-            {/* ═══ STEP 1: Welcome ═══ */}
+
+            {/* ═══ STEP 1: Welcome (Splash Screen) ═══ */}
             {step === 1 && (
-              <div className="flex-1 flex flex-col items-center justify-center min-h-[70dvh]">
-                <div className="mb-8">
-                  <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(37,99,235,0.4)] ring-2 ring-white/10 mx-auto">
+              <div className="flex-1 flex flex-col items-center justify-center min-h-[85dvh]">
+                {/* Logo with scale-in animation */}
+                <div className="mb-10 animate-[fadeScaleIn_600ms_cubic-bezier(0.25,0.1,0.25,1)_both]">
+                  <div className="w-24 h-24 rounded-3xl overflow-hidden shadow-[0_4px_40px_rgba(37,99,235,0.35)] ring-2 ring-white/10">
                     <Image
                       src="/logo-512.png"
                       alt="Bubbles Enterprise"
-                      width={80}
-                      height={80}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover"
                       priority
                     />
                   </div>
                 </div>
-                <h1 className="text-3xl font-bold text-center mb-2 font-[family-name:var(--font-heading)] tracking-tight bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+
+                {/* Title */}
+                <h1 className="text-3xl font-bold text-center mb-12 font-[family-name:var(--font-heading)] tracking-tight bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent animate-[fadeInUp_400ms_ease-out_200ms_both]">
                   {t.whatDoYouNeed}
                 </h1>
-                <p className="text-white/40 text-sm text-center mb-10 font-medium">
-                  Soffit & Fascia Services
-                </p>
+
+                {/* Two large cards */}
                 <div className="w-full max-w-sm space-y-4">
+                  {/* Repair card */}
                   <button
                     type="button"
                     onClick={() => handleServiceType("repair")}
-                    className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                    className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex flex-col items-center justify-center py-10 animate-[fadeInUp_400ms_ease-out_300ms_both] relative overflow-hidden group"
                   >
-                    <div className="flex items-center gap-3">
-                      <Wrench className="w-5 h-5 text-white/40" />
-                      <span>{t.repair}</span>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-white/25" />
+                    <div className="absolute inset-0 opacity-0 group-active:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] transition-opacity duration-300" />
+                    <Wrench className="w-8 h-8 text-white/60 mb-3" />
+                    <span className="text-white font-semibold text-lg">{t.repair}</span>
                   </button>
+
+                  {/* Installation card */}
                   <button
                     type="button"
                     onClick={() => handleServiceType("installation")}
-                    className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                    className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex flex-col items-center justify-center py-10 animate-[fadeInUp_400ms_ease-out_400ms_both] relative overflow-hidden group"
                   >
-                    <div className="flex items-center gap-3">
-                      <Hammer className="w-5 h-5 text-white/40" />
-                      <span>{t.installation}</span>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-white/25" />
+                    <div className="absolute inset-0 opacity-0 group-active:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] transition-opacity duration-300" />
+                    <Hammer className="w-8 h-8 text-white/60 mb-3" />
+                    <span className="text-white font-semibold text-lg">{t.installation}</span>
                   </button>
                 </div>
               </div>
@@ -566,33 +631,30 @@ export default function MobileClient({ locale }: { locale: string }) {
 
             {/* ═══ STEP 2a: Repair subtype ═══ */}
             {step === 2 && data.type === "repair" && (
-              <div className="flex-1 flex flex-col min-h-[70dvh]">
-                <BackButton label={t.back} onClick={() => goTo(1, "backward")} />
+              <div className="flex-1 flex flex-col min-h-[80dvh]">
                 <div className="flex-1 flex flex-col items-center justify-center">
-                  <h2 className="text-xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
                     {t.whatNeedsRepair}
                   </h2>
-                  <div className="w-full max-w-sm space-y-4">
-                    {(["soffit", "fascia", "soffit-and-fascia"] as RepairSubtype[]).map((sub) => {
+                  <div className="w-full max-w-sm space-y-3">
+                    {(["soffit", "fascia", "soffit-and-fascia"] as RepairSubtype[]).map((sub, idx) => {
                       const icons: Record<RepairSubtype, React.ReactNode> = {
-                        soffit: <svg className="w-5 h-5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><path d="M4 10h16" /></svg>,
-                        fascia: <svg className="w-5 h-5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><rect x="3" y="8" width="18" height="3" rx="0.5" /><path d="M3 21h18M4 21V11M20 21V11M12 3l9 5M12 3L3 8" /></svg>,
-                        "soffit-and-fascia": <svg className="w-5 h-5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><rect x="3" y="8" width="18" height="3" rx="0.5" /></svg>,
+                        soffit: <svg className="w-6 h-6 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><path d="M4 10h16" /></svg>,
+                        fascia: <svg className="w-6 h-6 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><rect x="3" y="8" width="18" height="3" rx="0.5" /><path d="M3 21h18M4 21V11M20 21V11M12 3l9 5M12 3L3 8" /></svg>,
+                        "soffit-and-fascia": <svg className="w-6 h-6 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><rect x="3" y="8" width="18" height="3" rx="0.5" /></svg>,
                       };
                       return (
                         <button
                           key={sub}
                           type="button"
                           onClick={() => handleRepairSubtype(sub)}
-                          className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                          className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex items-center gap-4 px-6 py-7"
+                          style={{ animationDelay: `${idx * 80}ms` }}
                         >
-                          <div className="flex items-center gap-3">
-                            {icons[sub]}
-                            <span>
-                              {sub === "soffit" ? t.soffit : sub === "fascia" ? t.fascia : t.soffitAndFascia}
-                            </span>
-                          </div>
-                          <ChevronRight className="w-5 h-5 text-white/25" />
+                          {icons[sub]}
+                          <span className="text-white font-semibold">
+                            {sub === "soffit" ? t.soffit : sub === "fascia" ? t.fascia : t.soffitAndFascia}
+                          </span>
                         </button>
                       );
                     })}
@@ -603,34 +665,27 @@ export default function MobileClient({ locale }: { locale: string }) {
 
             {/* ═══ STEP 2b: Installation subtype ═══ */}
             {step === 2 && data.type === "installation" && (
-              <div className="flex-1 flex flex-col min-h-[70dvh]">
-                <BackButton label={t.back} onClick={() => goTo(1, "backward")} />
+              <div className="flex-1 flex flex-col min-h-[80dvh]">
                 <div className="flex-1 flex flex-col items-center justify-center">
-                  <h2 className="text-xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
                     {t.projectType}
                   </h2>
-                  <div className="w-full max-w-sm space-y-4">
+                  <div className="w-full max-w-sm space-y-3">
                     <button
                       type="button"
                       onClick={() => handleInstallSubtype("new-construction")}
-                      className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                      className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex items-center gap-4 px-6 py-7"
                     >
-                      <div className="flex items-center gap-3">
-                        <Building2 className="w-5 h-5 text-white/40" />
-                        <span>{t.newConstruction}</span>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-white/25" />
+                      <Building2 className="w-6 h-6 text-white/50" />
+                      <span className="text-white font-semibold">{t.newConstruction}</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => handleInstallSubtype("renovation")}
-                      className="w-full h-16 backdrop-blur-xl bg-white/[0.06] hover:bg-white/[0.1] active:scale-[0.97] text-white font-semibold rounded-2xl border border-white/[0.12] transition-all duration-200 flex items-center justify-between px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                      className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex items-center gap-4 px-6 py-7"
                     >
-                      <div className="flex items-center gap-3">
-                        <RefreshCw className="w-5 h-5 text-white/40" />
-                        <span>{t.renovation}</span>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-white/25" />
+                      <RefreshCw className="w-6 h-6 text-white/50" />
+                      <span className="text-white font-semibold">{t.renovation}</span>
                     </button>
                   </div>
                 </div>
@@ -639,17 +694,24 @@ export default function MobileClient({ locale }: { locale: string }) {
 
             {/* ═══ STEP 3: Photos ═══ */}
             {step === 3 && (
-              <div className="flex-1 flex flex-col min-h-[70dvh]">
-                <BackButton label={t.back} onClick={() => goTo(2, "backward")} />
+              <div className="flex-1 flex flex-col min-h-[80dvh]">
                 <div className="flex-1 flex flex-col items-center justify-center py-8">
                   {data.type === "repair" ? (
                     <>
-                      <h2 className="text-xl font-bold text-center mb-2 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                      <h2 className="text-2xl font-bold text-center mb-3 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
                         {t.take3Photos}
                       </h2>
-                      <p className="text-white/35 text-sm text-center mb-8">
-                        {t.photoInstructions}
-                      </p>
+                      {/* Instruction pills */}
+                      <div className="flex items-center gap-2 mb-8">
+                        {["Far", "Close", "Angle"].map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 rounded-full text-[11px] font-medium text-white/40 bg-white/[0.06] border border-white/[0.08]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                       <div className="grid grid-cols-3 gap-3 w-full max-w-sm mb-6">
                         {[0, 1, 2].map((i) => (
                           <PhotoSlot
@@ -668,18 +730,18 @@ export default function MobileClient({ locale }: { locale: string }) {
                         <div className="w-full max-w-sm space-y-3">
                           {[3, 4].map((i) =>
                             data.previews[i] ? (
-                              <div key={i} className="flex items-center gap-3 bg-white/[0.04] rounded-xl p-3 border border-white/[0.1]">
+                              <div key={i} className="flex items-center gap-3 bg-white/[0.04] rounded-2xl p-3 border border-white/[0.08]">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={data.previews[i]} alt={`Extra ${i - 2}`} className="w-12 h-12 rounded-lg object-cover" />
-                                <span className="text-sm text-white/60 flex-1 truncate">{data.photos[i]?.name}</span>
-                                <button type="button" onClick={() => removePhoto(i)} className="p-1 text-white/30 hover:text-red-400 transition-colors">
+                                <img src={data.previews[i]} alt={`Extra ${i - 2}`} className="w-12 h-12 rounded-xl object-cover" />
+                                <span className="text-sm text-white/50 flex-1 truncate">{data.photos[i]?.name}</span>
+                                <button type="button" onClick={() => removePhoto(i)} className="p-1.5 text-white/30 hover:text-red-400 transition-colors">
                                   <X className="w-4 h-4" />
                                 </button>
                               </div>
                             ) : (
-                              <label key={i} className="flex items-center gap-3 bg-white/[0.03] rounded-xl p-3 border border-dashed border-white/[0.1] cursor-pointer hover:border-white/[0.2] hover:bg-white/[0.05] transition-all">
-                                <Camera className="w-5 h-5 text-white/30" />
-                                <span className="text-sm text-white/35">
+                              <label key={i} className="flex items-center gap-3 bg-white/[0.03] rounded-2xl p-3 border border-dashed border-white/[0.08] cursor-pointer active:bg-white/[0.06] transition-all">
+                                <Camera className="w-5 h-5 text-white/25" />
+                                <span className="text-sm text-white/30">
                                   {i === 4 ? t.addVideo : `${t.photoSlotLabel} ${i + 1} (${t.optional})`}
                                 </span>
                                 <input
@@ -698,10 +760,10 @@ export default function MobileClient({ locale }: { locale: string }) {
                     </>
                   ) : (
                     <>
-                      <h2 className="text-xl font-bold text-center mb-2 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                      <h2 className="text-2xl font-bold text-center mb-3 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
                         {t.take1Photo}
                       </h2>
-                      <p className="text-white/35 text-sm text-center mb-8">
+                      <p className="text-white/30 text-sm text-center mb-8">
                         {t.take1PhotoSub}
                       </p>
                       <div className="w-full max-w-[200px] mb-6">
@@ -716,51 +778,43 @@ export default function MobileClient({ locale }: { locale: string }) {
                       </div>
                     </>
                   )}
+                </div>
 
-                  {/* Next button */}
-                  <div className="w-full max-w-sm mt-6">
-                    <button
-                      type="button"
-                      disabled={data.photos.filter(Boolean).length < getRequiredPhotoCount(data)}
-                      onClick={() => goTo(4, "forward")}
-                      className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 hover:from-bubble-dark hover:to-bubble-primary active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 text-white font-bold rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(37,99,235,0.4)]"
-                    >
-                      {t.next}
-                    </button>
-                  </div>
+                {/* Next button fixed at bottom */}
+                <div
+                  className="sticky bottom-0 px-6 pt-4 pb-6 bg-gradient-to-t from-[#040810] via-[#040810]/95 to-transparent"
+                  style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}
+                >
+                  <button
+                    type="button"
+                    disabled={data.photos.filter(Boolean).length < getRequiredPhotoCount(data)}
+                    onClick={() => goTo(4, "forward")}
+                    className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 active:scale-[0.97] disabled:opacity-30 disabled:active:scale-100 text-white font-bold rounded-2xl transition-all duration-200 shadow-[0_4px_24px_rgba(37,99,235,0.4)]"
+                  >
+                    {t.next}
+                  </button>
                 </div>
               </div>
             )}
 
             {/* ═══ STEP 4: Contact info ═══ */}
             {step === 4 && (
-              <div className="flex-1 flex flex-col min-h-[70dvh]">
-                <BackButton
-                  label={t.back}
-                  onClick={() => {
-                    if (data.type === "installation" && data.subtype === "new-construction") {
-                      goTo(2, "backward");
-                    } else {
-                      goTo(3, "backward");
-                    }
-                  }}
-                />
+              <div className="flex-1 flex flex-col min-h-[80dvh]">
                 <div className="flex-1 flex flex-col justify-center py-8">
-                  <h2 className="text-xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold text-center mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
                     {t.yourInfo}
                   </h2>
                   <div className="w-full max-w-sm mx-auto space-y-4">
                     <FormInput
-                      label={t.name}
                       type="text"
                       placeholder={t.namePlaceholder}
                       value={data.name}
                       required
                       autoComplete="name"
+                      autoFocus
                       onChange={(v) => setData((prev) => ({ ...prev, name: v }))}
                     />
                     <FormInput
-                      label={t.email}
                       type="email"
                       placeholder={t.emailPlaceholder}
                       value={data.email}
@@ -769,7 +823,6 @@ export default function MobileClient({ locale }: { locale: string }) {
                       onChange={(v) => setData((prev) => ({ ...prev, email: v }))}
                     />
                     <FormInput
-                      label={t.phone}
                       type="tel"
                       placeholder={t.phonePlaceholder}
                       value={data.phone}
@@ -778,7 +831,6 @@ export default function MobileClient({ locale }: { locale: string }) {
                       onChange={(v) => setData((prev) => ({ ...prev, phone: v }))}
                     />
                     <FormInput
-                      label={t.address}
                       type="text"
                       placeholder={t.addressPlaceholder}
                       value={data.address}
@@ -786,64 +838,70 @@ export default function MobileClient({ locale }: { locale: string }) {
                       autoComplete="street-address"
                       onChange={(v) => setData((prev) => ({ ...prev, address: v }))}
                     />
-
-                    {status === "error" && (
-                      <p role="alert" className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-xl px-4 py-3 text-center">
-                        {t.errorGeneric}
-                      </p>
-                    )}
-
-                    <button
-                      type="button"
-                      disabled={status === "sending" || !data.name || !data.email || !data.phone || !data.address}
-                      onClick={handleSubmit}
-                      className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 hover:from-bubble-dark hover:to-bubble-primary active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 text-white font-bold rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2"
-                    >
-                      {status === "sending" ? (
-                        <>
-                          <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          {t.sending}
-                        </>
-                      ) : (
-                        t.submit
-                      )}
-                    </button>
                   </div>
+                </div>
+
+                {/* Submit button fixed at bottom */}
+                <div
+                  className="sticky bottom-0 px-6 pt-4 pb-6 bg-gradient-to-t from-[#040810] via-[#040810]/95 to-transparent"
+                  style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}
+                >
+                  <button
+                    type="button"
+                    disabled={status === "sending" || !data.name || !data.email || !data.phone || !data.address}
+                    onClick={handleSubmit}
+                    className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 active:scale-[0.97] disabled:opacity-30 disabled:active:scale-100 text-white font-bold rounded-2xl transition-all duration-200 shadow-[0_4px_24px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2"
+                  >
+                    {status === "sending" ? (
+                      <>
+                        <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        {t.sending}
+                      </>
+                    ) : (
+                      t.submit
+                    )}
+                  </button>
                 </div>
               </div>
             )}
 
-            {/* ═══ STEP 5: Success ═══ */}
+            {/* ═══ STEP 5: Success (Celebration) ═══ */}
             {step === 5 && (
-              <div className="flex-1 flex flex-col items-center justify-center min-h-[80dvh] relative">
-                {/* Mini sparkle particles */}
+              <div className="flex-1 flex flex-col items-center justify-center min-h-[85dvh] relative">
+                {/* Confetti particles */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  {[...Array(8)].map((_, i) => (
+                  {[...Array(20)].map((_, i) => (
                     <div
                       key={i}
-                      className="absolute w-1 h-1 bg-white/30 rounded-full animate-[sparkle_3s_ease-in-out_infinite]"
+                      className="confetti-piece absolute w-2 h-2 rounded-sm"
                       style={{
-                        top: `${15 + (i * 9) % 70}%`,
-                        left: `${10 + (i * 13) % 80}%`,
-                        animationDelay: `${i * 0.35}s`,
-                        animationDuration: `${2.5 + (i % 3)}s`,
+                        left: `${5 + (i * 4.7) % 90}%`,
+                        top: "-8px",
+                        backgroundColor: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+                        animation: `confettiFall ${2 + (i % 3) * 0.7}s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${i * 0.12}s both`,
+                        transform: `rotate(${i * 37}deg)`,
                       }}
                     />
                   ))}
                 </div>
 
-                <div className="w-24 h-24 bg-green-500/15 border-2 border-green-400/50 rounded-full flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(34,197,94,0.2)] animate-[scaleIn_500ms_cubic-bezier(0.34,1.56,0.64,1)_both]">
-                  <Check className="w-12 h-12 text-green-400" />
+                {/* Checkmark */}
+                <div className="w-28 h-28 bg-green-500/10 border border-green-400/30 rounded-full flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(34,197,94,0.15)] animate-[bounceCheck_500ms_cubic-bezier(0.34,1.56,0.64,1)_both]">
+                  <Check className="w-14 h-14 text-green-400" />
                 </div>
-                <h2 className="text-2xl font-bold text-center mb-3 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+
+                {/* Title */}
+                <h2 className="text-3xl font-bold text-center mb-3 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-green-200 bg-clip-text text-transparent animate-[fadeInUp_400ms_ease-out_300ms_both]">
                   {t.successTitle}
                 </h2>
-                <p className="text-white/40 text-center max-w-xs mb-10">
+                <p className="text-white/40 text-center max-w-[280px] mb-12 animate-[fadeInUp_400ms_ease-out_400ms_both]">
                   {t.successSub}
                 </p>
+
+                {/* Back to website */}
                 <a
                   href={locale === "en" ? "/" : `/${locale}`}
-                  className="text-sm text-white/30 hover:text-white/60 underline underline-offset-4 transition-colors"
+                  className="text-xs text-white/20 hover:text-white/40 transition-colors animate-[fadeInUp_400ms_ease-out_600ms_both]"
                 >
                   {t.backToWebsite}
                 </a>
@@ -853,29 +911,50 @@ export default function MobileClient({ locale }: { locale: string }) {
         </div>
       </div>
 
-      {/* Keyframes injected via style tag */}
+      {/* Error toast (bottom, overlay) */}
+      {errorToast && (
+        <div
+          className="fixed bottom-8 left-6 right-6 z-50 animate-[fadeInUp_300ms_ease-out_both]"
+          style={{ bottom: "max(32px, env(safe-area-inset-bottom))" }}
+        >
+          <div role="alert" className="bg-red-950/90 backdrop-blur-sm border border-red-800/60 rounded-2xl px-5 py-4 text-sm text-red-300 text-center shadow-[0_8px_32px_rgba(239,68,68,0.2)]">
+            {t.errorGeneric}
+          </div>
+        </div>
+      )}
+
+      {/* Keyframes */}
       <style>{`
-        @keyframes slideInRight {
-          from { opacity: 0; transform: translateX(24px); }
-          to { opacity: 1; transform: translateX(0); }
+        @keyframes slideInFromRight {
+          from { transform: translateX(60px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
         }
-        @keyframes slideInLeft {
-          from { opacity: 0; transform: translateX(-24px); }
-          to { opacity: 1; transform: translateX(0); }
+        @keyframes slideInFromLeft {
+          from { transform: translateX(-60px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
         }
-        @keyframes scaleIn {
-          from { opacity: 0; transform: scale(0.5); }
-          to { opacity: 1; transform: scale(1); }
+        @keyframes fadeScaleIn {
+          from { transform: scale(0.85); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
         }
-        @keyframes sparkle {
-          0%, 100% { opacity: 0; transform: scale(0); }
-          50% { opacity: 1; transform: scale(1); }
+        @keyframes bounceCheck {
+          0% { transform: scale(0); }
+          60% { transform: scale(1.15); }
+          100% { transform: scale(1); }
+        }
+        @keyframes confettiFall {
+          0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+          80% { opacity: 1; }
+          100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        @keyframes fadeInUp {
+          from { transform: translateY(16px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
         }
         @media (prefers-reduced-motion: reduce) {
-          @keyframes slideInRight { from, to { opacity: 1; transform: none; } }
-          @keyframes slideInLeft { from, to { opacity: 1; transform: none; } }
-          @keyframes scaleIn { from, to { opacity: 1; transform: none; } }
-          @keyframes sparkle { from, to { opacity: 0.5; transform: scale(1); } }
+          [class*="animate-"], .confetti-piece {
+            animation: none !important;
+          }
         }
       `}</style>
     </div>
@@ -883,19 +962,6 @@ export default function MobileClient({ locale }: { locale: string }) {
 }
 
 // ─── Sub-components ─────────────────────────────────────────────
-function BackButton({ label, onClick }: { label: string; onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="flex items-center gap-1.5 text-white/40 hover:text-white/70 py-3 -ml-1 self-start transition-colors"
-      aria-label={label}
-    >
-      <ArrowLeft className="w-4 h-4" />
-      <span className="text-sm font-medium">{label}</span>
-    </button>
-  );
-}
 
 function PhotoSlot({
   index,
@@ -912,78 +978,66 @@ function PhotoSlot({
   onSelect: (e: ChangeEvent<HTMLInputElement>) => void;
   onRemove: () => void;
 }) {
+  if (preview) {
+    return (
+      <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={preview} alt={label} className="w-full h-full object-cover" />
+        <button
+          type="button"
+          onClick={onRemove}
+          className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center"
+          aria-label={`Remove ${label}`}
+        >
+          <X className="w-3.5 h-3.5 text-white" />
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="relative aspect-square">
-      {preview ? (
-        <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={preview}
-            alt={`${label} ${index + 1}`}
-            className="w-full h-full object-cover rounded-2xl border-2 border-green-400/40 shadow-[0_4px_16px_rgba(34,197,94,0.15)]"
-          />
-          <button
-            type="button"
-            onClick={onRemove}
-            className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform"
-            aria-label={`Remove ${label}`}
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
-        </>
-      ) : (
-        <label className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-white/15 bg-white/[0.04] cursor-pointer active:scale-95 transition-all overflow-hidden group">
-          {/* Gradient border glow on hover */}
-          <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-bubble-primary/20 to-cyan-400/10" />
-          <Camera className="relative z-10 w-8 h-8 text-white/25 mb-1 group-hover:text-white/40 transition-colors" />
-          <span className="relative z-10 text-[11px] text-white/30 font-medium group-hover:text-white/45 transition-colors">{label}</span>
-          <input
-            type="file"
-            accept="image/*,video/*"
-            capture="environment"
-            className="hidden"
-            ref={fileRef}
-            onChange={onSelect}
-          />
-        </label>
-      )}
-    </div>
+    <label className="aspect-square rounded-2xl border border-dashed border-white/10 bg-white/[0.03] flex flex-col items-center justify-center cursor-pointer active:scale-95 active:bg-white/[0.06] transition-all">
+      <Camera className="w-7 h-7 text-white/20 mb-1" />
+      <span className="text-[10px] text-white/15 font-medium">{index + 1}</span>
+      <input
+        type="file"
+        accept="image/*,video/*"
+        capture="environment"
+        className="hidden"
+        ref={fileRef}
+        onChange={onSelect}
+      />
+    </label>
   );
 }
 
 function FormInput({
-  label,
   type,
   placeholder,
   value,
   required,
   autoComplete,
+  autoFocus,
   onChange,
 }: {
-  label: string;
   type: string;
   placeholder: string;
   value: string;
   required?: boolean;
   autoComplete?: string;
+  autoFocus?: boolean;
   onChange: (value: string) => void;
 }) {
-  const id = `mobile-${label.toLowerCase().replace(/\s+/g, "-")}`;
   return (
-    <div>
-      <label htmlFor={id} className="block text-[11px] font-medium text-white/40 mb-1.5 uppercase tracking-wider">
-        {label} {required && <span className="text-red-400">*</span>}
-      </label>
-      <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        required={required}
-        autoComplete={autoComplete}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full h-14 px-4 bg-white/[0.06] text-white placeholder:text-white/25 border border-white/[0.12] rounded-xl focus:border-bubble-primary/50 focus:bg-white/[0.08] focus:ring-1 focus:ring-bubble-primary/30 outline-none transition-all"
-      />
-    </div>
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      required={required}
+      autoComplete={autoComplete}
+      autoFocus={autoFocus}
+      onChange={(e) => onChange(e.target.value)}
+      className="w-full h-14 bg-white/[0.05] border border-white/[0.08] rounded-2xl px-5 text-white text-base placeholder:text-white/25 focus:border-bubble-primary/40 focus:bg-white/[0.08] focus:ring-1 focus:ring-bubble-primary/20 transition-all outline-none"
+    />
   );
 }

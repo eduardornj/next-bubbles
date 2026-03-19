@@ -45,7 +45,9 @@ export default async function MobileLayout({
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="theme-color" content="#0f172a" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#040810" />
+        <link rel="manifest" href="/mobile-manifest.json" />
       </head>
       <body className="antialiased bg-[#0f172a] text-slate-200 min-h-dvh overflow-x-hidden">
         {children}
