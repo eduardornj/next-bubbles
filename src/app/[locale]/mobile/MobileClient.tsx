@@ -344,74 +344,134 @@ export default function MobileClient({ locale }: { locale: string }) {
   // ─── Desktop: Liquid Glass QR screen ──────────────────────────
   if (isDesktop) {
     return (
-      <div className="min-h-dvh flex items-center justify-center p-8 bg-[#060a14] relative overflow-hidden">
-        {/* Animated background orbs */}
+      <div className="min-h-dvh flex items-center justify-center p-8 bg-[#040810] relative overflow-hidden">
+        {/* CSS animations */}
+        <style>{`
+          @keyframes float-slow { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-20px) scale(1.05); } }
+          @keyframes float-med { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-20px,30px) scale(1.08); } }
+          @keyframes float-fast { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(15px,15px) scale(0.95); } }
+          @keyframes card-enter { from { opacity:0; transform: translateY(24px) scale(0.96); } to { opacity:1; transform: translateY(0) scale(1); } }
+          @keyframes sparkle { 0%,100% { opacity:0; transform:scale(0); } 50% { opacity:1; transform:scale(1); } }
+          .orb-1 { animation: float-slow 8s ease-in-out infinite; }
+          .orb-2 { animation: float-med 10s ease-in-out infinite 1s; }
+          .orb-3 { animation: float-fast 7s ease-in-out infinite 2s; }
+          .orb-4 { animation: float-slow 12s ease-in-out infinite 3s; }
+          .card-enter { animation: card-enter 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+          .sparkle { animation: sparkle 3s ease-in-out infinite; }
+        `}</style>
+
+        {/* Animated background orbs — multi-color */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-bubble-primary/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: "4s" }} />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/15 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "6s", animationDelay: "1s" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-400/10 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: "5s", animationDelay: "2s" }} />
+          <div className="orb-1 absolute top-[15%] left-[20%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px]" />
+          <div className="orb-2 absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[130px]" />
+          <div className="orb-3 absolute top-[40%] left-[55%] w-[350px] h-[350px] bg-cyan-400/12 rounded-full blur-[100px]" />
+          <div className="orb-4 absolute bottom-[30%] left-[10%] w-[250px] h-[250px] bg-indigo-400/10 rounded-full blur-[80px]" />
         </div>
 
-        {/* Liquid glass card */}
-        <div className="relative z-10 flex flex-col items-center">
-          {/* Glass container */}
-          <div className="backdrop-blur-2xl bg-white/[0.06] border border-white/[0.12] rounded-[2rem] p-10 shadow-[0_8px_64px_rgba(37,99,235,0.15),inset_0_1px_0_rgba(255,255,255,0.08)] max-w-md w-full">
+        {/* Floating sparkle particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={i}
+              className="sparkle absolute w-1 h-1 bg-white/40 rounded-full"
+              style={{
+                top: `${10 + (i * 7) % 80}%`,
+                left: `${5 + (i * 11) % 90}%`,
+                animationDelay: `${i * 0.4}s`,
+                animationDuration: `${2.5 + (i % 3)}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Liquid glass card with layered depth */}
+        <div className="relative z-10 flex flex-col items-center card-enter">
+          {/* Back layer card (depth effect) */}
+          <div className="absolute -top-3 -left-3 -right-3 -bottom-3 backdrop-blur-md bg-white/[0.02] border border-white/[0.05] rounded-[2.5rem] -rotate-1" />
+          <div className="absolute -top-1.5 -left-1.5 -right-1.5 -bottom-1.5 backdrop-blur-lg bg-white/[0.03] border border-white/[0.07] rounded-[2.3rem] rotate-[0.5deg]" />
+
+          {/* Main glass container */}
+          <div className="relative backdrop-blur-2xl bg-white/[0.07] border border-white/[0.15] rounded-[2rem] p-10 shadow-[0_8px_80px_rgba(37,99,235,0.2),0_0px_40px_rgba(139,92,246,0.08),inset_0_1px_0_rgba(255,255,255,0.1)] max-w-md w-full">
+            {/* Subtle inner glow at top */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+
             {/* Logo */}
             <div className="flex justify-center mb-8">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-bubble-primary to-bubble-dark flex items-center justify-center shadow-[0_4px_24px_rgba(37,99,235,0.4)]">
+              <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-[0_4px_32px_rgba(37,99,235,0.5)] ring-2 ring-white/10">
                 <Image
                   src="/logo-512.png"
                   alt="Bubbles Enterprise"
-                  width={64}
-                  height={64}
-                  className="rounded-xl"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl font-bold text-white mb-2 text-center font-[family-name:var(--font-heading)]">
+            <h1 className="text-3xl font-bold text-white mb-2 text-center font-[family-name:var(--font-heading)] tracking-tight">
               {t.desktopTitle}
             </h1>
-            <p className="text-white/50 text-center mb-8 text-sm leading-relaxed max-w-xs mx-auto">
+            <p className="text-white/40 text-center mb-2 text-sm leading-relaxed max-w-xs mx-auto">
               {t.desktopSub}
             </p>
 
-            {/* QR Code — real QR using Google Charts API */}
+            {/* Scan instruction above QR */}
+            <div className="flex items-center justify-center gap-3 mb-5 mt-6">
+              <div className="w-10 h-px bg-gradient-to-r from-transparent to-white/20" />
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M3 17v2a2 2 0 002 2h2M17 21h2a2 2 0 002-2v-2" /><rect x="7" y="7" width="10" height="10" rx="1" /></svg>
+                <span className="text-white/50 text-xs uppercase tracking-[0.2em] font-medium">
+                  {locale === "pt" ? "escaneie o código" : locale === "es" ? "escanee el código" : "scan the code"}
+                </span>
+              </div>
+              <div className="w-10 h-px bg-gradient-to-l from-transparent to-white/20" />
+            </div>
+
+            {/* QR Code with glow ring */}
             <div className="flex justify-center mb-8">
-              <div className="bg-white rounded-2xl p-4 shadow-[0_4px_32px_rgba(37,99,235,0.2)]">
-                <img
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://bubblesenterprise.com/mobile&bgcolor=ffffff&color=0f172a&margin=0"
-                  alt="QR Code — bubblesenterprise.com/mobile"
-                  width={200}
-                  height={200}
-                  className="rounded-lg"
-                />
+              <div className="relative group">
+                <div className="absolute -inset-2 bg-gradient-to-br from-bubble-primary/30 via-purple-500/20 to-cyan-400/30 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative bg-white rounded-2xl p-4 shadow-[0_4px_40px_rgba(37,99,235,0.25)]">
+                  <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://bubblesenterprise.com/mobile&bgcolor=ffffff&color=0f172a&margin=0"
+                    alt="QR Code"
+                    width={200}
+                    height={200}
+                    className="rounded-lg"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Scan instruction */}
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <div className="w-8 h-[1px] bg-white/20" />
-              <span className="text-white/40 text-xs uppercase tracking-widest font-medium">
+            {/* Divider */}
+            <div className="flex items-center justify-center gap-2 mb-5">
+              <div className="w-12 h-px bg-white/10" />
+              <span className="text-white/30 text-xs uppercase tracking-widest font-medium">
                 {locale === "pt" ? "ou acesse" : locale === "es" ? "o visite" : "or visit"}
               </span>
-              <div className="w-8 h-[1px] bg-white/20" />
+              <div className="w-12 h-px bg-white/10" />
             </div>
 
-            {/* URL */}
+            {/* URL button */}
             <a
               href="https://bubblesenterprise.com/mobile"
-              className="flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-bubble-primary/10 border border-bubble-primary/30 text-bubble-secondary font-semibold text-sm hover:bg-bubble-primary/20 hover:border-bubble-primary/50 transition-all duration-300"
+              className="group flex items-center justify-center gap-2.5 w-full py-4 px-6 rounded-xl bg-gradient-to-r from-bubble-primary/15 to-purple-500/10 border border-white/10 text-white font-semibold text-sm hover:from-bubble-primary/25 hover:to-purple-500/20 hover:border-white/20 transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,99,235,0.2)]"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><rect x="5" y="2" width="14" height="20" rx="2" /><circle cx="12" cy="18" r="1" /></svg>
-              bubblesenterprise.com/mobile
+              <svg className="w-5 h-5 text-bubble-secondary group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <circle cx="12" cy="18" r="1" />
+                <line x1="9" y1="5" x2="15" y2="5" />
+              </svg>
+              <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                bubblesenterprise.com/mobile
+              </span>
             </a>
           </div>
 
           {/* Subtle bottom text */}
-          <p className="mt-6 text-white/20 text-xs text-center">
-            Bubbles Enterprise Soffit &amp; Fascia
+          <p className="mt-8 text-white/15 text-xs text-center tracking-wide">
+            Bubbles Enterprise Soffit &amp; Fascia &middot; Orlando, FL
           </p>
         </div>
       </div>
