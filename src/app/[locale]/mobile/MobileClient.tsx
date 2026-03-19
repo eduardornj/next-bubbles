@@ -48,6 +48,10 @@ const content: Record<Locale, {
   photoSlotLabel: string;
   optional: string;
   errorGeneric: string;
+  tagline: string;
+  cta: string;
+  repairSub: string;
+  installSub: string;
 }> = {
   en: {
     welcome: "Welcome",
@@ -90,6 +94,10 @@ const content: Record<Locale, {
     photoSlotLabel: "Photo",
     optional: "optional",
     errorGeneric: "Something went wrong. Please try again.",
+    tagline: "Soffit & Fascia Specialists",
+    cta: "Get a free estimate in minutes",
+    repairSub: "Fix damage fast",
+    installSub: "New or renovation",
   },
   es: {
     welcome: "Bienvenido",
@@ -132,6 +140,10 @@ const content: Record<Locale, {
     photoSlotLabel: "Foto",
     optional: "opcional",
     errorGeneric: "Algo sali\u00f3 mal. Int\u00e9ntelo de nuevo.",
+    tagline: "Especialistas en Soffit y Fascia",
+    cta: "Presupuesto gratuito en minutos",
+    repairSub: "Repare el da\u00f1o r\u00e1pido",
+    installSub: "Nueva o renovaci\u00f3n",
   },
   pt: {
     welcome: "Bem-vindo",
@@ -174,6 +186,10 @@ const content: Record<Locale, {
     photoSlotLabel: "Foto",
     optional: "opcional",
     errorGeneric: "Algo deu errado. Tente novamente.",
+    tagline: "Especialistas em Soffit e Fascia",
+    cta: "Or\u00e7amento gr\u00e1tis em minutos",
+    repairSub: "Resolva o problema r\u00e1pido",
+    installSub: "Nova ou renova\u00e7\u00e3o",
   },
 };
 
@@ -229,11 +245,15 @@ const hapticSuccess = () => {
 };
 
 // ─── Confetti colors ────────────────────────────────────────────
-const CONFETTI_COLORS = ["#2563EB", "#06B6D4", "#22C55E", "#A855F7", "#EAB308"];
+const CONFETTI_COLORS = ["#2563EB", "#06B6D4", "#22C55E", "#F59E0B", "#EF4444", "#A855F7", "#EAB308"];
 
 // ─── Main Component ─────────────────────────────────────────────
 export default function MobileClient({ locale }: { locale: string }) {
-  const t = content[(locale as Locale) in content ? (locale as Locale) : "en"];
+  const [currentLocale, setCurrentLocale] = useState<Locale>(
+    (locale as Locale) in content ? (locale as Locale) : "en"
+  );
+  const t = content[currentLocale] ?? content.en;
+
   const [isDesktop, setIsDesktop] = useState(false);
   const [step, setStep] = useState<Step>(1);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -408,7 +428,7 @@ export default function MobileClient({ locale }: { locale: string }) {
           .sparkle { animation: sparkle 3s ease-in-out infinite; }
         `}</style>
 
-        {/* Animated background orbs — multi-color */}
+        {/* Animated background orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="orb-1 absolute top-[15%] left-[20%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px]" />
           <div className="orb-2 absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[130px]" />
@@ -443,17 +463,15 @@ export default function MobileClient({ locale }: { locale: string }) {
             {/* Subtle inner glow at top */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
-            {/* Logo */}
+            {/* Logo — updated to bubbles-logo.png */}
             <div className="flex justify-center mb-8">
-              <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-[0_4px_32px_rgba(37,99,235,0.5)] ring-2 ring-white/10">
-                <Image
-                  src="/logo-512.png"
-                  alt="Bubbles Enterprise"
-                  width={96}
-                  height={96}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <Image
+                src="/bubbles-logo.png"
+                alt="Bubbles Enterprise"
+                width={140}
+                height={0}
+                className="w-[140px] h-auto drop-shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+              />
             </div>
 
             {/* Title */}
@@ -470,7 +488,7 @@ export default function MobileClient({ locale }: { locale: string }) {
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M3 17v2a2 2 0 002 2h2M17 21h2a2 2 0 002-2v-2" /><rect x="7" y="7" width="10" height="10" rx="1" /></svg>
                 <span className="text-white/50 text-xs uppercase tracking-[0.2em] font-medium">
-                  {locale === "pt" ? "escaneie o código" : locale === "es" ? "escanee el código" : "scan the code"}
+                  {currentLocale === "pt" ? "escaneie o c\u00f3digo" : currentLocale === "es" ? "escanee el c\u00f3digo" : "scan the code"}
                 </span>
               </div>
               <div className="w-10 h-px bg-gradient-to-l from-transparent to-white/20" />
@@ -496,7 +514,7 @@ export default function MobileClient({ locale }: { locale: string }) {
             <div className="flex items-center justify-center gap-2 mb-5">
               <div className="w-12 h-px bg-white/10" />
               <span className="text-white/30 text-xs uppercase tracking-widest font-medium">
-                {locale === "pt" ? "ou acesse" : locale === "es" ? "o visite" : "or visit"}
+                {currentLocale === "pt" ? "ou acesse" : currentLocale === "es" ? "o visite" : "or visit"}
               </span>
               <div className="w-12 h-px bg-white/10" />
             </div>
@@ -535,16 +553,21 @@ export default function MobileClient({ locale }: { locale: string }) {
       ? "animate-[slideInFromRight_250ms_cubic-bezier(0.25,0.1,0.25,1)_both]"
       : "animate-[slideInFromLeft_250ms_cubic-bezier(0.25,0.1,0.25,1)_both]";
 
+  // Glass card style reusable classes
+  const glassCard = "backdrop-blur-2xl bg-white/[0.08] border border-white/[0.15] rounded-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] hover:bg-white/[0.14] hover:border-white/[0.25] active:scale-[0.97] transition-all duration-200";
+  const premiumButton = "bg-gradient-to-r from-bubble-primary via-blue-500 to-bubble-primary shadow-[0_4px_24px_rgba(37,99,235,0.4)] hover:shadow-[0_4px_32px_rgba(37,99,235,0.6)] active:scale-[0.97]";
+
   return (
     <div
-      className="min-h-dvh flex flex-col bg-[#040810] relative overflow-hidden"
+      className="min-h-dvh flex flex-col bg-gradient-to-b from-[#0a1020] to-[#0d1525] relative overflow-hidden"
       style={{ paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)" }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Ambient orbs */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-bubble-primary/[0.06] rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-400/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      {/* Ambient orbs — more visible */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-bubble-primary/[0.10] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-400/[0.07] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-0 w-[250px] h-[250px] bg-purple-500/[0.05] rounded-full blur-[100px] pointer-events-none" />
 
       {/* Content layer */}
       <div className="relative z-10 flex-1 flex flex-col">
@@ -580,51 +603,83 @@ export default function MobileClient({ locale }: { locale: string }) {
         <div className="flex-1 flex flex-col px-6 pb-8" key={step}>
           <div className={animClass}>
 
-            {/* ═══ STEP 1: Welcome (Splash Screen) ═══ */}
+            {/* ═══ STEP 1: Welcome (Splash Screen) — REWRITTEN ═══ */}
             {step === 1 && (
               <div className="flex-1 flex flex-col items-center justify-center min-h-[85dvh]">
-                {/* Logo with scale-in animation */}
-                <div className="mb-10 animate-[fadeScaleIn_600ms_cubic-bezier(0.25,0.1,0.25,1)_both]">
-                  <div className="w-24 h-24 rounded-3xl overflow-hidden shadow-[0_4px_40px_rgba(37,99,235,0.35)] ring-2 ring-white/10">
-                    <Image
-                      src="/logo-512.png"
-                      alt="Bubbles Enterprise"
-                      width={96}
-                      height={96}
-                      className="w-full h-full object-cover"
-                      priority
-                    />
-                  </div>
+                {/* Logo with scale-in animation + glow */}
+                <div className="mb-6 animate-[fadeScaleIn_600ms_cubic-bezier(0.25,0.1,0.25,1)_both]">
+                  <Image
+                    src="/bubbles-logo.png"
+                    alt="Bubbles Enterprise"
+                    width={160}
+                    height={0}
+                    className="w-[160px] h-auto drop-shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+                    priority
+                  />
                 </div>
 
-                {/* Title */}
-                <h1 className="text-3xl font-bold text-center mb-12 font-[family-name:var(--font-heading)] tracking-tight bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent animate-[fadeInUp_400ms_ease-out_200ms_both]">
-                  {t.whatDoYouNeed}
-                </h1>
+                {/* Tagline */}
+                <p className="text-sm text-white/50 tracking-[0.15em] uppercase animate-[fadeInUp_400ms_ease-out_200ms_both]">
+                  {t.tagline}
+                </p>
 
-                {/* Two large cards */}
+                {/* Separator line */}
+                <div className="w-[60%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-6" />
+
+                {/* CTA text */}
+                <p className="text-lg font-semibold text-white/80 text-center animate-[fadeInUp_400ms_ease-out_300ms_both]">
+                  {t.cta}
+                </p>
+
+                {/* Spacer */}
+                <div className="mb-10" />
+
+                {/* Service cards — glassmorphism */}
                 <div className="w-full max-w-sm space-y-4">
                   {/* Repair card */}
                   <button
                     type="button"
                     onClick={() => handleServiceType("repair")}
-                    className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex flex-col items-center justify-center py-10 animate-[fadeInUp_400ms_ease-out_300ms_both] relative overflow-hidden group"
+                    className={`w-full ${glassCard} shadow-[0_4px_30px_rgba(37,99,235,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col items-center justify-center py-8 animate-[fadeInUp_400ms_ease-out_400ms_both] relative overflow-hidden group`}
                   >
                     <div className="absolute inset-0 opacity-0 group-active:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] transition-opacity duration-300" />
-                    <Wrench className="w-8 h-8 text-white/60 mb-3" />
-                    <span className="text-white font-semibold text-lg">{t.repair}</span>
+                    <Wrench className="w-9 h-9 text-bubble-secondary mb-3" />
+                    <span className="text-white text-lg font-bold">{t.repair}</span>
+                    <span className="text-white/40 text-xs mt-1">{t.repairSub}</span>
                   </button>
 
                   {/* Installation card */}
                   <button
                     type="button"
                     onClick={() => handleServiceType("installation")}
-                    className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex flex-col items-center justify-center py-10 animate-[fadeInUp_400ms_ease-out_400ms_both] relative overflow-hidden group"
+                    className={`w-full ${glassCard} shadow-[0_4px_30px_rgba(37,99,235,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col items-center justify-center py-8 animate-[fadeInUp_400ms_ease-out_500ms_both] relative overflow-hidden group`}
                   >
                     <div className="absolute inset-0 opacity-0 group-active:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] transition-opacity duration-300" />
-                    <Hammer className="w-8 h-8 text-white/60 mb-3" />
-                    <span className="text-white font-semibold text-lg">{t.installation}</span>
+                    <Hammer className="w-9 h-9 text-bubble-secondary mb-3" />
+                    <span className="text-white text-lg font-bold">{t.installation}</span>
+                    <span className="text-white/40 text-xs mt-1">{t.installSub}</span>
                   </button>
+                </div>
+
+                {/* Language selector — fixed bottom */}
+                <div
+                  className="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-2 py-4 z-30 animate-[fadeInUp_600ms_ease-out_600ms_both]"
+                  style={{ paddingBottom: "max(16px, env(safe-area-inset-bottom))" }}
+                >
+                  {(["en", "es", "pt"] as Locale[]).map((lang) => (
+                    <button
+                      key={lang}
+                      type="button"
+                      onClick={() => setCurrentLocale(lang)}
+                      className={`px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-wider transition-all duration-200 ${
+                        currentLocale === lang
+                          ? "bg-white/[0.12] border border-white/[0.2] text-white"
+                          : "bg-transparent border border-transparent text-white/30 hover:text-white/50"
+                      }`}
+                    >
+                      {lang.toUpperCase()}
+                    </button>
+                  ))}
                 </div>
               </div>
             )}
@@ -639,16 +694,16 @@ export default function MobileClient({ locale }: { locale: string }) {
                   <div className="w-full max-w-sm space-y-3">
                     {(["soffit", "fascia", "soffit-and-fascia"] as RepairSubtype[]).map((sub, idx) => {
                       const icons: Record<RepairSubtype, React.ReactNode> = {
-                        soffit: <svg className="w-6 h-6 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><path d="M4 10h16" /></svg>,
-                        fascia: <svg className="w-6 h-6 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><rect x="3" y="8" width="18" height="3" rx="0.5" /><path d="M3 21h18M4 21V11M20 21V11M12 3l9 5M12 3L3 8" /></svg>,
-                        "soffit-and-fascia": <svg className="w-6 h-6 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><rect x="3" y="8" width="18" height="3" rx="0.5" /></svg>,
+                        soffit: <svg className="w-6 h-6 text-bubble-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><path d="M4 10h16" /></svg>,
+                        fascia: <svg className="w-6 h-6 text-bubble-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><rect x="3" y="8" width="18" height="3" rx="0.5" /><path d="M3 21h18M4 21V11M20 21V11M12 3l9 5M12 3L3 8" /></svg>,
+                        "soffit-and-fascia": <svg className="w-6 h-6 text-bubble-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round"><path d="M3 21h18M4 21V10l8-7 8 7v11" /><rect x="3" y="8" width="18" height="3" rx="0.5" /></svg>,
                       };
                       return (
                         <button
                           key={sub}
                           type="button"
                           onClick={() => handleRepairSubtype(sub)}
-                          className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex items-center gap-4 px-6 py-7"
+                          className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7`}
                           style={{ animationDelay: `${idx * 80}ms` }}
                         >
                           {icons[sub]}
@@ -674,17 +729,17 @@ export default function MobileClient({ locale }: { locale: string }) {
                     <button
                       type="button"
                       onClick={() => handleInstallSubtype("new-construction")}
-                      className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex items-center gap-4 px-6 py-7"
+                      className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7`}
                     >
-                      <Building2 className="w-6 h-6 text-white/50" />
+                      <Building2 className="w-6 h-6 text-bubble-secondary" />
                       <span className="text-white font-semibold">{t.newConstruction}</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => handleInstallSubtype("renovation")}
-                      className="w-full rounded-3xl backdrop-blur-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-white/[0.18] active:scale-[0.96] transition-all duration-200 flex items-center gap-4 px-6 py-7"
+                      className={`w-full ${glassCard} flex items-center gap-4 px-6 py-7`}
                     >
-                      <RefreshCw className="w-6 h-6 text-white/50" />
+                      <RefreshCw className="w-6 h-6 text-bubble-secondary" />
                       <span className="text-white font-semibold">{t.renovation}</span>
                     </button>
                   </div>
@@ -730,7 +785,7 @@ export default function MobileClient({ locale }: { locale: string }) {
                         <div className="w-full max-w-sm space-y-3">
                           {[3, 4].map((i) =>
                             data.previews[i] ? (
-                              <div key={i} className="flex items-center gap-3 bg-white/[0.04] rounded-2xl p-3 border border-white/[0.08]">
+                              <div key={i} className="flex items-center gap-3 backdrop-blur-2xl bg-white/[0.08] border border-white/[0.15] rounded-2xl p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={data.previews[i]} alt={`Extra ${i - 2}`} className="w-12 h-12 rounded-xl object-cover" />
                                 <span className="text-sm text-white/50 flex-1 truncate">{data.photos[i]?.name}</span>
@@ -739,7 +794,7 @@ export default function MobileClient({ locale }: { locale: string }) {
                                 </button>
                               </div>
                             ) : (
-                              <label key={i} className="flex items-center gap-3 bg-white/[0.03] rounded-2xl p-3 border border-dashed border-white/[0.08] cursor-pointer active:bg-white/[0.06] transition-all">
+                              <label key={i} className="flex items-center gap-3 bg-white/[0.04] border border-dashed border-white/[0.12] rounded-2xl p-3 cursor-pointer active:bg-white/[0.08] active:border-bubble-primary/30 transition-all">
                                 <Camera className="w-5 h-5 text-white/25" />
                                 <span className="text-sm text-white/30">
                                   {i === 4 ? t.addVideo : `${t.photoSlotLabel} ${i + 1} (${t.optional})`}
@@ -780,16 +835,16 @@ export default function MobileClient({ locale }: { locale: string }) {
                   )}
                 </div>
 
-                {/* Next button fixed at bottom */}
+                {/* Next button fixed at bottom — premium style */}
                 <div
-                  className="sticky bottom-0 px-6 pt-4 pb-6 bg-gradient-to-t from-[#040810] via-[#040810]/95 to-transparent"
+                  className="sticky bottom-0 px-6 pt-4 pb-6 bg-gradient-to-t from-[#0a1020] via-[#0a1020]/95 to-transparent"
                   style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}
                 >
                   <button
                     type="button"
                     disabled={data.photos.filter(Boolean).length < getRequiredPhotoCount(data)}
                     onClick={() => goTo(4, "forward")}
-                    className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 active:scale-[0.97] disabled:opacity-30 disabled:active:scale-100 text-white font-bold rounded-2xl transition-all duration-200 shadow-[0_4px_24px_rgba(37,99,235,0.4)]"
+                    className={`w-full h-14 ${premiumButton} disabled:opacity-30 disabled:active:scale-100 disabled:shadow-none text-white font-bold rounded-2xl transition-all duration-200`}
                   >
                     {t.next}
                   </button>
@@ -841,16 +896,16 @@ export default function MobileClient({ locale }: { locale: string }) {
                   </div>
                 </div>
 
-                {/* Submit button fixed at bottom */}
+                {/* Submit button fixed at bottom — premium style */}
                 <div
-                  className="sticky bottom-0 px-6 pt-4 pb-6 bg-gradient-to-t from-[#040810] via-[#040810]/95 to-transparent"
+                  className="sticky bottom-0 px-6 pt-4 pb-6 bg-gradient-to-t from-[#0a1020] via-[#0a1020]/95 to-transparent"
                   style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}
                 >
                   <button
                     type="button"
                     disabled={status === "sending" || !data.name || !data.email || !data.phone || !data.address}
                     onClick={handleSubmit}
-                    className="w-full h-14 bg-gradient-to-r from-bubble-primary to-blue-500 active:scale-[0.97] disabled:opacity-30 disabled:active:scale-100 text-white font-bold rounded-2xl transition-all duration-200 shadow-[0_4px_24px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2"
+                    className={`w-full h-14 ${premiumButton} disabled:opacity-30 disabled:active:scale-100 disabled:shadow-none text-white font-bold rounded-2xl transition-all duration-200 flex items-center justify-center gap-2`}
                   >
                     {status === "sending" ? (
                       <>
@@ -865,33 +920,33 @@ export default function MobileClient({ locale }: { locale: string }) {
               </div>
             )}
 
-            {/* ═══ STEP 5: Success (Celebration) ═══ */}
+            {/* ═══ STEP 5: Success (Celebration) — enhanced ═══ */}
             {step === 5 && (
               <div className="flex-1 flex flex-col items-center justify-center min-h-[85dvh] relative">
-                {/* Confetti particles */}
+                {/* Confetti particles — more colorful */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  {[...Array(20)].map((_, i) => (
+                  {[...Array(30)].map((_, i) => (
                     <div
                       key={i}
                       className="confetti-piece absolute w-2 h-2 rounded-sm"
                       style={{
-                        left: `${5 + (i * 4.7) % 90}%`,
+                        left: `${3 + (i * 3.3) % 94}%`,
                         top: "-8px",
                         backgroundColor: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-                        animation: `confettiFall ${2 + (i % 3) * 0.7}s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${i * 0.12}s both`,
+                        animation: `confettiFall ${2 + (i % 3) * 0.7}s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${i * 0.1}s both`,
                         transform: `rotate(${i * 37}deg)`,
                       }}
                     />
                   ))}
                 </div>
 
-                {/* Checkmark */}
-                <div className="w-28 h-28 bg-green-500/10 border border-green-400/30 rounded-full flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(34,197,94,0.15)] animate-[bounceCheck_500ms_cubic-bezier(0.34,1.56,0.64,1)_both]">
+                {/* Checkmark with stronger green glow */}
+                <div className="w-28 h-28 bg-green-500/15 border border-green-400/40 rounded-full flex items-center justify-center mb-8 shadow-[0_0_60px_rgba(34,197,94,0.25),0_0_120px_rgba(34,197,94,0.1)] animate-[bounceCheck_500ms_cubic-bezier(0.34,1.56,0.64,1)_both]">
                   <Check className="w-14 h-14 text-green-400" />
                 </div>
 
-                {/* Title */}
-                <h2 className="text-3xl font-bold text-center mb-3 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-green-200 bg-clip-text text-transparent animate-[fadeInUp_400ms_ease-out_300ms_both]">
+                {/* Title with gradient white to green */}
+                <h2 className="text-3xl font-bold text-center mb-3 font-[family-name:var(--font-heading)] bg-gradient-to-b from-white to-green-300 bg-clip-text text-transparent animate-[fadeInUp_400ms_ease-out_300ms_both]">
                   {t.successTitle}
                 </h2>
                 <p className="text-white/40 text-center max-w-[280px] mb-12 animate-[fadeInUp_400ms_ease-out_400ms_both]">
@@ -900,7 +955,7 @@ export default function MobileClient({ locale }: { locale: string }) {
 
                 {/* Back to website */}
                 <a
-                  href={locale === "en" ? "/" : `/${locale}`}
+                  href={currentLocale === "en" ? "/" : `/${currentLocale}`}
                   className="text-xs text-white/20 hover:text-white/40 transition-colors animate-[fadeInUp_400ms_ease-out_600ms_both]"
                 >
                   {t.backToWebsite}
@@ -996,7 +1051,7 @@ function PhotoSlot({
   }
 
   return (
-    <label className="aspect-square rounded-2xl border border-dashed border-white/10 bg-white/[0.03] flex flex-col items-center justify-center cursor-pointer active:scale-95 active:bg-white/[0.06] transition-all">
+    <label className="aspect-square rounded-2xl border border-dashed border-white/[0.12] bg-white/[0.04] flex flex-col items-center justify-center cursor-pointer active:scale-95 active:bg-white/[0.08] active:border-bubble-primary/30 transition-all">
       <Camera className="w-7 h-7 text-white/20 mb-1" />
       <span className="text-[10px] text-white/15 font-medium">{index + 1}</span>
       <input
@@ -1037,7 +1092,7 @@ function FormInput({
       autoComplete={autoComplete}
       autoFocus={autoFocus}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full h-14 bg-white/[0.05] border border-white/[0.08] rounded-2xl px-5 text-white text-base placeholder:text-white/25 focus:border-bubble-primary/40 focus:bg-white/[0.08] focus:ring-1 focus:ring-bubble-primary/20 transition-all outline-none"
+      className="w-full h-14 backdrop-blur-2xl bg-white/[0.08] border border-white/[0.15] rounded-2xl px-5 text-white text-base placeholder:text-white/25 focus:border-bubble-primary/40 focus:bg-white/[0.12] focus:ring-1 focus:ring-bubble-primary/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all outline-none"
     />
   );
 }
