@@ -107,6 +107,11 @@ export default async function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── API routes — skip intl middleware entirely ──
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
   // ── Mobile app route — set header for layout detection ──
   if (pathname.includes('/mobile')) {
     const response = intlMiddleware(req);
