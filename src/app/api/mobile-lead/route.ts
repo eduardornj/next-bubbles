@@ -269,9 +269,25 @@ export async function POST(req: NextRequest) {
       }
     })();
 
-    await Promise.all([emailPromise, telegramPromise]);
+    // Telegram is critical (instant notification), email is best-effort
+    const results = await Promise.allSettled([telegramPromise, emailPromise]);
 
-    return NextResponse.json({ success: true });
+    const telegramOk = results[0].status === "fulfilled";
+    const emailOk = results[1].status === "fulfilled";
+
+    if (!telegramOk) {
+      console.error("[mobile-lead] Telegram failed:", (results[0] as PromiseRejectedResult).reason);
+    }
+    if (!emailOk) {
+      console.error("[mobile-lead] Email failed:", (results[1] as PromiseRejectedResult).reason);
+    }
+
+    // Success as long as at least one delivery method works
+    if (telegramOk || emailOk) {
+      return NextResponse.json({ success: true });
+    }
+
+    return NextResponse.json({ error: "Delivery failed" }, { status: 500 });
   } catch (err) {
     const e = err instanceof Error ? err : new Error(String(err));
     console.error("[mobile-lead] Error:", e.message, e.stack);
