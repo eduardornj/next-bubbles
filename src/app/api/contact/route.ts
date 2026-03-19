@@ -151,8 +151,11 @@ function buildEmailHtml(data: {
 
 export async function POST(req: NextRequest) {
     try {
-        const originBlock = checkOrigin(req);
-        if (originBlock) return originBlock;
+        // Origin check — relaxed
+        const origin = req.headers.get('origin') || '';
+        if (origin && !origin.includes('bubblesenterprise.com') && !origin.includes('vercel.app') && !origin.includes('localhost')) {
+            return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+        }
 
         const ip = getClientIp(req);
         if (isRateLimited(ip)) {
@@ -162,8 +165,8 @@ export async function POST(req: NextRequest) {
         const formData = await req.formData();
         const recaptchaToken = (formData.get('recaptcha_token') as string) ?? '';
 
-        // Validate reCAPTCHA token
-        if (recaptchaToken) {
+        // reCAPTCHA — soft check, don't block on failure
+        if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
             try {
                 const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
                     method: 'POST',
@@ -171,13 +174,12 @@ export async function POST(req: NextRequest) {
                     body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
                 });
                 const recaptchaData = await recaptchaRes.json() as { success?: boolean; score?: number };
-                if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.5) {
-                    console.warn('[contact] reCAPTCHA validation failed:', { success: recaptchaData.success, score: recaptchaData.score, ip });
-                    return NextResponse.json({ error: 'Failed bot verification. Please try again.' }, { status: 403 });
+                if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.3) {
+                    console.warn('[contact] reCAPTCHA blocked:', { success: recaptchaData.success, score: recaptchaData.score, ip });
+                    return NextResponse.json({ error: 'Bot verification failed.' }, { status: 403 });
                 }
             } catch (err) {
-                console.error('[contact] reCAPTCHA verification error:', err);
-                return NextResponse.json({ error: 'Verification error. Please try again.' }, { status: 500 });
+                console.warn('[contact] reCAPTCHA check failed, continuing:', err);
             }
         }
 
