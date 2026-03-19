@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin', '/thank-you', '/repair-thank-you', '/utm-generator'],
+        disallow: ['/api/', '/admin', '/thank-you', '/repair-thank-you', '/utm-generator', '/mobile'],
       },
     ],
     sitemap: 'https://bubblesenterprise.com/sitemap.xml',
