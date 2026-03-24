@@ -44,7 +44,7 @@ export function createMailTransport() {
             user: process.env.SMTP_USER,
             pass: process.env.SMTP_PASS,
         },
-        tls: { rejectUnauthorized: false },
+        tls: { rejectUnauthorized: true },
     });
 }
 
@@ -64,6 +64,8 @@ export function checkOrigin(req: NextRequest): NextResponse | null {
     // Reject requests without Origin header (blocks curl/script spam)
     if (!origin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (ALLOWED_ORIGINS.includes(origin)) return null;
+    // Allow Vercel preview deployments (only *.vercel.app, exact suffix match)
+    if (/^https:\/\/[\w-]+\.vercel\.app$/.test(origin)) return null;
     // In development, allow localhost
     if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return null;
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
@@ -84,12 +86,36 @@ export function validateFieldLengths(fields: Record<string, string>): string | n
     return null;
 }
 
-// ── File upload validation (MIME type + extension) ──
+// ── File upload validation (MIME type + extension + magic bytes) ──
 const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'];
 const ALLOWED_EXT = ['jpg', 'jpeg', 'png', 'webp', 'heic', 'heif'];
 
-export function validatePhotos(photos: File[]): File[] {
-    return photos
+// Magic byte signatures for allowed image types
+const MAGIC_BYTES: Record<string, number[][]> = {
+    'image/jpeg': [[0xFF, 0xD8, 0xFF]],
+    'image/png': [[0x89, 0x50, 0x4E, 0x47]],
+    'image/webp': [[0x52, 0x49, 0x46, 0x46]], // RIFF header
+    'image/heic': [[0x00, 0x00, 0x00], [0x66, 0x74, 0x79, 0x70]], // ftyp at offset 4
+    'image/heif': [[0x00, 0x00, 0x00], [0x66, 0x74, 0x79, 0x70]],
+};
+
+async function checkMagicBytes(file: File): Promise<boolean> {
+    try {
+        const buf = new Uint8Array(await file.slice(0, 12).arrayBuffer());
+        const signatures = MAGIC_BYTES[file.type];
+        if (!signatures) return true; // No signature to check, allow
+        // For HEIC/HEIF check ftyp at offset 4
+        if (file.type === 'image/heic' || file.type === 'image/heif') {
+            return buf[4] === 0x66 && buf[5] === 0x74 && buf[6] === 0x79 && buf[7] === 0x70;
+        }
+        return signatures.some(sig => sig.every((byte, i) => buf[i] === byte));
+    } catch {
+        return false;
+    }
+}
+
+export async function validatePhotos(photos: File[]): Promise<File[]> {
+    const filtered = photos
         .filter(f => {
             if (f.size <= 0 || f.size > 10 * 1024 * 1024) return false;
             const ext = f.name.split('.').pop()?.toLowerCase() || '';
@@ -98,4 +124,8 @@ export function validatePhotos(photos: File[]): File[] {
             return true;
         })
         .slice(0, 5);
+
+    // Verify magic bytes for each file
+    const results = await Promise.all(filtered.map(async f => ({ file: f, valid: await checkMagicBytes(f) })));
+    return results.filter(r => r.valid).map(r => r.file);
 }

@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isRateLimited, getClientIp, esc, createMailTransport, formatDate, checkOrigin, validatePhotos, validateFieldLengths } from '@/lib/api-utils';
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
 
+// NOTE: All data.* fields MUST be pre-escaped with esc() before calling this function
 function buildEmailHtml(data: {
     firstName: string;
     lastName: string;
@@ -151,11 +152,9 @@ function buildEmailHtml(data: {
 
 export async function POST(req: NextRequest) {
     try {
-        // Origin check — relaxed
-        const origin = req.headers.get('origin') || '';
-        if (origin && !origin.includes('bubblesenterprise.com') && !origin.includes('vercel.app') && !origin.includes('localhost')) {
-            return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-        }
+        // Origin check — strict (exact match allowlist)
+        const originBlock = checkOrigin(req);
+        if (originBlock) return originBlock;
 
         // Rate limiting
         const ip = getClientIp(req);
@@ -166,22 +165,23 @@ export async function POST(req: NextRequest) {
         const formData = await req.formData();
         const recaptchaToken = (formData.get('recaptcha_token') as string) ?? '';
 
-        // reCAPTCHA — soft check (don't block on failure)
-        if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
-            try {
-                const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
-                });
-                const data = await res.json() as { success?: boolean; score?: number };
-                if (!data.success || (data.score ?? 0) < 0.3) {
-                    console.warn('[contact] reCAPTCHA blocked:', data);
-                    return NextResponse.json({ error: 'Bot detected.' }, { status: 403 });
-                }
-            } catch {
-                // reCAPTCHA failed but don't block the lead
+        // reCAPTCHA — MANDATORY
+        if (!recaptchaToken || !process.env.RECAPTCHA_SECRET_KEY) {
+            return NextResponse.json({ error: 'Bot verification required.' }, { status: 403 });
+        }
+        try {
+            const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+            });
+            const data = await res.json() as { success?: boolean; score?: number };
+            if (!data.success || (data.score ?? 0) < 0.3) {
+                console.warn('[contact] reCAPTCHA blocked:', data);
+                return NextResponse.json({ error: 'Bot detected.' }, { status: 403 });
             }
+        } catch {
+            // reCAPTCHA service down — allow through to not lose leads
         }
 
         const firstName = (formData.get('firstName') as string)?.trim();
@@ -206,7 +206,7 @@ export async function POST(req: NextRequest) {
         const fieldError = validateFieldLengths({ first_name: firstName, last_name: lastName, email, phone, address, gate_code: gateCode, service, message });
         if (fieldError) return NextResponse.json({ error: fieldError }, { status: 400 });
 
-        const validPhotos = validatePhotos(photos);
+        const validPhotos = await validatePhotos(photos);
 
         const attachments = await Promise.all(
             validPhotos.map(async (file, i) => {

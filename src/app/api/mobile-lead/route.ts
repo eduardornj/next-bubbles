@@ -9,7 +9,7 @@ import {
   validateFieldLengths,
 } from "@/lib/api-utils";
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID!;
@@ -149,12 +149,9 @@ function buildEmailHtml(d: {
 // ── Main handler ────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
   try {
-    // Origin check — allow bubblesenterprise.com + Vercel previews
-    const origin = req.headers.get("origin") || "";
-    const isAllowed = origin.includes("bubblesenterprise.com") || origin.includes("vercel.app") || origin.includes("localhost");
-    if (origin && !isAllowed) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
+    // Origin check — strict (uses exact match allowlist from api-utils)
+    const originBlock = checkOrigin(req);
+    if (originBlock) return originBlock;
 
     const ip = getClientIp(req);
     if (isRateLimited(ip)) {
@@ -164,24 +161,24 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const recaptchaToken = (formData.get("recaptchaToken") as string) ?? "";
 
-    // Validate reCAPTCHA — soft check (log but don't block on failure)
-    if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
-      try {
-        const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
-        });
-        const recaptchaData = (await recaptchaRes.json()) as { success?: boolean; score?: number };
-        if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.3) {
-          // Only block very suspicious requests (score < 0.3 instead of 0.5)
-          console.warn("[mobile-lead] reCAPTCHA low score:", recaptchaData.score);
-          return NextResponse.json({ error: "Bot verification failed." }, { status: 403 });
-        }
-      } catch (e) {
-        // reCAPTCHA failed but don't block the lead
-        console.warn("[mobile-lead] reCAPTCHA check failed, continuing:", e);
+    // Validate reCAPTCHA — MANDATORY (block if missing or failed)
+    if (!recaptchaToken || !process.env.RECAPTCHA_SECRET_KEY) {
+      return NextResponse.json({ error: "Bot verification required." }, { status: 403 });
+    }
+    try {
+      const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+      });
+      const recaptchaData = (await recaptchaRes.json()) as { success?: boolean; score?: number };
+      if (!recaptchaData.success || (recaptchaData.score ?? 0) < 0.3) {
+        console.warn("[mobile-lead] reCAPTCHA low score:", recaptchaData.score);
+        return NextResponse.json({ error: "Bot verification failed." }, { status: 403 });
       }
+    } catch (e) {
+      console.warn("[mobile-lead] reCAPTCHA check error:", e);
+      // If reCAPTCHA service is down, allow through (don't lose leads)
     }
 
     const type = (formData.get("type") as string)?.trim() ?? "";
@@ -272,7 +269,7 @@ export async function POST(req: NextRequest) {
         .filter((p) => p.contentType.startsWith("image/"))
         .map((p) => ({ arrayBuf: p.arrayBuf, filename: p.filename }));
       if (imageBuffers.length > 0) {
-        await sendTelegramPhotos(imageBuffers, `${typeLabel} - ${subtypeLabel} - ${name}`);
+        await sendTelegramPhotos(imageBuffers, `${typeLabel} - ${subtypeLabel} - ${esc(name)}`);
       }
     })();
 
@@ -298,6 +295,6 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     const e = err instanceof Error ? err : new Error(String(err));
     console.error("[mobile-lead] Error:", e.message, e.stack);
-    return NextResponse.json({ error: `Failed: ${e.message}` }, { status: 500 });
+    return NextResponse.json({ error: "Failed to send" }, { status: 500 });
   }
 }

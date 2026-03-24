@@ -109,11 +109,9 @@ function buildEmailHtml(data: {
 
 export async function POST(req: NextRequest) {
     try {
-        // Origin check — relaxed
-        const origin = req.headers.get('origin') || '';
-        if (origin && !origin.includes('bubblesenterprise.com') && !origin.includes('vercel.app') && !origin.includes('localhost')) {
-            return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-        }
+        // Origin check — strict (exact match allowlist)
+        const originBlock = checkOrigin(req);
+        if (originBlock) return originBlock;
 
         const ip = getClientIp(req);
         if (isRateLimited(ip)) {
@@ -123,20 +121,21 @@ export async function POST(req: NextRequest) {
         const formData = await req.formData();
         const recaptchaToken = (formData.get('recaptcha_token') as string) ?? '';
 
-        // reCAPTCHA — soft check
-        if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
-            try {
-                const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
-                });
-                const data = await res.json() as { success?: boolean; score?: number };
-                if (!data.success || (data.score ?? 0) < 0.3) {
-                    return NextResponse.json({ error: 'Bot detected.' }, { status: 403 });
-                }
-            } catch { /* don't block */ }
+        // reCAPTCHA — MANDATORY
+        if (!recaptchaToken || !process.env.RECAPTCHA_SECRET_KEY) {
+            return NextResponse.json({ error: 'Bot verification required.' }, { status: 403 });
         }
+        try {
+            const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+            });
+            const data = await res.json() as { success?: boolean; score?: number };
+            if (!data.success || (data.score ?? 0) < 0.3) {
+                return NextResponse.json({ error: 'Bot detected.' }, { status: 403 });
+            }
+        } catch { /* reCAPTCHA down — allow through */ }
 
         const name = (formData.get('name') as string)?.trim();
         const phone = (formData.get('phone') as string)?.trim();
@@ -152,7 +151,7 @@ export async function POST(req: NextRequest) {
         const fieldError = validateFieldLengths({ name, phone, address, description });
         if (fieldError) return NextResponse.json({ error: fieldError }, { status: 400 });
 
-        const validPhotos = validatePhotos(photos);
+        const validPhotos = await validatePhotos(photos);
 
         const attachments = await Promise.all(
             validPhotos.map(async (file, i) => {
