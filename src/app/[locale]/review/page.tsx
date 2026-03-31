@@ -12,7 +12,7 @@ const STORAGE_KEY = "bubbles-reviews-done";
 const PLATFORMS = [
   {
     key: "google" as const,
-    url: "https://g.page/r/CUubOLjvbBOFEAE/review",
+    url: "https://g.page/r/CUubOLjvbBOFEBI/review",
     badge: true,
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24">
@@ -47,15 +47,6 @@ const PLATFORMS = [
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="#00B246">
         <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.5 14.5h-2v-4c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5v4h-2v-4c0-1.933 1.567-3.5 3.5-3.5s3.5 1.567 3.5 3.5v4z" />
-      </svg>
-    ),
-  },
-  {
-    key: "angi" as const,
-    url: "https://www.angi.com/companylist/us/fl/orlando/bubbles-enterprise-reviews-10813498.htm",
-    icon: (
-      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="#FF6153">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
       </svg>
     ),
   },
@@ -285,7 +276,7 @@ export default function ReviewPage() {
             <AnimatedSection>
               <div className="mt-8 text-center p-6 bg-blue-50 rounded-2xl border border-blue-100">
                 <p className="text-lg font-semibold text-bubble-primary">
-                  {t(`encourage${progress}` as "encourage1" | "encourage2" | "encourage3" | "encourage4")}
+                  {t(`encourage${progress}` as "encourage1" | "encourage2" | "encourage3")}
                 </p>
               </div>
             </AnimatedSection>
