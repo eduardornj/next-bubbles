@@ -21,7 +21,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!city) return {};
     const t = await getTranslations({ locale, namespace: "cityPage" });
     const title = t("metaTitle", { city: city.name });
-    const description = t("heroSubtitle", { city: city.name, county: city.county });
+    // Use city-specific meta description when available, fallback to generic template
+    const description = locale === "pt" && city.metaDescriptionPt
+        ? city.metaDescriptionPt
+        : locale === "es" && city.metaDescriptionEs
+            ? city.metaDescriptionEs
+            : city.metaDescription && locale === "en"
+                ? city.metaDescription
+                : t("metaDesc", { city: city.name, county: city.county });
     const basePath = `/areas/${city.slug}`;
     const canonical = locale === "en"
         ? `https://bubblesenterprise.com${basePath}`

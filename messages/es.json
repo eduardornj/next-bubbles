@@ -2,7 +2,7 @@
   "meta": {
     "siteTitle": "Bubbles Enterprise Soffit | Instalación Premium en Orlando",
     "siteDescription": "Especialistas en instalación y reparación de soffit y fascia en Orlando y Florida Central. Construcción nueva y reemplazo. Licenciados y asegurados. Llame (407) 715-1790.",
-    "homepageTitle": "Bubbles Enterprise | Reparación e Instalación de Soffit y Fascia en Orlando, FL",
+    "homepageTitle": "Reparación e Instalación de Soffit y Fascia Orlando, FL — Presupuesto Gratis | Bubbles Enterprise",
     "homepageDescription": "Reparación, instalación y reemplazo de soffit y fascia en Orlando, FL. Servicios de emergencia disponibles. Prevención de animales y daños de tormenta. Licenciados y asegurados. Llame (407) 715-1790."
   },
   "nav": {
@@ -1698,7 +1698,8 @@
   },
   "cityPage": {
     "breadcrumb": "Todas las Areas de Servicio",
-    "metaTitle": "Reparación de Soffit y Fascia en {city}, FL | Bubbles Enterprise",
+    "metaTitle": "Reparación de Soffit y Fascia en {city}, FL — Presupuesto Gratis | Bubbles Enterprise",
+    "metaDesc": "Reparación profesional de soffit y fascia en {city}, FL. Servimos {county}. Licenciados y asegurados. Presupuesto gratis el mismo día. (407) 715-1790.",
     "heroTitle": "Soffit & Fascia en",
     "heroSubtitle": "Protegemos el techo de su familia en {city} con el mismo cuidado que le daríamos a nuestra propia casa. Servicio licenciado, asegurado y en español.",
     "heroCta": "Hablar con el Equipo en {city}",
